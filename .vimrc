@@ -10,3 +10,5 @@ map <ScrollWheelDown> <C-E>
 
 set noerrorbells
 set vb t_vb=
+
+autocmd BufRead,BufNewFile *.tex set textwidth=80
