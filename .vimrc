@@ -12,3 +12,4 @@ set noerrorbells
 set vb t_vb=
 
 autocmd BufRead,BufNewFile *.tex set textwidth=80
+autocmd BufRead,BufNewFile *.hs set expandtab
