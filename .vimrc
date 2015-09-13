@@ -15,3 +15,5 @@ autocmd BufRead,BufNewFile *.tex set textwidth=80
 autocmd BufRead,BufNewFile *.hs set expandtab
 
 match ErrorMsg '\s\+$'
+
+au BufNewFile,BufRead *.i set filetype=swig
