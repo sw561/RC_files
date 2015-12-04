@@ -8,12 +8,23 @@ set cursorline
 
 set clipboard=unnamedplus
 
+set laststatus=2          "statusline displayed always
+set statusline=%t         "tail of the filename
+set statusline+=%m        "modified flag
+set statusline+=%r        "read only flag
+set statusline+=%y        "filetype
+set statusline+=%=        "left/right separator
+set statusline+=%l,       "cursor line
+set statusline+=%-10.10c  "cursor column
+
 set mouse=a
 map <ScrollWheelUp> <C-Y>
 map <ScrollWheelDown> <C-E>
 
 set noerrorbells
 set vb t_vb=
+
+match ErrorMsg '\%>79v.\+' "highlight lines that are too long
 
 " Set all three of shiftwidth, softtabstop and tabstop
 function! SetTab(value)
@@ -34,8 +45,6 @@ endfunction
 
 autocmd BufWritePre,FileWritePre * call TrimWhiteSpace()
 
-autocmd BufRead,BufNewFile *.tex set textwidth=80
+autocmd BufRead,BufNewFile *.tex,*.md set textwidth=79
 autocmd BufRead,BufNewFile *.hs set expandtab
-autocmd BufRead,BufNewFile *.py match ErrorMsg '\%>79v.\+'
-
-au BufNewFile,BufRead *.i set filetype=swig
+autocmd BufRead,BufNewFile *.i set filetype=swig
