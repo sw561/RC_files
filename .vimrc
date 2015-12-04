@@ -48,3 +48,8 @@ autocmd BufWritePre,FileWritePre * call TrimWhiteSpace()
 autocmd BufRead,BufNewFile *.tex,*.md set textwidth=79
 autocmd BufRead,BufNewFile *.hs set expandtab
 autocmd BufRead,BufNewFile *.i set filetype=swig
+
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
