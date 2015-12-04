@@ -6,6 +6,8 @@ set tabpagemax=20
 
 set cursorline
 
+set clipboard=unnamedplus
+
 set mouse=a
 map <ScrollWheelUp> <C-Y>
 map <ScrollWheelDown> <C-E>
@@ -23,7 +25,7 @@ call SetTab(4)
 
 " Removes trailing spaces including empty lines at end of file
 function! TrimWhiteSpace()
-	let save_cursor = getpos(".")
+	let save_cursor = getpos('.')
 	%s/\s\+$//e
 	$put _
 	%s#\($\n\s*\)\+\%$##
