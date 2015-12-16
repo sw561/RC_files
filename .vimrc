@@ -21,6 +21,8 @@ set mouse=a
 map <ScrollWheelUp> <C-Y>
 map <ScrollWheelDown> <C-E>
 
+imap <c-v> <nop>
+
 set noerrorbells
 set vb t_vb=
 
