@@ -24,7 +24,10 @@ map <ScrollWheelDown> <C-E>
 " When in insert mode, Ctrl-V goes to visual block mode
 imap <C-v> <Esc><C-v>
 
-" When in normal mode, Q to gq the paragraph
+" Don't want recording mode
+map q <nop>
+
+" When in normal mode, Q to gq the paragraph - don't need exec mode
 nmap Q gqip
 vmap Q gq
 
