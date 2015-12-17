@@ -24,6 +24,13 @@ map <ScrollWheelDown> <C-E>
 " When in insert mode, Ctrl-V goes to visual block mode
 imap <C-v> <Esc><C-v>
 
+" When in normal mode, Q to gq the paragraph
+nmap Q gqip
+vmap Q gq
+
+" When opening files using wildcards, ignore these files
+set wildignore=*.swp,*.png,*.pyc,*.o,*.so,*~
+
 " Function for making backspace behave as expected in normal mode
 function! MyBackspace()
 	if col('.')==col('$')-1
