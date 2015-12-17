@@ -24,15 +24,6 @@ map <ScrollWheelDown> <C-E>
 " When in insert mode, Ctrl-V goes to visual block mode
 imap <C-v> <Esc><C-v>
 
-" Function to check if char under cursor is a space or not
-function! IsSpace()
-	if getline('.')[col('.')-1] == " "
-		echo "yes"
-	else
-		echo "no"
-	endif
-endfunction
-
 " Function for making backspace behave as expected in normal mode
 function! MyBackspace()
 	if col('.')==col('$')-1
