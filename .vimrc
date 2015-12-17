@@ -21,7 +21,33 @@ set mouse=a
 map <ScrollWheelUp> <C-Y>
 map <ScrollWheelDown> <C-E>
 
-imap <c-v> <nop>
+" When in insert mode, Ctrl-V goes to visual block mode
+imap <C-v> <Esc><C-v>
+
+" Function to check if char under cursor is a space or not
+function! IsSpace()
+	if getline('.')[col('.')-1] == " "
+		echo "yes"
+	else
+		echo "no"
+	endif
+endfunction
+
+" Function for making backspace behave as expected in normal mode
+function! MyBackspace()
+	if col('.')==col('$')-1
+		" If at the end of a non-empty line, delete last character
+		execute "normal! x"
+	elseif col('.')==1
+		" At start of a line, go to end of previous line
+		execute "normal! k$"
+	else
+		" Otherwise delete character to the left of the cursor
+		" To delete the character under the cursor use x or <Del>
+		execute "normal! hx"
+	endif
+endfunction
+nnoremap <BS> :call MyBackspace()<Enter>
 
 set noerrorbells
 set vb t_vb=
