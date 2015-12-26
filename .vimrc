@@ -3,6 +3,8 @@ set copyindent
 set noexpandtab
 set number
 set tabpagemax=20
+set splitright
+set splitbelow
 
 set cursorline
 
@@ -37,6 +39,8 @@ set nojoinspaces
 
 " When opening files using wildcards, ignore these files
 set wildignore=*.swp,*.png,*.pyc,*.o,*.so,*~
+
+nmap tn :tabnew
 
 " Function for making backspace behave as expected in normal mode
 function! MyBackspace()
@@ -89,3 +93,13 @@ autocmd BufRead,BufNewFile * match ErrorMsg '\%>79v.\+'
 " noremap <Down> <NOP>
 " noremap <Left> <NOP>
 " noremap <Right> <NOP>
+
+" Comfortable movement between split windows
+map <C-J> <C-W><C-J>
+map <C-K> <C-W><C-K>
+map <C-L> <C-W><C-L>
+map <C-H> <C-W><C-H>
+imap <C-J> <Esc><C-W><C-J>
+imap <C-K> <Esc><C-W><C-K>
+imap <C-L> <Esc><C-W><C-L>
+imap <C-H> <Esc><C-W><C-H>
