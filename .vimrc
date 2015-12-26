@@ -30,6 +30,7 @@ map q <nop>
 " When in normal mode, Q to gq the paragraph - don't need exec mode
 nmap Q gqip
 vmap Q gq
+imap QQ <Esc>QA
 
 " When opening files using wildcards, ignore these files
 set wildignore=*.swp,*.png,*.pyc,*.o,*.so,*~
