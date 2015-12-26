@@ -32,6 +32,9 @@ nmap Q gqip
 vmap Q gq
 imap QQ <Esc>QA
 
+" When paragraphs of text, use 1 space after periods.
+set nojoinspaces
+
 " When opening files using wildcards, ignore these files
 set wildignore=*.swp,*.png,*.pyc,*.o,*.so,*~
 
