@@ -25,6 +25,7 @@ map <ScrollWheelDown> <C-E>
 
 " When in insert mode, Ctrl-V goes to visual block mode
 imap <C-v> <Esc><C-v>
+imap jj <Esc>
 
 " Don't want recording mode
 map q <nop>
@@ -34,13 +35,14 @@ nmap Q gqip
 vmap Q gq
 imap QQ <Esc>QA
 
-" When paragraphs of text, use 1 space after periods.
+" When formatting paragraphs of text, use 1 space after periods
 set nojoinspaces
 
 " When opening files using wildcards, ignore these files
 set wildignore=*.swp,*.png,*.pyc,*.o,*.so,*~
 
 nmap tn :tabnew
+nmap gr gT
 
 " Function for making backspace behave as expected in normal mode
 function! MyBackspace()
