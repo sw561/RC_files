@@ -20,8 +20,8 @@ else
 endif
 
 " SWIG extentions
-syn keyword swigDirective %typemap %define %apply %fragment %include %enddef %extend %newobject %name 
-syn keyword swigDirective %rename %ignore %keyword %typemap %define %apply %fragment %include 
+syn keyword swigDirective %typemap %define %apply %fragment %include %enddef %extend %newobject %name
+syn keyword swigDirective %rename %ignore %keyword %typemap %define %apply %fragment %include
 syn keyword swigDirective %enddef %extend %newobject %name %rename %ignore %template %module %constant
 syn match swigDirective "%\({\|}\)"
 syn match swigUserDef "%[-_a-zA-Z0-9]\+"
@@ -34,7 +34,7 @@ if version >= 508 || !exists("did_swig_syntax_inits")
   else
     command -nargs=+ HiLink hi def link <args>
   endif
-  HiLink swigDirective      Exception 
+  HiLink swigDirective      Exception
   HiLink swigUserDef 		PreProc
   delcommand HiLink
 endif
@@ -42,3 +42,5 @@ endif
 let b:current_syntax = "swig"
 
 " vim: ts=8
+" Settings for the language 'progress' makes vim expand tabs
+set noexpandtab

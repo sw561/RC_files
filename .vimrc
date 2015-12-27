@@ -5,9 +5,10 @@ set number
 set tabpagemax=20
 set splitright
 set splitbelow
-
+set ignorecase
+set smartcase
+set scrolloff=2
 set cursorline
-
 set clipboard=unnamedplus
 
 set laststatus=2          "statusline displayed always
@@ -20,29 +21,32 @@ set statusline+=%l,       "cursor line
 set statusline+=%-10.10c  "cursor column
 
 set mouse=a
-map <ScrollWheelUp> <C-Y>
-map <ScrollWheelDown> <C-E>
+noremap <ScrollWheelUp> <C-Y>
+noremap <ScrollWheelDown> <C-E>
 
 " When in insert mode, Ctrl-V goes to visual block mode
-imap <C-v> <Esc><C-v>
-imap jj <Esc>
+inoremap <C-v> <Esc><C-v>
 
 " Don't want recording mode
-map q <nop>
+noremap q <nop>
 
 " When in normal mode, Q to gq the paragraph - don't need exec mode
-nmap Q gqip
-vmap Q gq
-imap QQ <Esc>QA
-
+nnoremap Q gqip
+vnoremap Q gq
+inoremap QQ <Esc>gqipA
 " When formatting paragraphs of text, use 1 space after periods
 set nojoinspaces
 
 " When opening files using wildcards, ignore these files
 set wildignore=*.swp,*.png,*.pyc,*.o,*.so,*~
+set wildmenu
 
-nmap tn :tabnew
-nmap gr gT
+nnoremap tn :tabnew
+nnoremap gr gT
+
+" No annoying beeps or flashes
+set noerrorbells
+set vb t_vb=
 
 " Function for making backspace behave as expected in normal mode
 function! MyBackspace()
@@ -59,9 +63,6 @@ function! MyBackspace()
 	endif
 endfunction
 nnoremap <BS> :call MyBackspace()<Enter>
-
-set noerrorbells
-set vb t_vb=
 
 " Set all three of shiftwidth, softtabstop and tabstop
 function! SetTab(value)
@@ -85,23 +86,28 @@ endfunction
 
 autocmd BufWritePre,FileWritePre * call TrimWhiteSpace()
 
-autocmd BufRead,BufNewFile *.tex,*.md set textwidth=79
-autocmd BufRead,BufNewFile *.hs set expandtab
-autocmd BufRead,BufNewFile *.i set filetype=swig
+autocmd BufRead,BufNewFile *.tex,*.md,*.rst setlocal textwidth=79 spell spelllang=en_gb spellfile=./en.utf-8.add
+autocmd BufRead,BufNewFile *.hs setlocal expandtab
+autocmd BufRead,BufNewFile *.i setlocal filetype=swig
 "highlight lines that are too long
 autocmd BufRead,BufNewFile * match ErrorMsg '\%>79v.\+'
 
-" noremap <Up> <NOP>
-" noremap <Down> <NOP>
-" noremap <Left> <NOP>
-" noremap <Right> <NOP>
+" Hard mode - disable arrow keys to break habits
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Right> <NOP>
+noremap <Left> <NOP>
+inoremap <Up> <NOP>
+inoremap <Down> <NOP>
+inoremap <Right> <NOP>
+inoremap <Left> <NOP>
 
 " Comfortable movement between split windows
-map <C-J> <C-W><C-J>
-map <C-K> <C-W><C-K>
-map <C-L> <C-W><C-L>
-map <C-H> <C-W><C-H>
-imap <C-J> <Esc><C-W><C-J>
-imap <C-K> <Esc><C-W><C-K>
-imap <C-L> <Esc><C-W><C-L>
-imap <C-H> <Esc><C-W><C-H>
+noremap <C-J> <C-W><C-J>
+noremap <C-K> <C-W><C-K>
+noremap <C-L> <C-W><C-L>
+noremap <C-H> <C-W><C-H>
+inoremap <C-J> <Esc><C-W><C-J>
+inoremap <C-K> <Esc><C-W><C-K>
+inoremap <C-L> <Esc><C-W><C-L>
+inoremap <C-H> <Esc><C-W><C-H>
