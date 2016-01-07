@@ -1,7 +1,7 @@
 set autoindent
 set copyindent
 set noexpandtab
-set number
+set relativenumber
 set tabpagemax=20
 set splitright
 set splitbelow
@@ -10,6 +10,7 @@ set smartcase
 set scrolloff=2
 set cursorline
 set clipboard=unnamedplus
+set confirm
 
 set laststatus=2          "statusline displayed always
 set statusline=%t         "tail of the filename
@@ -38,11 +39,8 @@ inoremap QQ <Esc>gqipA
 set nojoinspaces
 
 " When opening files using wildcards, ignore these files
-set wildignore=*.swp,*.png,*.pyc,*.o,*.so,*~
+set wildignore=*.swp,*.png,*.pyc,*.o,*.so,*~,*.pdf
 set wildmenu
-
-nnoremap tn :tabnew
-nnoremap gr gT
 
 " No annoying beeps or flashes
 set noerrorbells
@@ -111,3 +109,18 @@ inoremap <C-J> <Esc><C-W><C-J>
 inoremap <C-K> <Esc><C-W><C-K>
 inoremap <C-L> <Esc><C-W><C-L>
 inoremap <C-H> <Esc><C-W><C-H>
+
+" Shortcuts for using tabs
+cnoremap tn tabnew
+nnoremap gr gT
+
+" Shortcuts for using buffers
+nnoremap gn :bn<Enter>
+nnoremap gm :bp<Enter>
+command MyBufferDelete bp|bd# " :bd will delete buffer without deleting window
+cnoremap bd MyBufferDelete
+cnoremap ls ls<Enter>:b
+
+" Avoid accidental capitals
+cmap Ls ls
+cmap LS ls
