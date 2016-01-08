@@ -155,8 +155,19 @@ function! ReduceGap()
 	endif
 endfunction
 
+function! AddEmptyLineAbove()
+    let l:scrolloffsave = &scrolloff
+    " Avoid jerky scrolling with ^E at top of window
+    set scrolloff=0
+    call append(line(".") - 1, "")
+    if winline() != winheight(0)
+        silent normal! <C-e>
+    endif
+    let &scrolloff = l:scrolloffsave
+endfunction
+
 function! IncreaseGap()
-	call append(line("."), "")
+	call AddEmptyLineAbove()
 endfunction
 
 " Arrow key remapping: Up/Dn = move line up/dn; Left/Right = indent/unindent
