@@ -90,16 +90,6 @@ autocmd BufRead,BufNewFile *.i setlocal filetype=swig
 "highlight lines that are too long
 autocmd BufRead,BufNewFile * match ErrorMsg '\%>79v.\+'
 
-" Hard mode - disable arrow keys to break habits
-" noremap <Up> <NOP>
-" noremap <Down> <NOP>
-" noremap <Right> <NOP>
-" noremap <Left> <NOP>
-" inoremap <Up> <NOP>
-" inoremap <Down> <NOP>
-" inoremap <Right> <NOP>
-" inoremap <Left> <NOP>
-
 " Comfortable movement between split windows
 noremap <C-J> <C-W><C-J>
 noremap <C-K> <C-W><C-K>
@@ -126,22 +116,8 @@ cmap Ls ls
 cmap LS ls
 
 " Repurpose the arrow keys for something more useful
-function! DelEmptyLineBelow()
-	if line(".") == line("$")
-		return
-	endif
-	let l:line = getline(line(".") + 1)
-	if l:line =~ '^s*$'
-		let l:colsave = col(".")
-		.+1d
-		''
-		call cursor(line("."), l:colsave)
-	endif
-endfunction
-
 function! ReduceGap()
 	if line(".") == 1
-		call DelEmptyLineBelow()
 		return
 	endif
 	let l:line = getline(line(".") - 1)
@@ -150,12 +126,10 @@ function! ReduceGap()
 		.-1d
 		silent normal! <C-y>
 		call cursor(line("."), l:colsave)
-	else
-		call DelEmptyLineBelow()
 	endif
 endfunction
 
-function! AddEmptyLineAbove()
+function! IncreaseGap()
     let l:scrolloffsave = &scrolloff
     " Avoid jerky scrolling with ^E at top of window
     set scrolloff=0
@@ -164,10 +138,6 @@ function! AddEmptyLineAbove()
         silent normal! <C-e>
     endif
     let &scrolloff = l:scrolloffsave
-endfunction
-
-function! IncreaseGap()
-	call AddEmptyLineAbove()
 endfunction
 
 " Arrow key remapping: Up/Dn = move line up/dn; Left/Right = indent/unindent
