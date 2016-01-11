@@ -1,7 +1,7 @@
 set autoindent
 set copyindent
 set noexpandtab
-set number
+set relativenumber
 set tabpagemax=20
 set splitright
 set splitbelow
@@ -84,10 +84,11 @@ endfunction
 
 autocmd BufWritePre,FileWritePre * call TrimWhiteSpace()
 
-autocmd BufRead,BufNewFile *.tex,*.md,*.rst setlocal textwidth=79 spell spelllang=en_gb spellfile=./en.utf-8.add
+autocmd BufRead,BufNewFile *.tex,*.md,*.rst setlocal textwidth=79
+	\ spell spelllang=en_gb spellfile=./en.utf-8.add
 autocmd BufRead,BufNewFile *.hs setlocal expandtab
 autocmd BufRead,BufNewFile *.i setlocal filetype=swig
-"highlight lines that are too long
+" Highlight lines that are too long
 autocmd BufRead,BufNewFile * match ErrorMsg '\%>79v.\+'
 
 " Comfortable movement between split windows
