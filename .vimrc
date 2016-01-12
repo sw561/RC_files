@@ -18,7 +18,8 @@ set statusline+=%m        "modified flag
 set statusline+=%r        "read only flag
 " set statusline+=%y        "filetype
 set statusline+=%=        "left/right separator
-set statusline+=%l,       "cursor line
+set statusline+=%l       "cursor line
+set statusline+=/%L, "total number of lines
 set statusline+=%-10.10c  "cursor column
 
 set mouse=a
