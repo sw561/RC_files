@@ -168,3 +168,6 @@ autocmd WinLeave * setlocal nocursorline
 highlight MatchParen ctermbg=red
 
 cnoremap make !make
+
+" Turn off spell checking for comments in latex
+let g:tex_comment_nospell=1
