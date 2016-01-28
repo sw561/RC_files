@@ -166,3 +166,5 @@ autocmd VimEnter,WinEnter * setlocal cursorline
 autocmd WinLeave * setlocal nocursorline
 
 highlight MatchParen ctermbg=red
+
+cnoremap make !make
