@@ -8,7 +8,6 @@ set splitbelow
 set ignorecase
 set smartcase
 set scrolloff=2
-set cursorline
 set clipboard=unnamedplus
 set confirm
 
@@ -23,8 +22,8 @@ set statusline+=/%L,      "total number of lines
 set statusline+=%-10.10c  "cursor column
 
 set mouse=a
-noremap <ScrollWheelUp> <C-Y>
-noremap <ScrollWheelDown> <C-E>
+noremap <ScrollWheelUp> 3<C-Y>
+noremap <ScrollWheelDown> 3<C-E>
 
 " When in insert mode, Ctrl-V goes to visual block mode
 inoremap <C-v> <Esc><C-v>
@@ -158,3 +157,12 @@ function! SetArrowKeysAsTextShifters()
 endfunction
 
 call SetArrowKeysAsTextShifters()
+
+highlight StatusLine ctermfg=darkblue ctermbg=white
+highlight StatusLineNC ctermfg=black ctermbg=white
+
+set cursorline
+autocmd VimEnter,WinEnter * setlocal cursorline
+autocmd WinLeave * setlocal nocursorline
+
+highlight MatchParen ctermbg=red
