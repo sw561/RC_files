@@ -84,7 +84,7 @@ nnoremap <BS> :call MyBackspace()<Enter>
 function! SetTab(value)
 	let &shiftwidth  = a:value
 	let &softtabstop = a:value
-	let &tabstop		 = a:value
+	let &tabstop     = a:value
 endfunction
 call SetTab(4)
 
