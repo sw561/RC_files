@@ -10,33 +10,34 @@ set smartcase
 set scrolloff=2
 set clipboard=unnamedplus
 set confirm
+set nojoinspaces
 
-set laststatus=2          "statusline displayed always
-set statusline=%t         "tail of the filename
-set statusline+=%m        "modified flag
-set statusline+=%r        "read only flag
-set statusline+=%y        "filetype
-set statusline+=%=        "left/right separator
-set statusline+=%l        "cursor line
-set statusline+=/%L,      "total number of lines
-set statusline+=%-10.10c  "cursor column
+set laststatus=2					"statusline displayed always
+set statusline=%t					"tail of the filename
+set statusline+=%m				"modified flag
+set statusline+=%r				"read only flag
+" set statusline+=%y				"filetype
+set statusline+=%=				"left/right separator
+set statusline+=%l				"cursor line
+set statusline+=/%L,			"total number of lines
+set statusline+=%-10.10c	"cursor column
 
+" Change the colour of active and non-active status lines
+highlight StatusLine ctermfg=darkblue ctermbg=white
+highlight StatusLineNC ctermfg=black ctermbg=white
+
+" Turn on the mouse, for scrolling too
 set mouse=a
 noremap <ScrollWheelUp> 3<C-Y>
 noremap <ScrollWheelDown> 3<C-E>
 
-" When in insert mode, Ctrl-V goes to visual block mode
-inoremap <C-v> <Esc><C-v>
+noremap <C-E> 3<C-E>
+noremap <C-Y> 3<C-Y>
 
 " Don't want recording mode
 noremap q <nop>
-
-" When in normal mode, Q to gq the paragraph - don't need exec mode
-nnoremap Q gqip
-vnoremap Q gq
-inoremap QQ <Esc>gqipA
-" When formatting paragraphs of text, use 1 space after periods
-set nojoinspaces
+" Don't need exec mode
+noremap Q <nop>
 
 " When opening files using wildcards, ignore these files
 set wildignore=*.swp,*.png,*.pyc,*.o,*.so,*~,*.pdf
@@ -45,6 +46,23 @@ set wildmenu
 " No annoying beeps or flashes
 set noerrorbells
 set vb t_vb=
+
+autocmd VimEnter,WinEnter * setlocal cursorline
+autocmd WinLeave * setlocal nocursorline
+
+highlight MatchParen ctermbg=red
+highlight VertSplit ctermfg=black
+
+" Visual mode p doesn't replace text in buffer
+vnoremap p pgvy`]
+" after paste, cursor goes to end of pasted text
+nnoremap p p`]
+
+" Avoid having to press <CR> twice after the make
+cnoremap make !make
+
+" Turn off spell checking for comments in tex files
+let g:tex_comment_nospell=1
 
 " Function for making backspace behave as expected in normal mode
 function! MyBackspace()
@@ -66,7 +84,7 @@ nnoremap <BS> :call MyBackspace()<Enter>
 function! SetTab(value)
 	let &shiftwidth  = a:value
 	let &softtabstop = a:value
-	let &tabstop     = a:value
+	let &tabstop		 = a:value
 endfunction
 call SetTab(4)
 
@@ -84,12 +102,26 @@ endfunction
 
 autocmd BufWritePre,FileWritePre * call TrimWhiteSpace()
 
-autocmd BufRead,BufNewFile *.tex,*.md,*.rst setlocal textwidth=79
-	\ spell spelllang=en_gb spellfile=./en.utf-8.add
-autocmd BufRead,BufNewFile *.hs setlocal expandtab
-autocmd BufRead,BufNewFile *.i setlocal filetype=swig
-" Highlight lines that are too long
-autocmd BufRead,BufNewFile * match ErrorMsg '\%>79v.\+'
+" Highlight lines that are too long in the active window
+let g:long_line_match=1
+highlight OverLength ctermbg=red ctermfg=white
+autocmd WinEnter,VimEnter *
+	\ if g:long_line_match==1 |
+	\   match OverLength '\%>79v.\+' |
+	\ endif
+autocmd WinLeave * match OverLength //
+
+function! LongLineHighlightToggle()
+	if g:long_line_match == 1
+		match OverLength //
+		let g:long_line_match = 0
+	else
+		match OverLength '\%>79v.\+'
+		let g:long_line_match = 1
+	endif
+endfunction
+cnoremap long call LongLineHighlightToggle()
+cnoremap long? echo g:long_line_match
 
 " Comfortable movement between split windows
 noremap <C-J> <C-W><C-J>
@@ -111,63 +143,22 @@ nnoremap gm :bp<Enter>
 command MyBufferDelete bp|bd# " :bd will delete buffer without deleting window
 cnoremap bd MyBufferDelete
 cnoremap ls ls<Enter>:b
-
 " Avoid accidental capitals
 cmap Ls ls
 cmap LS ls
 
-" Repurpose the arrow keys for something more useful
-function! ReduceGap()
-	if line(".") == 1
-		return
-	endif
-	let l:line = getline(line(".") - 1)
-	if l:line =~ '^s*$'
-		let l:colsave = col(".")
-		.-1d
-		silent normal! <C-y>
-		call cursor(line("."), l:colsave)
-	endif
-endfunction
+" Disable arrow keys
+inoremap <Right> <nop>
+inoremap <Left> <nop>
+inoremap <Down> <nop>
+inoremap <Up> <nop>
+nnoremap <Right> <nop>
+nnoremap <Left> <nop>
+nnoremap <Down> <nop>
+nnoremap <Up> <nop>
 
-function! IncreaseGap()
-    let l:scrolloffsave = &scrolloff
-    " Avoid jerky scrolling with ^E at top of window
-    set scrolloff=0
-    call append(line(".") - 1, "")
-    if winline() != winheight(0)
-        silent normal! <C-e>
-    endif
-    let &scrolloff = l:scrolloffsave
-endfunction
-
-" Arrow key remapping: Up/Dn = move line up/dn; Left/Right = indent/unindent
-function! SetArrowKeysAsTextShifters()
-	" normal mode
-	nmap <Left> <<
-	nmap <Right> >>
-	nnoremap <Up> <Esc>:call ReduceGap()<CR>
-	nnoremap <Down> <Esc>:call IncreaseGap()<CR>
-
-	" insert mode
-	imap <Left> <C-D>
-	imap <Right> <C-T>
-	inoremap <Up> <Esc>:call ReduceGap()<CR>a
-	inoremap <Down> <Esc>:call IncreaseGap()<CR>a
-endfunction
-
-call SetArrowKeysAsTextShifters()
-
-highlight StatusLine ctermfg=darkblue ctermbg=white
-highlight StatusLineNC ctermfg=black ctermbg=white
-
-set cursorline
-autocmd VimEnter,WinEnter * setlocal cursorline
-autocmd WinLeave * setlocal nocursorline
-
-highlight MatchParen ctermbg=red
-
-cnoremap make !make
-
-" Turn off spell checking for comments in latex
-let g:tex_comment_nospell=1
+" Commands for specific filetypes
+autocmd BufRead,BufNewFile *.tex,*.md,*.rst setlocal textwidth=79
+	\ spell spelllang=en_gb spellfile=./en.utf-8.add
+autocmd BufRead,BufNewFile *.hs setlocal expandtab
+autocmd BufRead,BufNewFile *.i setlocal filetype=swig
