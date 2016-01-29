@@ -158,7 +158,8 @@ nnoremap <Down> <nop>
 nnoremap <Up> <nop>
 
 " Commands for specific filetypes
-autocmd BufRead,BufNewFile *.tex,*.md,*.rst setlocal textwidth=79
+autocmd FileType tex,rst,markdown
+	\ setlocal textwidth=79
 	\ spell spelllang=en_gb spellfile=./en.utf-8.add
-autocmd BufRead,BufNewFile *.hs setlocal expandtab
+autocmd FileType haskell setlocal expandtab
 autocmd BufRead,BufNewFile *.i setlocal filetype=swig
