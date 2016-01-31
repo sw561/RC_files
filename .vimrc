@@ -26,6 +26,12 @@ set statusline+=%-10.10c    "cursor column
 highlight StatusLine ctermfg=darkblue ctermbg=white
 highlight StatusLineNC ctermfg=black ctermbg=white
 
+" Formatting of the tabline
+set showtabline=2
+highlight TabLine cterm=none ctermfg=white ctermbg=black
+highlight TabLineSel ctermfg=white ctermbg=blue
+highlight TabLineFill ctermfg=black ctermbg=black
+
 " Turn on the mouse, for scrolling too
 set mouse=a
 noremap <ScrollWheelUp> 3<C-Y>
@@ -115,9 +121,11 @@ function! LongLineHighlightToggle()
 	if g:long_line_match == 1
 		match OverLength //
 		let g:long_line_match = 0
+		echo "Long line highlighting OFF"
 	else
 		match OverLength '\%>79v.\+'
 		let g:long_line_match = 1
+		echo "Long line highlighting ON"
 	endif
 endfunction
 cnoremap long call LongLineHighlightToggle()
