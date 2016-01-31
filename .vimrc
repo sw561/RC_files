@@ -27,10 +27,11 @@ highlight StatusLine ctermfg=darkblue ctermbg=white
 highlight StatusLineNC ctermfg=black ctermbg=white
 
 " Formatting of the tabline
-set showtabline=2
-highlight TabLine cterm=none ctermfg=white ctermbg=black
-highlight TabLineSel ctermfg=white ctermbg=blue
-highlight TabLineFill ctermfg=black ctermbg=black
+highlight TabLine cterm=none ctermfg=none ctermbg=black
+highlight TabNum cterm=bold ctermbg=black
+highlight TabLineSel cterm=reverse ctermbg=white ctermfg=darkblue
+highlight TabNumSel cterm=none ctermfg=white ctermbg=darkblue
+highlight TabLineFill cterm=none ctermbg=black
 
 " Turn on the mouse, for scrolling too
 set mouse=a
@@ -53,11 +54,12 @@ set wildmenu
 set noerrorbells
 set vb t_vb=
 
-autocmd VimEnter,WinEnter * setlocal cursorline
+autocmd VimEnter,BufWinEnter,WinEnter * setlocal cursorline
 autocmd WinLeave * setlocal nocursorline
 
 highlight MatchParen ctermbg=red
-highlight VertSplit ctermfg=black
+highlight VertSplit cterm=none ctermfg=black ctermbg=none
+highlight NonText cterm=none ctermfg=black
 
 " Visual mode p doesn't replace text in buffer
 vnoremap p pgvy`]
@@ -171,3 +173,67 @@ autocmd FileType tex,rst,markdown
 	\ spell spelllang=en_gb spellfile=./en.utf-8.add
 autocmd FileType haskell setlocal expandtab
 autocmd BufRead,BufNewFile *.i setlocal filetype=swig
+
+" Based on the function from http://superuser.com/questions/331272/
+" custom tab pages line
+set tabline=%!MyTabLine()
+function MyTabLine()
+	let s = '' " complete tabline goes here
+	" loop through each tab page
+	for t in range(tabpagenr('$'))
+		" set highlight for tab numbers
+		if t + 1 == tabpagenr()
+			let s .= '%#TabNumSel#'
+		else
+			let s .= '%#TabNum#'
+		endif
+		" set the tab page number (for mouse clicks)
+		let s .= '%' . (t + 1) . 'T'
+		let s .= ' '
+		" set page number string
+		let s .= (t + 1)
+		" get buffer names and statuses
+		" temp string for buffer names while we loop and check buftype
+		let n = ''
+		let m = 0 " Set m to true if any buffer is modified
+
+		" loop through each buffer in a tab
+		for b in tabpagebuflist(t + 1)
+			" buffer types: quickfix gets a [Q], help gets [H]{base fname}
+			" others get 1dir/2dir/3dir/fname shortened to 1/2/3/fname
+			if getbufvar( b, "&buftype" ) == 'help'
+				let n .= '[H]' . fnamemodify( bufname(b), ':t:s/.txt$//' )
+			elseif getbufvar( b, "&buftype" ) == 'quickfix'
+				let n .= '[Q]'
+			else
+				let n .= pathshorten(bufname(b))
+			endif
+			" check and set modified boolean
+			if getbufvar( b, "&modified" )
+				let m = 1
+			endif
+			" add final ' '
+			let n .= ' '
+		endfor
+		" add modified label [+] where pages are modified
+		if m > 0
+			let s .= '[+]'
+		endif
+		let s .= ': ' " Add separator between tab number and name
+		" select the highlighting for the buffer names
+		if t + 1 == tabpagenr()
+			let s .= '%#TabLineSel#'
+		else
+			let s .= '%#TabLine#'
+		endif
+		" add buffer names
+		if n == ''
+			let s.= '[New]'
+		else
+			let s .= n
+		endif
+	endfor
+	" after the last tab fill with TabLineFill and reset tab page nr
+	let s .= '%#TabLineFill#%T'
+	return s
+endfunction
