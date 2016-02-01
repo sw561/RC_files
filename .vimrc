@@ -212,7 +212,6 @@ function MyTabLine()
 			if getbufvar( b, "&modified" )
 				let m = 1
 			endif
-			" add final ' '
 			let n .= ' '
 		endfor
 		" add modified label [+] where pages are modified
@@ -226,12 +225,7 @@ function MyTabLine()
 		else
 			let s .= '%#TabLine#'
 		endif
-		" add buffer names
-		if n == ''
-			let s.= '[New]'
-		else
-			let s .= n
-		endif
+		let s .= n
 	endfor
 	" after the last tab fill with TabLineFill and reset tab page nr
 	let s .= '%#TabLineFill#%T'
