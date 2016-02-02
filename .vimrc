@@ -61,6 +61,10 @@ highlight MatchParen ctermbg=red
 highlight VertSplit cterm=none ctermfg=black ctermbg=none
 highlight NonText cterm=none ctermfg=black
 
+" Colours of Pop up menu
+highlight Pmenu cterm=none ctermfg=none ctermbg=black
+highlight PmenuSel cterm=reverse ctermbg=white ctermfg=darkblue
+
 " Visual mode p doesn't replace text in buffer
 vnoremap p pgvy`]
 " after paste, cursor goes to end of pasted text
