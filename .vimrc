@@ -41,8 +41,6 @@ noremap <ScrollWheelDown> 3<C-E>
 noremap <C-E> 3<C-E>
 noremap <C-Y> 3<C-Y>
 
-" Don't want recording mode
-noremap q <nop>
 " Don't need exec mode
 noremap Q <nop>
 
@@ -57,18 +55,12 @@ set vb t_vb=
 autocmd VimEnter,BufWinEnter,WinEnter * setlocal cursorline
 autocmd WinLeave * setlocal nocursorline
 
-highlight MatchParen ctermbg=red
 highlight VertSplit cterm=none ctermfg=black ctermbg=none
 highlight NonText cterm=none ctermfg=black
 
 " Colours of Pop up menu
 highlight Pmenu cterm=none ctermfg=none ctermbg=black
 highlight PmenuSel cterm=reverse ctermbg=white ctermfg=darkblue
-
-" Visual mode p doesn't replace text in buffer
-vnoremap p pgvy`]
-" after paste, cursor goes to end of pasted text
-nnoremap p p`]
 
 " Avoid having to press <CR> twice after the make
 cnoremap make !make
@@ -161,15 +153,15 @@ cnoremap ls ls<Enter>:b
 cmap Ls ls
 cmap LS ls
 
-" Disable arrow keys
-inoremap <Right> <nop>
-inoremap <Left> <nop>
-inoremap <Down> <nop>
-inoremap <Up> <nop>
-nnoremap <Right> <nop>
-nnoremap <Left> <nop>
-nnoremap <Down> <nop>
-nnoremap <Up> <nop>
+" Use arrow keys to resize split windows
+nnoremap <Right> <C-W>>
+nnoremap <Left> <C-W><
+nnoremap <Down> <C-W>-
+nnoremap <Up> <C-W>+
+inoremap <Right> <Esc><C-W>>
+inoremap <Left> <Esc><C-W><
+inoremap <Down> <Esc><C-W>-
+inoremap <Up> <Esc><C-W>+
 
 " Commands for specific filetypes
 autocmd FileType tex,rst,markdown
