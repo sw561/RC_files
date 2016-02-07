@@ -92,6 +92,9 @@ inoremap <Left> <Esc><C-W><
 inoremap <Down> <Esc><C-W>-
 inoremap <Up> <Esc><C-W>+
 
+" In visual mode, don't include end of line blank characters
+vnoremap $ g_
+
 " Commands for specific filetypes
 autocmd FileType tex,rst,markdown
 	\ setlocal textwidth=79
