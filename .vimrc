@@ -38,6 +38,9 @@ noremap <ScrollWheelDown> 3<C-E>
 noremap <C-E> 3<C-E>
 noremap <C-Y> 3<C-Y>
 
+imap <C-E> <Esc><C-E>a
+imap <C-Y> <Esc><C-Y>a
+
 " Don't need exec mode
 noremap Q <nop>
 
