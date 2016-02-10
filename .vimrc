@@ -15,7 +15,7 @@ set scrolloff=2
 set clipboard=unnamedplus
 set confirm
 set nojoinspaces
-set wildignore=*.swp,*.png,*.pyc,*.o,*.so,*~,*.pdf
+set wildignore=*.swp,*.png,*.pyc,*.o,*.so,*~,*.pdf,*.db
 set wildmenu
 set noerrorbells
 set vb t_vb=
@@ -38,8 +38,8 @@ noremap <ScrollWheelDown> 3<C-E>
 noremap <C-E> 3<C-E>
 noremap <C-Y> 3<C-Y>
 
-imap <C-E> <Esc><C-E>a
-imap <C-Y> <Esc><C-Y>a
+imap <C-E> <Esc><C-E>
+imap <C-Y> <Esc><C-Y>
 
 " Don't need exec mode
 noremap Q <nop>
@@ -47,8 +47,8 @@ noremap Q <nop>
 autocmd VimEnter,BufWinEnter,WinEnter * setlocal cursorline
 autocmd WinLeave * setlocal nocursorline
 
-" Avoid having to press <CR> twice after the make
-cnoremap make !make
+" Exclamation mark avoids having to press <CR> twice after the make
+nnoremap ,m :!make<CR>
 
 " Turn off spell checking for comments in tex files
 let g:tex_comment_nospell=1
@@ -80,10 +80,7 @@ nnoremap gn :bn<Enter>
 nnoremap gm :bp<Enter>
 command MyBufferDelete bp|bd# " :bd will delete buffer without deleting window
 cnoremap bd MyBufferDelete
-cnoremap ls ls<Enter>:b
-" Avoid accidental capitals
-cmap Ls ls
-cmap LS ls
+nnoremap ,l :ls<CR>:b
 
 " Use arrow keys to resize split windows
 nnoremap <Right> <C-W>>
