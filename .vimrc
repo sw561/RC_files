@@ -20,16 +20,6 @@ set wildmenu
 set noerrorbells
 set vb t_vb=
 
-set laststatus=2            "statusline displayed always
-set statusline=%t           "tail of the filename
-set statusline+=%m          "modified flag
-set statusline+=%r          "read only flag
-set statusline+=%y          "filetype
-set statusline+=%=          "left/right separator
-set statusline+=%l          "cursor line
-set statusline+=/%L,        "total number of lines
-set statusline+=%-10.10c    "cursor column
-
 " Turn on the mouse, for scrolling too
 set mouse=a
 noremap <ScrollWheelUp> 3<C-Y>
