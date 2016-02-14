@@ -19,6 +19,7 @@ set wildignore=*.swp,*.png,*.pyc,*.o,*.so,*~,*.pdf,*.db
 set wildmenu
 set noerrorbells
 set vb t_vb=
+set exrc " Can put local .vimrc in project directory
 
 " Turn on the mouse, for scrolling too
 set mouse=a
