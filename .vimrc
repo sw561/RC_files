@@ -20,6 +20,8 @@ set wildmenu
 set noerrorbells
 set vb t_vb=
 set exrc " Can put local .vimrc in project directory
+set hlsearch
+nnoremap ,/ :nohl<CR>
 
 " Turn on the mouse, for scrolling too
 set mouse=a
