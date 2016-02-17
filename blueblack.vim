@@ -25,6 +25,7 @@ highlight TabLineFill cterm=none ctermbg=black
 
 highlight VertSplit cterm=none ctermfg=black ctermbg=none
 highlight NonText cterm=none ctermfg=black
+highlight SpecialKey cterm=none ctermfg=black
 
 " Colours of Pop up menu
 highlight Pmenu cterm=none ctermfg=none ctermbg=black

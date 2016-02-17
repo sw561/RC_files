@@ -8,12 +8,13 @@ let g:loaded_statusline = 1
 " Show a warning if tabs and spaces have been mixed
 " This will also inform you if the expandtab setting doesn't match the file
 let g:tab_warning = 1
+let g:status_filetype = 0
 
-set laststatus=2            "statusline displayed always
-set statusline=%t           "tail of the filename
-set statusline+=%m          "modified flag
-set statusline+=%r          "read only flag
-set statusline+=%y          "filetype
+set laststatus=2                "statusline displayed always
+set statusline=\ %t             "tail of the filename
+set statusline+=%m              "modified flag
+set statusline+=%r              "read only flag
+set statusline+=%{MyFileType()} "filetype
 
 "display a warning if &et is wrong, or we have mixed-indenting
 set statusline+=\ %#error#
@@ -23,7 +24,15 @@ set statusline+=%*
 set statusline+=%=          "left/right separator
 set statusline+=%l          "cursor line
 set statusline+=/%L,        "total number of lines
-set statusline+=%-10.10c    "cursor columno
+set statusline+=%-10.10c    "cursor column
+
+function! MyFileType()
+	if g:status_filetype
+		return '[' . &filetype . ']'
+	else
+		return ''
+	endif
+endfunction
 
 function! TabWarning()
 	if g:tab_warning==0
