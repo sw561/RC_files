@@ -8,5 +8,8 @@ alias gs='git status -sb'
 alias gl='git log -n 10 --pretty=oneline --abbrev-commit'
 alias gb='git branch -avv'
 alias gco='git checkout'
+alias gitk='gitk --all'
 
-export PS1="\u:\W$ "
+export GIT_PS1_SHOWDIRTYSTATE=1
+export GIT_PS1_SHOWUPSTREAM=1
+export PS1='\u@\h:\W\[\033[38;5;12m\]$(__git_ps1 " (%s)")\[\033[00m\]\$ '
