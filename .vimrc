@@ -29,12 +29,12 @@ nnoremap ,t :set list!<CR>
 set mouse=a
 noremap <ScrollWheelUp> 3<C-Y>
 noremap <ScrollWheelDown> 3<C-E>
-
 noremap <C-E> 3<C-E>
 noremap <C-Y> 3<C-Y>
-
 imap <C-E> <Esc><C-E>
 imap <C-Y> <Esc><C-Y>
+
+noremap Y y$
 
 " Don't need exec mode
 noremap Q <nop>
@@ -73,7 +73,7 @@ nnoremap gr gT
 " Shortcuts for using buffers
 nnoremap gn :bn<Enter>
 nnoremap gm :bp<Enter>
-command MyBufferDelete bp|bd# " :bd will delete buffer without deleting window
+command! MyBufferDelete bp|bd# " :bd will delete buffer without deleting window
 cnoremap bd MyBufferDelete
 nnoremap ,l :ls<CR>:b
 
