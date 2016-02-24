@@ -20,7 +20,9 @@ set wildmenu
 set noerrorbells
 set vb t_vb=
 set exrc " Can put local .vimrc in project directory
+set timeout timeoutlen=1000 ttimeoutlen=10
 set hlsearch
+nohl " Make sure that on reload of vimrc the last search is not highlighted
 nnoremap ,/ :nohl<CR>
 set listchars=tab:>-,eol:$
 nnoremap ,t :set list!<CR>
