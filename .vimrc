@@ -40,6 +40,8 @@ noremap Y y$
 
 " Don't need exec mode
 noremap Q <nop>
+" Don't open command line when trying to quit
+noremap q: <nop>
 
 autocmd VimEnter,BufWinEnter,WinEnter * setlocal cursorline
 autocmd WinLeave * setlocal nocursorline
@@ -69,14 +71,14 @@ inoremap <C-L> <Esc><C-W><C-L>
 inoremap <C-H> <Esc><C-W><C-H>
 
 " Shortcuts for using tabs
-cnoremap tn tabnew
+cabbrev tn tabnew
 nnoremap gr gT
 
 " Shortcuts for using buffers
 nnoremap gn :bn<Enter>
 nnoremap gm :bp<Enter>
 command! MyBufferDelete bp|bd# " :bd will delete buffer without deleting window
-cnoremap bd MyBufferDelete
+cabbrev bd MyBufferDelete
 nnoremap ,l :ls<CR>:b
 
 " Use arrow keys to resize split windows
