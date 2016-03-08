@@ -29,5 +29,4 @@ function! LongLineHighlightToggle()
 	endif
 endfunction
 
-cnoremap long call LongLineHighlightToggle()
-cnoremap long? echo g:long_line_match
+cabbrev long call LongLineHighlightToggle()
