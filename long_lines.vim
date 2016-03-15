@@ -1,11 +1,15 @@
 " Plugin to highlight overly long lines
 
-if exists("g:long_line_match") || &cp || v:version < 700
+if exists("g:loaded_long") || &cp || v:version < 700
 	finish
+else
+	let g:loaded_long = 1
 endif
 
 " Set to zero if you want it off by default
-let g:long_line_match = 1
+if !exists("g:long_line_match")
+	let g:long_line_match = 1
+endif
 
 " Highlighting can be overridden in color scheme
 highlight OverLength ctermbg=red ctermfg=white

@@ -2,13 +2,18 @@
 
 if exists("g:loaded_statusline") || &cp || v:version < 700
 	finish
+else
+	let g:loaded_statusline = 1
 endif
-let g:loaded_statusline = 1
 
 " Show a warning if tabs and spaces have been mixed
 " This will also inform you if the expandtab setting doesn't match the file
-let g:tab_warning = 1
-let g:status_filetype = 0
+if !exists("g:tab_warning")
+	let g:tab_warning = 1
+endif
+if !exists("g:status_filetype")
+	let g:status_filetype = 0
+endif
 
 set laststatus=2                "statusline displayed always
 set statusline=\ %t             "tail of the filename

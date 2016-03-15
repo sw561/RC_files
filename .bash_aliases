@@ -13,3 +13,6 @@ alias gitk='gitk --all'
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWUPSTREAM=1
 export PS1='\u@\h:\W\[\033[38;5;12m\]$(__git_ps1 " (%s)")\[\033[00m\]\$ '
+
+# http://unix.stackexchange.com/questions/72086/
+stty -ixon
