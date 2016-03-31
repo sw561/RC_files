@@ -36,7 +36,14 @@ noremap <C-Y> 3<C-Y>
 imap <C-E> <Esc><C-E>
 imap <C-Y> <Esc><C-Y>
 
+" Make Y behave analogously to D and C
 noremap Y y$
+
+" New line with enter - start new paragraph by hitting enter twice
+nnoremap <CR> o
+
+" In visual mode, don't include end of line blank characters
+vnoremap $ g_
 
 " Don't need exec mode
 noremap Q <nop>
@@ -90,9 +97,6 @@ inoremap <Right> <Esc><C-W>>
 inoremap <Left> <Esc><C-W><
 inoremap <Down> <Esc><C-W>-
 inoremap <Up> <Esc><C-W>+
-
-" In visual mode, don't include end of line blank characters
-vnoremap $ g_
 
 " Commands for specific filetypes
 autocmd FileType tex,rst,markdown
