@@ -9,6 +9,7 @@ alias gl='git log -n 10 --pretty=oneline --abbrev-commit'
 alias gb='git branch -avv'
 alias gco='git checkout'
 alias gitk='gitk --all'
+alias rm='rm -I'
 
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWUPSTREAM=1

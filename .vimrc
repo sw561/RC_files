@@ -22,6 +22,7 @@ set vb t_vb=
 set exrc " Can put local .vimrc in project directory
 set timeout timeoutlen=1000 ttimeoutlen=10
 set hlsearch
+set iskeyword-=_
 nohl " Make sure that on reload of vimrc the last search is not highlighted
 nnoremap ,/ :nohl<CR>
 set listchars=tab:>-,eol:$
@@ -82,8 +83,6 @@ cabbrev tn tabnew
 nnoremap gr gT
 
 " Shortcuts for using buffers
-nnoremap gn :bn<Enter>
-nnoremap gm :bp<Enter>
 command! MyBufferDelete bp|bd# " :bd will delete buffer without deleting window
 cabbrev bd MyBufferDelete
 nnoremap ,l :ls<CR>:b
