@@ -103,3 +103,18 @@ autocmd FileType tex,rst,markdown
 	\ spell spelllang=en_gb spellfile=./en.utf-8.add
 autocmd FileType haskell setlocal expandtab
 autocmd BufRead,BufNewFile *.i setlocal filetype=swig
+
+function! ReadOnly()
+	if &readonly
+		set noreadonly
+	else
+		set readonly
+	endif
+	call LongLineHighlightToggle()
+	if g:tab_warning == 1
+		let g:tab_warning = 0
+	else
+		let g:tab_warning = 1
+	endif
+endfunction
+cabbrev read call ReadOnly()
