@@ -105,16 +105,15 @@ autocmd FileType haskell setlocal expandtab
 autocmd BufRead,BufNewFile *.i setlocal filetype=swig
 
 function! ReadOnly()
-	if &readonly
-		set noreadonly
-	else
-		set readonly
-	endif
-	call LongLineHighlightToggle()
-	if g:tab_warning == 1
-		let g:tab_warning = 0
-	else
-		let g:tab_warning = 1
-	endif
+	set readonly
+	call LongLineHighlightOff()
+	let g:tab_warning = 0
 endfunction
 cabbrev read call ReadOnly()
+
+function! Edit()
+	set noreadonly
+	call LongLineHighlightOn()
+	let g:tab_warning = 1
+endfunction
+cabbrev edit call Edit()

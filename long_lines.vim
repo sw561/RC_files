@@ -25,15 +25,23 @@ autocmd WinEnter,VimEnter *
 	\ endif
 autocmd WinLeave * match OverLength //
 
+function! LongLineHighlightOff()
+	match OverLength //
+	let g:long_line_match = 0
+	echo "Long line highlighting OFF"
+endfunction
+
+function! LongLineHighlightOn()
+	match OverLength '\%>79v.\+'
+	let g:long_line_match = 1
+	echo "Long line highlighting ON"
+endfunction
+
 function! LongLineHighlightToggle()
 	if g:long_line_match == 1
-		match OverLength //
-		let g:long_line_match = 0
-		echo "Long line highlighting OFF"
+		call LongLineHighlightOff()
 	else
-		match OverLength '\%>79v.\+'
-		let g:long_line_match = 1
-		echo "Long line highlighting ON"
+		call LongLineHighlightOn()
 	endif
 endfunction
 
