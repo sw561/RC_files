@@ -22,7 +22,6 @@ set vb t_vb=
 set exrc " Can put local .vimrc in project directory
 set timeout timeoutlen=1000 ttimeoutlen=10
 set hlsearch
-set iskeyword-=_
 nohl " Make sure that on reload of vimrc the last search is not highlighted
 nnoremap ,/ :nohl<CR>
 set listchars=tab:>-,eol:$
@@ -45,6 +44,9 @@ nnoremap <CR> o
 
 " In visual mode, don't include end of line blank characters
 vnoremap $ g_
+
+" In visual mode, search for the selected string with //
+vnoremap // y/<C-R>0<CR>
 
 " Don't need exec mode
 noremap Q <nop>
