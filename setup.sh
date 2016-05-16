@@ -11,4 +11,6 @@ ln -s ~/RC_files/trim.vim .vim/plugin
 ln -s ~/RC_files/long_lines.vim .vim/plugin
 ln -s ~/RC_files/backspace.vim .vim/plugin
 ln -s ~/RC_files/blueblack.vim .vim/colors
+ln -s ~/RC_files/tex_scheme.vim .vim/colors
+ln -s ~/RC_files/tex.vim .vim/ftplugin
 cd -

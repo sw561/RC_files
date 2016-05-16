@@ -1,6 +1,8 @@
 " My custom color scheme - just some minor changes to the default settings
 colo blueblack
 
+filetype plugin on
+
 " Settings
 set autoindent
 set copyindent
@@ -119,3 +121,10 @@ function! Edit()
 	let g:tab_warning = 1
 endfunction
 cabbrev edit call Edit()
+
+" Use ,q to show the highlight group under the cursor, allows colourscheme to
+" be changed
+" http://vim.wikia.com/wiki/Identify_the_syntax_highlighting_group_used_at_the_cursor
+map ,q :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
