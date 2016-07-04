@@ -1,5 +1,6 @@
-alias grep='grep --color=auto'
-alias ls='ls --color=auto'
+alias grep='grep -n --color=auto'
+alias ll='ls -ltr'
+alias ls='ls -h --color=auto'
 alias open="gnome-open"
 alias create_git="source ~/RC_files/create_git.sh"
 alias vim="vim -p"
