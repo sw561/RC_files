@@ -84,6 +84,7 @@ inoremap <C-H> <Esc><C-W><C-H>
 
 " Shortcuts for using tabs
 cabbrev tn tabnew
+cabbrev tm tabm
 nnoremap gr gT
 
 " Shortcuts for using buffers
