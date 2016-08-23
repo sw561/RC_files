@@ -107,10 +107,6 @@ if maparg('\\','n') ==# '' && maparg('\','n') ==# '' && get(g:, 'commentary_map_
   nmap \\u <Plug>CommentaryUndo:echomsg '\\ is deprecated. Use gc'<CR>
 endif
 
-autocmd FileType python,conf,sh setlocal commentstring=#\ %s
 autocmd FileType cpp setlocal commentstring=\/\/\ %s
-autocmd FileType haskell setlocal commentstring=--\ %s
-autocmd FileType vim setlocal commentstring=\"\ %s
-autocmd FileType tex setlocal commentstring=\%\ %s
 
 " vim:set et sw=2:
