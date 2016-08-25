@@ -1,4 +1,12 @@
-alias grep='grep -n --color=auto'
+version=`lsb_release -rs`
+if [ $version = '14.04' ]
+then
+	# Don't use grep alias on ubuntu trust because of bug reported at:
+	# http://stackoverflow.com/questions/26932672/broken-tab-completion-on-make-under-linux
+	alias grepn='grep -n --color=auto'
+else
+	alias grep='grep -n --color=auto'
+fi
 alias ll='ls -ltr'
 alias ls='ls -h --color=auto'
 alias open="gnome-open"
