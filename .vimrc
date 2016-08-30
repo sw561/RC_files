@@ -84,7 +84,17 @@ inoremap <C-H> <Esc><C-W><C-H>
 
 " Shortcuts for using tabs
 cabbrev tn tabnew
-cabbrev tm tabm
+" Custom function to replace tabmove with 1-based indexed version
+function! TabMove(index)
+	let val = a:index-1
+	if val < 0
+		let val = 0
+	endif
+	execute "tabmove ".val
+endfunction
+command! -nargs=1 TM call TabMove(<f-args>)
+cabbrev tm TM
+
 nnoremap gr gT
 
 " Shortcuts for using buffers
