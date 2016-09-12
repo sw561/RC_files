@@ -64,6 +64,9 @@ nnoremap ,m :!make<CR>
 " Turn off spell checking for comments in tex files
 let g:tex_comment_nospell=1
 
+" Use :x instead of :wq only write if changes have been made
+cabbrev wq x
+
 " Set all three of shiftwidth, softtabstop and tabstop
 function! SetTab(value)
 	let &shiftwidth  = a:value
