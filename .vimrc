@@ -76,14 +76,14 @@ endfunction
 call SetTab(4)
 
 " Comfortable movement between split windows
-noremap <C-J> <C-W><C-J>
-noremap <C-K> <C-W><C-K>
-noremap <C-L> <C-W><C-L>
-noremap <C-H> <C-W><C-H>
-inoremap <C-J> <Esc><C-W><C-J>
-inoremap <C-K> <Esc><C-W><C-K>
-inoremap <C-L> <Esc><C-W><C-L>
-inoremap <C-H> <Esc><C-W><C-H>
+noremap <C-J> <C-W>j
+noremap <C-K> <C-W>k
+noremap <C-L> <C-W>l
+noremap <C-H> <C-W>h
+inoremap <C-J> <Esc><C-W>j
+inoremap <C-K> <Esc><C-W>k
+inoremap <C-L> <Esc><C-W>l
+inoremap <C-H> <Esc><C-W>h
 
 " Shortcuts for using tabs
 cabbrev tn tabnew
