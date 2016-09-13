@@ -28,6 +28,7 @@ nohl " Make sure that on reload of vimrc the last search is not highlighted
 nnoremap ,/ :nohl<CR>
 set listchars=tab:>-,eol:$
 nnoremap ,t :set list!<CR>
+set formatoptions+=rol
 
 " Turn on the mouse, for scrolling too
 set mouse=a
