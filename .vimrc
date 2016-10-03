@@ -76,6 +76,18 @@ function! SetTab(value)
 endfunction
 call SetTab(4)
 
+" Function for making backspace behave as expected in normal mode
+function! MyBackspace()
+	if col('.')==col('$')-1
+		" If at the end of a non-empty line, delete last character
+		startinsert!
+	else
+		" Otherwise delete character to left of cursor
+		startinsert
+	endif
+endfunction
+nnoremap <BS> :call MyBackspace()<Enter><BS>
+
 " Comfortable movement between split windows
 noremap <C-J> <C-W>j
 noremap <C-K> <C-W>k
