@@ -124,6 +124,12 @@ inoremap <C-K> <Esc><C-W>k
 inoremap <C-L> <Esc><C-W>l
 inoremap <C-H> <Esc><C-W>h
 
+" Shortcuts for using fuzzy find to open files
+nnoremap ,fe :find *
+nnoremap ,ft :tabfind *
+nnoremap ,fs :sfind *
+nnoremap ,fv :vert sfind *
+
 " Shortcuts for using tabs
 call Mycabbrev("tn","tabnew")
 " Custom function to replace tabmove with 1-based indexed version
