@@ -8,41 +8,36 @@ endif
 
 " Set to zero if you want it off by default
 if !exists("g:long_line_match")
-	if &readonly
-		let g:long_line_match = 0
-	else
-		let g:long_line_match = 1
-	endif
+	let g:long_line_match = 1
 endif
 
 " Highlighting can be overridden in color scheme
 highlight OverLength ctermbg=red ctermfg=white
 
 " Highlight lines that are too long in the active window
-autocmd WinEnter,VimEnter *
-	\ if g:long_line_match==1 |
-	\   match OverLength '\%>79v.\+' |
-	\ endif
-autocmd WinLeave * match OverLength //
+autocmd BufEnter,WinEnter,VimEnter * call LongLineHighlightOn()
+autocmd BufLeave,WinLeave * call LongLineHighlightOff()
 
 function! LongLineHighlightOff()
 	match OverLength //
-	let g:long_line_match = 0
-	echo "Long line highlighting OFF"
 endfunction
 
 function! LongLineHighlightOn()
-	match OverLength '\%>79v.\+'
-	let g:long_line_match = 1
-	echo "Long line highlighting ON"
+	if g:long_line_match && !&readonly && &modifiable && &filetype!="" && !&diff
+		match OverLength '\%>79v.\+'
+	endif
 endfunction
 
 function! LongLineHighlightToggle()
 	if g:long_line_match == 1
+		let g:long_line_match = 0
 		call LongLineHighlightOff()
+		" echo "Long line highlighting OFF"
 	else
+		let g:long_line_match = 1
 		call LongLineHighlightOn()
+		" echo "Long line highlighting ON"
 	endif
 endfunction
 
-cabbrev long call LongLineHighlightToggle()
+call Mycabbrev("long","call LongLineHighlightToggle()")

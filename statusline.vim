@@ -9,14 +9,10 @@ endif
 " Show a warning if tabs and spaces have been mixed
 " This will also inform you if the expandtab setting doesn't match the file
 if !exists("g:tab_warning")
-	if &readonly
-		let g:tab_warning = 0
-	else
-		let g:tab_warning = 1
-	endif
+	let g:tab_warning = 1
 endif
 if !exists("g:status_filetype")
-	let g:status_filetype = 0
+	let g:status_filetype = 1
 endif
 
 set laststatus=2                "statusline displayed always
@@ -44,14 +40,10 @@ function! MyFileType()
 endfunction
 
 function! TabWarning()
-	if g:tab_warning==0
+	if g:tab_warning==0 || !&modifiable || &readonly
 		return ''
 	endif
 	let b:statusline_tab_warning = ''
-
-	if !&modifiable
-		return b:statusline_tab_warning
-	endif
 
 	let tabs = search('^\t', 'nw') != 0
 

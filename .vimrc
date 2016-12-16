@@ -216,16 +216,31 @@ nnoremap ,init 0f(lyi(o<Esc>p0df V:s/, /\r/g<CR>:nohl<CR>Vg'<:call PutSelf()<CR>
 function! ReadOnly()
 	set readonly
 	call LongLineHighlightOff()
-	let g:tab_warning = 0
 endfunction
-cabbrev read call ReadOnly()
+call Mycabbrev("read","call ReadOnly()")
 
 function! Edit()
+	if !&readonly
+		return
+	endif
 	set noreadonly
 	call LongLineHighlightOn()
-	let g:tab_warning = 1
 endfunction
-cabbrev edit call Edit()
+call Mycabbrev("edit","call Edit()")
+
+function! ToggleRead()
+	if &readonly
+		call Edit()
+	else
+		call ReadOnly()
+	endif
+endfunction
+nnoremap ,r :call ToggleRead()<CR>
+
+autocmd InsertEnter * call Edit()
+
+" Prefer not to see filetype in statusbar
+let g:status_filetype = 0
 
 " Use ,q to show the highlight group under the cursor, allows colourscheme to
 " be changed
