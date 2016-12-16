@@ -30,6 +30,7 @@ set listchars=tab:>-,eol:$
 nnoremap ,t :set list!<CR>
 set formatoptions+=rol
 set synmaxcol=300
+set path=**
 
 " Turn on the mouse, for scrolling too
 set mouse=a
@@ -80,6 +81,42 @@ autocmd CmdwinLeave * set scrolloff=2
 " Settings for netrw
 let g:netrw_liststyle=3
 let g:netrw_browse_split=3
+
+" Autocomplete works in normal mode too
+" See :help ins-completion
+nnoremap <C-N> viw<Esc>`>a<C-N>
+nnoremap <C-P> viw<Esc>`>a<C-P>
+inoremap <C-F> <C-X><C-F>
+inoremap <C-]> <C-X><C-]>
+
+" Quit command window by pressing CTRL-C once only
+nnoremap <silent> <C-C> <C-C><C-C>
+inoremap <silent> <C-C> <C-C><C-C>
+
+" Use autocomplete in command mode by opening command window
+cmap <C-N> <C-F><C-N>
+cmap <C-P> <C-F><C-P>
+
+" Undo autocomplete using <BS>
+" This means if pumvisible() returns true do CTRL-E instead
+" :help popupmenu-keys
+inoremap <expr> <BS> pumvisible() ? '<C-E>' : '<BS>'
+inoremap <expr> <CR> pumvisible() ? '<C-Y>' : '<CR>'
+
+" Use CTRL j to navigate down directories in wildmenu
+set wildcharm=<Tab>
+cnoremap <C-J> <Down>
+
+" Make tags file for jumping around using <C-]> and back with <C-T>
+command! MakeTags !ctags -R .
+" Open tags in vertical split rather than horizontal
+nnoremap <C-W><C-]> <C-W><C-]><C-W>t<C-W>H<C-W>l
+" Open tag in new tab
+nnoremap t<C-]> <C-W><C-]><C-W>T
+" If preceding with g, use :tselect not :tjump
+nnoremap g<C-]> g]
+" Make a split for the tag - and go back in old window
+nnoremap <C-W><C-T> :vsplit<CR><C-W>h<C-T>
 
 autocmd VimEnter,WinEnter * setlocal cursorline
 autocmd WinLeave * setlocal nocursorline
