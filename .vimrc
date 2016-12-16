@@ -29,6 +29,7 @@ nnoremap ,/ :nohl<CR>
 set listchars=tab:>-,eol:$
 nnoremap ,t :set list!<CR>
 set formatoptions+=rol
+set synmaxcol=300
 
 " Turn on the mouse, for scrolling too
 set mouse=a
@@ -38,6 +39,12 @@ noremap <C-E> 3<C-E>
 noremap <C-Y> 3<C-Y>
 imap <C-E> <Esc><C-E>
 imap <C-Y> <Esc><C-Y>
+
+" Inspired by http://vi.stackexchange.com/questions/6800/
+function! Mycabbrev(lhs,rhs)
+	execute printf("cnoreabbrev <expr> %s getcmdtype() ==# ':' ? '%s' : '%s'",
+		\ a:lhs, a:rhs, a:lhs)
+endfunction
 
 " Make Y behave analogously to D and C
 noremap Y y$
@@ -51,12 +58,30 @@ vnoremap $ g_
 " In visual mode, search for the selected string with //
 vnoremap // y/<C-R>0<CR>
 
+" Don't lose the visual selection when adjusting indentation
+vnoremap < <gv
+vnoremap > >gv
+
 " Don't need exec mode
 noremap Q <nop>
 " Don't open command line when trying to quit
 noremap q: <nop>
 
-autocmd VimEnter,BufWinEnter,WinEnter * setlocal cursorline
+" Settings for the command window
+autocmd CmdwinEnter * noremap <buffer> <CR> <CR>
+autocmd CmdwinEnter * inoremap <buffer> <CR> <CR>
+autocmd CmdwinEnter * noremap <buffer> <C-E> <C-E>
+autocmd CmdwinEnter * noremap <buffer> <C-Y> <C-Y>
+" Note that scrolloff is a global setting, so need to change it back.
+" setlocal will not work in this case
+autocmd CmdwinEnter * set scrolloff=0
+autocmd CmdwinLeave * set scrolloff=2
+
+" Settings for netrw
+let g:netrw_liststyle=3
+let g:netrw_browse_split=3
+
+autocmd VimEnter,WinEnter * setlocal cursorline
 autocmd WinLeave * setlocal nocursorline
 
 " Exclamation mark avoids having to press <CR> twice after the make
@@ -66,7 +91,8 @@ nnoremap ,m :!make<CR>
 let g:tex_comment_nospell=1
 
 " Use :x instead of :wq only write if changes have been made
-cabbrev wq x
+call Mycabbrev("wq","x")
+call Mycabbrev("w","update")
 
 " Set all three of shiftwidth, softtabstop and tabstop
 function! SetTab(value)
@@ -99,7 +125,7 @@ inoremap <C-L> <Esc><C-W>l
 inoremap <C-H> <Esc><C-W>h
 
 " Shortcuts for using tabs
-cabbrev tn tabnew
+call Mycabbrev("tn","tabnew")
 " Custom function to replace tabmove with 1-based indexed version
 function! TabMove(index)
 	let val = a:index-1
@@ -109,14 +135,14 @@ function! TabMove(index)
 	execute "tabmove ".val
 endfunction
 command! -nargs=1 TM call TabMove(<f-args>)
-cabbrev tm TM
+call Mycabbrev("tm","TM")
 
 nnoremap gr gT
 
 " Shortcuts for using buffers
 command! MyBufferDelete bp|bd# " :bd will delete buffer without deleting window
-cabbrev bd MyBufferDelete
-nnoremap ,l :ls<CR>:b
+call Mycabbrev("bd","MyBufferDelete")
+nnoremap ,l :ls<CR>:b<Space>
 
 " Use arrow keys to resize split windows
 nnoremap <Right> <C-W>>
