@@ -33,3 +33,9 @@ highlight PmenuSel cterm=reverse ctermbg=white ctermfg=darkblue
 
 " Highlighting of overly long lines
 highlight OverLength ctermbg=red ctermfg=white
+
+" Highlighting for vimdiff
+highlight DiffText term=none ctermbg=0
+highlight DiffDelete term=none ctermfg=0 ctermbg=none
+highlight DiffChange term=none ctermbg=0
+highlight DiffAdd term=none ctermbg=0
