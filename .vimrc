@@ -204,6 +204,15 @@ autocmd FileType tex,rst,markdown
 autocmd FileType haskell setlocal expandtab
 autocmd BufRead,BufNewFile *.i setlocal filetype=swig
 
+" Tiny plugin to make writing class constructors easy in python
+" Put the cursor on a line which looks like: (you can try it right here)
+"	>>> def __init__(self, a, b, c):
+" Then type ,init and see what happens
+function! PutSelf()
+	exec "normal! i\<tab>\<tab>self.\<esc>lyiwA = \<esc>p"
+endfunction
+nnoremap ,init 0f(lyi(o<Esc>p0df V:s/, /\r/g<CR>:nohl<CR>Vg'<:call PutSelf()<CR>
+
 function! ReadOnly()
 	set readonly
 	call LongLineHighlightOff()
