@@ -31,6 +31,7 @@ nnoremap ,t :set list!<CR>
 set formatoptions+=rol
 set synmaxcol=300
 set path=**
+set t_Co=8
 
 " Turn on the mouse, for scrolling too
 set mouse=a
