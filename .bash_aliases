@@ -4,8 +4,8 @@ function grepcode() { find . -name "*.[C,H,c,h]" -o -name "*.cpp" -o -name "*.py
 alias grepf='grepfiles'
 alias grepc="grepcode"
 
-version=`lsb_release -rs`
-if [ $version = '14.04' ]
+version=`lsb_release -rs | cut -d. -f1`
+if [ $version -ge 14 ]
 then
 	# Don't use grep alias on ubuntu trust because of bug reported at:
 	# http://stackoverflow.com/questions/26932672/broken-tab-completion-on-make-under-linux
@@ -28,7 +28,12 @@ alias rm='rm -I'
 
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWUPSTREAM=1
-export PS1='\u@\h:\W\[\033[38;5;12m\]$(__git_ps1 " (%s)")\[\033[00m\]\$ '
+if [ `whoami` = "simon" ]
+then
+export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\W\[\033[38;5;12m\]$(__git_ps1 " (%s)")\[\033[00m\]\$ '
+else
+export PS1='\[\033[01;33m\]\u@\h\[\033[00m\]:\W\[\033[38;5;12m\]$(__git_ps1 " (%s)")\[\033[00m\]\$ '
+fi
 
 # http://unix.stackexchange.com/questions/72086/
 stty -ixon
