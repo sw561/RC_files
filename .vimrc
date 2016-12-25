@@ -7,6 +7,7 @@ filetype plugin on
 set autoindent
 set copyindent
 set noexpandtab
+set number
 set relativenumber
 set tabpagemax=20
 set splitright
@@ -74,6 +75,7 @@ autocmd CmdwinEnter * noremap <buffer> <CR> <CR>
 autocmd CmdwinEnter * inoremap <buffer> <CR> <CR>
 autocmd CmdwinEnter * noremap <buffer> <C-E> <C-E>
 autocmd CmdwinEnter * noremap <buffer> <C-Y> <C-Y>
+autocmd CmdwinEnter * setlocal nonumber relativenumber
 " Note that scrolloff is a global setting, so need to change it back.
 " setlocal will not work in this case
 autocmd CmdwinEnter * set scrolloff=0
@@ -214,11 +216,19 @@ autocmd BufRead,BufNewFile *.i setlocal filetype=swig
 function! PutSelf()
 	exec "normal! i\<tab>\<tab>self.\<esc>lyiwA = \<esc>p"
 endfunction
-nnoremap ,init 0f(lyi(o<Esc>p0df V:s/, /\r/g<CR>:nohl<CR>Vg'<:call PutSelf()<CR>
+nnoremap ,init 0f(lyi(o<Esc>p0df V:s/, /\r/g<CR>:nohl<CR>V'<:call PutSelf()<CR>
+
+" In versions of vim older than 7.4 relativenumber and number cannot be
+" combined. As a result to switch to number, it is not sufficient to turn off
+" relativenumber, number also has to be set.
 
 function! ReadOnly()
 	set readonly
 	call LongLineHighlightOff()
+	set norelativenumber
+	if (v:version < 704)
+		set number
+	endif
 endfunction
 call Mycabbrev("read","call ReadOnly()")
 
@@ -228,6 +238,7 @@ function! Edit()
 	endif
 	set noreadonly
 	call LongLineHighlightOn()
+	set relativenumber
 endfunction
 call Mycabbrev("edit","call Edit()")
 
@@ -240,6 +251,20 @@ function! ToggleRead()
 endfunction
 nnoremap ,r :call ToggleRead()<CR>
 
+function! CheckReadOnly()
+	if !&modifiable
+		return
+	endif
+	if &readonly || &diff
+		set norelativenumber
+		if (v:version < 704)
+			set number
+		endif
+	else
+		set relativenumber
+	endif
+endfunction
+autocmd BufEnter,WinEnter,VimEnter * call CheckReadOnly()
 autocmd InsertEnter * call Edit()
 
 " Prefer not to see filetype in statusbar
