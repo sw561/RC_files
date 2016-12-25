@@ -14,12 +14,16 @@ endif
 if !exists("g:status_filetype")
 	let g:status_filetype = 1
 endif
+if !exists("g:status_fileformat")
+	let g:status_fileformat = 1
+endif
 
 set laststatus=2                "statusline displayed always
 set statusline=\ %t             "tail of the filename
 set statusline+=%m              "modified flag
 set statusline+=%r              "read only flag
 set statusline+=%{MyFileType()} "filetype
+set statusline+=%{DosWarning()}
 
 "display a warning if &et is wrong, or we have mixed-indenting
 set statusline+=\ %#error#
@@ -60,4 +64,11 @@ function! TabWarning()
 		endif
 	endif
 	return b:statusline_tab_warning
+endfunction
+
+function! DosWarning()
+	if g:status_fileformat && &fileformat!="unix"
+		return ' [' . &fileformat . ']'
+	endif
+	return ''
 endfunction

@@ -182,6 +182,8 @@ command! -nargs=1 TM call TabMove(<f-args>)
 call Mycabbrev("tm","TM")
 
 nnoremap gr gT
+nnoremap H gT
+nnoremap L gt
 
 " Shortcuts for using buffers
 command! MyBufferDelete bp|bd# " :bd will delete buffer without deleting window
