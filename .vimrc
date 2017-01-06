@@ -55,6 +55,27 @@ noremap Y y$
 " New line with enter - start new paragraph by hitting enter twice
 nnoremap <CR> o
 
+" My ctrl-u function for getting rid of annoying comment leaders
+function! MyCtrlU()
+	let nlines = line('$')
+	let ntabs = indent(line('.')) / &shiftwidth
+	normal! `[v`]d
+	if line('.')<line('$')
+		normal! k
+	else
+		normal! dd
+	endif
+	normal! o
+	normal! cc
+	while line('$') < nlines
+		normal! o
+	endwhile
+	for t in range(ntabs)
+		exec "normal! a\<tab>"
+	endfor
+endfunction
+inoremap <C-U> <Esc>:call MyCtrlU()<CR>a
+
 " In visual mode, don't include end of line blank characters
 vnoremap $ g_
 
@@ -193,14 +214,14 @@ call Mycabbrev("bd","MyBufferDelete")
 nnoremap ,l :ls<CR>:b<Space>
 
 " Use arrow keys to resize split windows
-nnoremap <Right> <C-W>>
-nnoremap <Left> <C-W><
-nnoremap <Down> <C-W>-
-nnoremap <Up> <C-W>+
-inoremap <Right> <Esc><C-W>>
-inoremap <Left> <Esc><C-W><
-inoremap <Down> <Esc><C-W>-
-inoremap <Up> <Esc><C-W>+
+nmap <Down> <C-E>
+nmap <Up> <C-Y>
+imap <Down> <Esc><C-E>
+imap <Up> <Esc><C-Y>
+nnoremap [A <C-W>+
+nnoremap [B <C-W>-
+nnoremap [C <C-W>>
+nnoremap [D <C-W><
 
 " Commands for specific filetypes
 autocmd FileType tex,rst,markdown
