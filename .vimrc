@@ -81,6 +81,7 @@ vnoremap $ g_
 
 " In visual mode, search for the selected string with //
 vnoremap // y/<C-R>0<CR>
+nmap * viw//
 
 " Don't lose the visual selection when adjusting indentation
 vnoremap < <gv
@@ -142,7 +143,7 @@ nnoremap g<C-]> g]
 " Make a split for the tag - and go back in old window
 nnoremap <C-W><C-T> :vsplit<CR><C-W>h<C-T>
 
-autocmd VimEnter,WinEnter * setlocal cursorline
+autocmd VimEnter,WinEnter,BufEnter * setlocal cursorline
 autocmd WinLeave * setlocal nocursorline
 
 " Exclamation mark avoids having to press <CR> twice after the make
