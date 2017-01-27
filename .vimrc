@@ -32,10 +32,13 @@ nnoremap ,t :set list!<CR>
 set formatoptions+=rol
 set synmaxcol=300
 set path=**
-set t_Co=8
+" set t_Co=8
+
+nnoremap <F12> :up<CR>:colo blueblack<CR>
+imap <F12> <Esc><F12>
 
 " Turn on the mouse, for scrolling too
-set mouse=a
+set mouse=n
 noremap <ScrollWheelUp> 3<C-Y>
 noremap <ScrollWheelDown> 3<C-E>
 noremap <C-E> 3<C-E>

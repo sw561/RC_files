@@ -26,7 +26,7 @@ set statusline+=%{MyFileType()} "filetype
 set statusline+=%{DosWarning()}
 
 "display a warning if &et is wrong, or we have mixed-indenting
-set statusline+=\ %#error#
+set statusline+=\ %#ErrorMsg#
 set statusline+=%{TabWarning()}
 set statusline+=%*
 

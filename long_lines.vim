@@ -12,7 +12,7 @@ if !exists("g:long_line_match")
 endif
 
 " Highlighting can be overridden in color scheme
-highlight OverLength ctermbg=red ctermfg=white
+highlight OverLength cterm=underline
 
 " Highlight lines that are too long in the active window
 autocmd BufEnter,WinEnter,VimEnter * call LongLineHighlightOn()
