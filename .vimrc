@@ -1,6 +1,3 @@
-" My custom color scheme - just some minor changes to the default settings
-colo blueblack
-
 filetype plugin on
 
 " Settings
@@ -32,7 +29,10 @@ nnoremap ,t :set list!<CR>
 set formatoptions+=rol
 set synmaxcol=300
 set path=**
-" set t_Co=8
+
+" My custom color scheme - just some minor changes to the default settings
+" colo blueblack
+colo sand
 
 nnoremap <F12> :up<CR>:colo blueblack<CR>
 imap <F12> <Esc><F12>

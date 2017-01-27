@@ -15,6 +15,8 @@ ln -s ~/RC_files/trim.vim .vim/plugin
 ln -s ~/RC_files/long_lines.vim .vim/plugin
 mkdir -p .vim/colors
 ln -s ~/RC_files/blueblack.vim .vim/colors
+ln -s ~/RC_files/blueblack_general.vim .vim/colors
+ln -s ~/RC_files/sand.vim .vim/colors
 ln -s ~/RC_files/tex_scheme.vim .vim/colors
 mkdir -p .vim/ftplugin
 ln -s ~/RC_files/tex.vim .vim/ftplugin

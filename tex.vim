@@ -1,1 +1,1 @@
-colorscheme tex_scheme
+" colorscheme tex_scheme
