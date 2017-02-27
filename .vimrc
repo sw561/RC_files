@@ -26,7 +26,7 @@ nohl " Make sure that on reload of vimrc the last search is not highlighted
 nnoremap ,/ :nohl<CR>
 set listchars=tab:>-,eol:$
 nnoremap ,t :set list!<CR>
-set formatoptions+=rol
+set formatoptions+=jroln
 set synmaxcol=300
 set path=**
 
@@ -256,6 +256,7 @@ nnoremap [D <C-W><
 autocmd FileType tex,rst,markdown
 	\ setlocal textwidth=79
 	\ spell spelllang=en_gb spellfile=./en.utf-8.add
+	\ formatoptions+=a
 autocmd FileType haskell setlocal expandtab
 autocmd BufRead,BufNewFile *.i setlocal filetype=swig
 
