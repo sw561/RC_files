@@ -46,3 +46,8 @@ highlight DiffText term=none ctermbg=0
 highlight DiffDelete term=none ctermfg=0 ctermbg=none
 highlight DiffChange term=none ctermbg=0
 highlight DiffAdd term=none ctermbg=0
+
+highlight SpellBad ctermfg=15 ctermbg=9
+highlight! link SpellCap SpellBad
+highlight! link SpellLocal SpellBad
+highlight! link SpellRare SpellBad

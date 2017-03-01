@@ -57,7 +57,7 @@ function! MyTabLine()
 			elseif getbufvar( b, "&buftype" ) == 'quickfix'
 				let n .= '[Q]'
 			else
-				let n .= pathshorten(bufname(b))
+				let n .= strpart(pathshorten(bufname(b)), 0, 20)
 			endif
 			" check and set modified boolean
 			if getbufvar( b, "&modified" )
