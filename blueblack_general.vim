@@ -23,7 +23,6 @@ highlight SpecialKey ctermfg=0
 
 if (&t_Co>8)
 	highlight LineNr ctermfg=8
-	highlight CursorLineNr ctermfg=8
 
 	" Eye-catching yellow background highlighting
 	highlight Search ctermfg=16 ctermbg=3
@@ -36,6 +35,8 @@ if (&t_Co>8)
 	highlight Todo cterm=none ctermfg=15 ctermbg=8
 	highlight MatchParen cterm=reverse ctermbg=15 ctermfg=8
 endif
+
+highlight! link CursorLineNr LineNr
 
 " Colours of Pop up menu
 highlight Pmenu cterm=none ctermfg=none ctermbg=0
@@ -51,3 +52,6 @@ highlight SpellBad ctermfg=15 ctermbg=9
 highlight! link SpellCap SpellBad
 highlight! link SpellLocal SpellBad
 highlight! link SpellRare SpellBad
+
+highlight Folded term=none ctermbg=8 ctermfg=15
+highlight! link FoldedColumn Folded

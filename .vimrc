@@ -98,6 +98,7 @@ noremap q: <nop>
 " Settings for the command window
 autocmd CmdwinEnter * noremap <buffer> <CR> <CR>
 autocmd CmdwinEnter * inoremap <buffer> <CR> <CR>
+autocmd CmdwinEnter * noremap <buffer> <C-F> A<C-X><C-F>
 autocmd CmdwinEnter * noremap <buffer> <C-E> <C-E>
 autocmd CmdwinEnter * noremap <buffer> <C-Y> <C-Y>
 autocmd CmdwinEnter * setlocal nonumber relativenumber
@@ -105,6 +106,21 @@ autocmd CmdwinEnter * setlocal nonumber relativenumber
 " setlocal will not work in this case
 autocmd CmdwinEnter * set scrolloff=0
 autocmd CmdwinLeave * set scrolloff=2
+
+" Tab shortcut for cross line searching in prose
+cnoremap <expr> ,<space> getcmdtype()=='/' ? '\_W\+' : ',<space>'
+
+function! RepeatSearch()
+	" Copy last search into register p
+	normal! /kvg_"py
+	" Modify it
+	let @/ = substitute(@p, ' ', '\\_W\\+', 'g')
+	" Now search for it
+	call search(@/)
+endfunction
+
+command! S call RepeatSearch()
+nnoremap ,,/ :call RepeatSearch()<CR>
 
 " Settings for netrw
 let g:netrw_liststyle=3
@@ -178,6 +194,11 @@ function! MyBackspace()
 	endif
 endfunction
 nnoremap <BS> :call MyBackspace()<Enter><BS>
+
+" Folding
+nnoremap <space> zf
+vnoremap <space> zf
+nnoremap ,<space> zd
 
 " Comfortable movement between split windows
 noremap <C-J> <C-W>j
@@ -259,7 +280,6 @@ nnoremap [D <C-W><
 autocmd FileType tex,rst,markdown
 	\ setlocal textwidth=79
 	\ spell spelllang=en_gb spellfile=./en.utf-8.add
-	\ formatoptions+=a
 autocmd FileType haskell setlocal expandtab
 autocmd BufRead,BufNewFile *.i setlocal filetype=swig
 
