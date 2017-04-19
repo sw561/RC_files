@@ -260,6 +260,7 @@ autocmd FileType tex,rst,markdown
 	\ spell spelllang=en_gb spellfile=./en.utf-8.add
 autocmd FileType haskell setlocal expandtab
 autocmd BufRead,BufNewFile *.i setlocal filetype=swig
+autocmd FileType gp setlocal commentstring=#%s comments+=",#"
 
 " Tiny plugin to make writing class constructors easy in python
 " Put the cursor on a line which looks like: (you can try it right here)
