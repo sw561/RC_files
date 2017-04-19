@@ -31,10 +31,9 @@ set synmaxcol=300
 set path=**
 
 " My custom color scheme - just some minor changes to the default settings
-" colo blueblack
 colo sand
 
-nnoremap <F12> :up<CR>:colo blueblack<CR>
+nnoremap <F12> :up<CR>:colo sand<CR>
 imap <F12> <Esc><F12>
 
 " Turn on the mouse, for scrolling too
@@ -57,27 +56,6 @@ noremap Y y$
 
 " New line with enter - start new paragraph by hitting enter twice
 nnoremap <CR> o
-
-" My ctrl-u function for getting rid of annoying comment leaders
-function! MyCtrlU()
-	let nlines = line('$')
-	let ntabs = indent(line('.')) / &shiftwidth
-	normal! `[v`]d
-	if line('.')<line('$')
-		normal! k
-	else
-		normal! dd
-	endif
-	normal! o
-	normal! cc
-	while line('$') < nlines
-		normal! o
-	endwhile
-	for t in range(ntabs)
-		exec "normal! a\<tab>"
-	endfor
-endfunction
-inoremap <C-U> <Esc>:call MyCtrlU()<CR>a
 
 " In visual mode, don't include end of line blank characters
 vnoremap $ g_
@@ -266,7 +244,7 @@ command! MyBufferDelete bp|bd# " :bd will delete buffer without deleting window
 call Mycabbrev("bd","MyBufferDelete")
 nnoremap ,l :ls<CR>:b<Space>
 
-" Use arrow keys to resize split windows
+" Use arrow keys to resize split windows or to scroll
 nmap <Down> <C-E>
 nmap <Up> <C-Y>
 imap <Down> <Esc><C-E>
@@ -290,7 +268,7 @@ autocmd BufRead,BufNewFile *.i setlocal filetype=swig
 function! PutSelf()
 	exec "normal! i\<tab>\<tab>self.\<esc>lyiwA = \<esc>p"
 endfunction
-nnoremap ,init 0f(lyi(o<Esc>p0df V:s/, /\r/g<CR>:nohl<CR>V'<:call PutSelf()<CR>
+nnoremap ,init 0f(lyi(o<Esc>p0df V:s/, /\r/ge<CR>:nohl<CR>V'<:call PutSelf()<CR>
 
 " In versions of vim older than 7.4 relativenumber and number cannot be
 " combined. As a result to switch to number, it is not sufficient to turn off
