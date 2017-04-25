@@ -239,6 +239,27 @@ nnoremap gr gT
 nnoremap H gT
 nnoremap L gt
 
+" Split windows without scrolling, assumes splitbelow is set
+" Inspired by stackoverflow.com/questions/12897276/
+function! MySplit(...)
+	normal! Hmx``
+	if a:0 > 0
+		exec "split " . a:1
+		normal! k`xzt``j
+	else
+		split
+		normal! k`xzt``j`xzt``
+	endif
+endfunction
+
+nnoremap <C-W>s :call MySplit()<CR>
+command! -nargs=? -complete=file_in_path Split call MySplit(<f-args>)
+call Mycabbrev("s", "Split")
+call Mycabbrev("sp", "Split")
+call Mycabbrev("spl", "Split")
+call Mycabbrev("spli", "Split")
+call Mycabbrev("split", "Split")
+
 " Shortcuts for using buffers
 command! MyBufferDelete bp|bd# " :bd will delete buffer without deleting window
 call Mycabbrev("bd","MyBufferDelete")
@@ -261,6 +282,42 @@ autocmd FileType tex,rst,markdown
 autocmd FileType haskell setlocal expandtab
 autocmd BufRead,BufNewFile *.i setlocal filetype=swig
 autocmd FileType gp setlocal commentstring=#%s comments+=",#"
+
+function! Skeleton_Candidates(ArgLead, CmdLine, CursorPos)
+	return "python\npython3\ncpp\nMakefile\ngnuplot\nbash"
+endfunction
+
+" Skeleton files
+function! Skeleton(name)
+	setlocal autoread
+	if a:name == "python"
+		0read ~/RC_files/python_skeleton.py
+		write
+		silent !chmod u+x %
+	elseif a:name == "python3"
+		0read ~/RC_files/python3_skeleton.py
+		write
+		!chmod u+x %
+	elseif a:name == "cpp"
+		0read ~/RC_files/cpp_skeleton.cpp
+		write
+	elseif a:name == "Makefile"
+		0read ~/RC_files/Makefile_skeleton
+		write
+	elseif a:name == "gnuplot"
+		0read ~/RC_files/gp_skeleton.gp
+		write
+	elseif a:name == "bash"
+		0read ~/RC_files/bash_skeleton.sh
+		write
+		silent !chmod u+x %
+	else
+		echohl WarningMsg | echo "Argument not understood" | echohl None
+	endif
+	setlocal noautoread
+endfunction
+command! -nargs=1 -complete=custom,Skeleton_Candidates Sk call Skeleton(<f-args>)
+call Mycabbrev("sk","Sk")
 
 " Tiny plugin to make writing class constructors easy in python
 " Put the cursor on a line which looks like: (you can try it right here)

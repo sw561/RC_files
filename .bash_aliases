@@ -27,6 +27,9 @@ alias gd='git diff'
 alias gitk='gitk --all'
 alias rm='rm -I'
 
+tabs -4
+clear
+
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWUPSTREAM=1
 if [ `whoami` = "simon" ]
@@ -38,3 +41,5 @@ fi
 
 # http://unix.stackexchange.com/questions/72086/
 stty -ixon
+
+alias data='cd /data/hydra02-2/sw561/ && pwd'
