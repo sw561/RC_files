@@ -21,5 +21,7 @@ ln -s ~/RC_files/tex_scheme.vim .vim/colors
 mkdir -p .vim/ftplugin
 ln -s ~/RC_files/tex.vim .vim/ftplugin
 ln -s ~/RC_files/python.vim .vim/ftplugin
-ln -s ~/RC_files/tmux_move.py lib/python
+ln -s ~/RC_files/tmux_move.py bin
+ln -s ~/RC_files/move_left bin
+ln -s ~/RC_files/move_right bin
 cd -
