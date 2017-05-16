@@ -77,6 +77,9 @@ noremap Q <nop>
 " Don't open command line when trying to quit
 noremap q: <nop>
 
+" From defaults.vim - Use CTRL-G u to break undo
+inoremap <C-U> <C-G>u<C-U>
+
 " Settings for the command window
 autocmd CmdwinEnter * noremap <buffer> <CR> <CR>
 autocmd CmdwinEnter * inoremap <buffer> <CR> <CR>
@@ -220,7 +223,7 @@ function! TabMoveNew(index)
 	" difference is that if the current tab is the 2nd, then :tabmove 1 and
 	" :tabmove 2 will both leave the tab unmoved.
 	"
-	" I prefer to specify the desired index when moving my tabs.
+	" I prefer to specify the desired destination index when moving my tabs.
 	if a:index == '$'
 		execute "tabmove $"
 		return
@@ -257,6 +260,7 @@ function! MySplit(...)
 endfunction
 
 nnoremap <C-W>s :call MySplit()<CR>
+nnoremap <C-W><C-S> :call MySplit()<CR>
 command! -nargs=? -complete=file_in_path Split call MySplit(<f-args>)
 call Mycabbrev("s", "Split")
 call Mycabbrev("sp", "Split")
