@@ -1,5 +1,9 @@
 filetype plugin on
 
+" For plugins
+" https://github.com/google/vim-searchindex.git
+set runtimepath+=~/.vim/bundle/vim-searchindex
+
 " Settings
 set autoindent
 set copyindent
