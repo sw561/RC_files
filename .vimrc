@@ -27,7 +27,7 @@ set exrc " Can put local .vimrc in project directory
 set timeout timeoutlen=1000 ttimeoutlen=10
 set hlsearch
 nohl " Make sure that on reload of vimrc the last search is not highlighted
-nnoremap ,/ :nohl<CR>
+nnoremap <silent> ,/ :nohl<CR>
 set listchars=tab:>-,eol:$
 nnoremap ,t :set list!<CR>
 set formatoptions+=jroln
@@ -61,6 +61,8 @@ noremap Y y$
 " New line with enter - start new paragraph by hitting enter twice
 nnoremap <CR> o
 
+noremap 0 ^
+noremap ^ 0
 " In visual mode, don't include end of line blank characters
 vnoremap $ g_
 
@@ -290,6 +292,18 @@ autocmd FileType tex,rst,markdown
 autocmd FileType haskell setlocal expandtab
 autocmd BufRead,BufNewFile *.i setlocal filetype=swig
 autocmd FileType gp setlocal commentstring=#%s comments+=",#"
+
+" vim -b : edit binary using xxd-format!
+augroup Binary
+  au!
+  au BufReadPre  *.bin,*.bmp let &bin=1
+  au BufReadPost *.bin,*.bmp if &bin | %!xxd
+  au BufReadPost *.bin,*.bmp set ft=xxd | endif
+  au BufWritePre *.bin,*.bmp if &bin | %!xxd -r
+  au BufWritePre *.bin,*.bmp endif
+  au BufWritePost *.bin,*.bmp if &bin | %!xxd
+  au BufWritePost *.bin,*.bmp set nomod | endif
+augroup END
 
 function! Skeleton_Candidates(ArgLead, CmdLine, CursorPos)
 	return "python\npython3\ncpp\nMakefile\ngnuplot\nbash"
