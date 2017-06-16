@@ -286,9 +286,10 @@ nnoremap [C <C-W>>
 nnoremap [D <C-W><
 
 " Commands for specific filetypes
+set spelllang=en_gb
 autocmd FileType tex,rst,markdown
 	\ setlocal textwidth=79
-	\ spell spelllang=en_gb spellfile=./en.utf-8.add
+	\ spell spellfile=./en.utf-8.add
 autocmd FileType haskell setlocal expandtab
 autocmd BufRead,BufNewFile *.i setlocal filetype=swig
 autocmd FileType gp setlocal commentstring=#%s comments+=",#"
