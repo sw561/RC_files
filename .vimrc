@@ -3,6 +3,14 @@ filetype plugin on
 " For plugins
 " https://github.com/google/vim-searchindex.git
 set runtimepath+=~/.vim/bundle/vim-searchindex
+" https://github.com/unblevable/quick-scope.git
+set runtimepath+=~/.vim/bundle/quick-scope
+" https://github.com/tpope/vim-commentary.git
+set runtimepath+=~/.vim/bundle/vim-commentary
+
+let g:qs_first_occurrence_highlight_color = 11
+let g:qs_second_occurrence_highlight_color = 15
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 " Settings
 set autoindent
@@ -33,6 +41,7 @@ nnoremap ,t :set list!<CR>
 set formatoptions+=jroln
 set synmaxcol=300
 set path=**
+set linebreak
 
 " My custom color scheme - just some minor changes to the default settings
 colo sand
@@ -61,10 +70,13 @@ noremap Y y$
 " New line with enter - start new paragraph by hitting enter twice
 nnoremap <CR> o
 
-noremap 0 ^
-noremap ^ 0
+" Swap 0 and ^, ^ is more useful, but 0 is easier to press
+nnoremap 0 ^
+nnoremap ^ 0
+
 " In visual mode, don't include end of line blank characters
 vnoremap $ g_
+vnoremap g_ $
 
 " In visual mode, search for the selected string with //
 vnoremap // y/<C-R>0<CR>
@@ -143,7 +155,7 @@ command! MakeTags !ctags -R .
 " Open tags in vertical split rather than horizontal
 nnoremap <C-W><C-]> <C-W><C-]><C-W>t<C-W>H<C-W>l
 " Open tag in new tab
-nnoremap t<C-]> <C-W><C-]><C-W>T
+nnoremap <C-T><C-]> <C-W><C-]><C-W>T
 " If preceding with g, use :tselect not :tjump
 nnoremap g<C-]> g]
 " Make a split for the tag - and go back in old window
@@ -287,6 +299,7 @@ nnoremap [D <C-W><
 
 " Commands for specific filetypes
 set spelllang=en_gb
+autocmd FileType cpp setlocal commentstring=\/\/\ %s
 autocmd FileType tex,rst,markdown
 	\ setlocal textwidth=79
 	\ spell spellfile=./en.utf-8.add

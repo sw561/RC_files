@@ -26,6 +26,7 @@ alias gco='git checkout'
 alias gd='git diff'
 alias gitk='gitk --all'
 alias rm='rm -I'
+alias less='less -x4'
 
 tabs -4
 clear

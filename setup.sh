@@ -8,7 +8,6 @@ mkdir -p .vim
 mkdir -p .vim/syntax
 ln -s ~/RC_files/swig.vim .vim/syntax
 mkdir -p .vim/plugin
-ln -s ~/RC_files/commentary.vim .vim/plugin
 ln -s ~/RC_files/tabline.vim .vim/plugin
 ln -s ~/RC_files/statusline.vim .vim/plugin
 ln -s ~/RC_files/trim.vim .vim/plugin
