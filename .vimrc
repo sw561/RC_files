@@ -3,7 +3,7 @@ filetype plugin on
 " For plugins
 " https://github.com/google/vim-searchindex.git
 set runtimepath+=~/.vim/bundle/vim-searchindex
-" https://github.com/unblevable/quick-scope.git
+" https://github.com/moorereason/quick-scope.git -b protect-higroup
 set runtimepath+=~/.vim/bundle/quick-scope
 " https://github.com/tpope/vim-commentary.git
 set runtimepath+=~/.vim/bundle/vim-commentary
