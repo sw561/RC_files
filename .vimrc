@@ -8,8 +8,8 @@ set runtimepath+=~/.vim/bundle/quick-scope
 " https://github.com/tpope/vim-commentary.git
 set runtimepath+=~/.vim/bundle/vim-commentary
 
-let g:qs_first_occurrence_highlight_color = 11
-let g:qs_second_occurrence_highlight_color = 15
+let g:qs_first_occurrence_highlight_color = 9
+let g:qs_second_occurrence_highlight_color = 5
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 " Settings
@@ -27,7 +27,7 @@ set scrolloff=2
 set clipboard=unnamedplus
 set confirm
 set nojoinspaces
-set wildignore=*.swp,*.png,*.pyc,*.o,*.so,*~,*.pdf,*.db
+set wildignore=*.swp,*.png,*.pyc,*.o,*.so,*~,*.pdf,*.db,*.eps
 set wildmenu
 set noerrorbells
 set vb t_vb=
@@ -110,10 +110,8 @@ autocmd CmdwinLeave * set scrolloff=2
 cnoremap <expr> ,<space> getcmdtype()=='/' ? '\_W\+' : ',<space>'
 
 function! RepeatSearch()
-	" Copy last search into register p
-	normal! /kvg_"py
-	" Modify it
-	let @/ = substitute(@p, ' ', '\\_W\\+', 'g')
+	" Modify the contents of the register with last search pattern
+	let @/ = substitute(@/, ' ', '\\_W\\+', 'g')
 	" Now search for it
 	call search(@/)
 endfunction

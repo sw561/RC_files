@@ -32,11 +32,11 @@ function! LongLineHighlightToggle()
 	if g:long_line_match == 1
 		let g:long_line_match = 0
 		call LongLineHighlightOff()
-		" echo "Long line highlighting OFF"
+		echo "Long line highlighting OFF"
 	else
 		let g:long_line_match = 1
 		call LongLineHighlightOn()
-		" echo "Long line highlighting ON"
+		echo "Long line highlighting ON"
 	endif
 endfunction
 

@@ -1,14 +1,9 @@
 " Check that we have the colors - even if t_Co is 256, they may still not be
-" displayed correctly
-if (&t_Co<=8)
-	echo "Greetings young padawan"
+" displayed correctly depending on your terminal
+if (&t_Co<256)
 	echo "Insufficient colors for sand colorscheme"
 	finish
 endif
-
-" Vim color file
-hi clear Normal
-set bg&
 
 " Remove all existing highlighting and set the defaults.
 hi clear
@@ -20,21 +15,73 @@ endif
 
 let colors_name = "sand"
 
-let g:Blue="4"
+let Blue="4"
 
-let MyYellow="ctermfg=222"
-let MyRed="ctermfg=178"
+let MyOrange="ctermfg=130"
+let MyYellow="ctermfg=178"
 let MyGreen="ctermfg=72"
-let MyPurple=MyGreen
-let MyCyan=MyGreen
 let MyBlue="ctermfg=" .Blue
 
+exe "highlight Statement " .MyOrange
 exe "highlight Comment " .MyBlue
-exe "highlight Special " .MyPurple
-exe "highlight PreProc " .MyPurple
-exe "highlight Constant " .MyRed
-exe "highlight Identifier " .MyCyan
-exe "highlight Ignore " .MyCyan
+exe "highlight Special " .MyGreen
+exe "highlight PreProc " .MyGreen
+exe "highlight Constant " .MyYellow
+exe "highlight Identifier " .MyGreen
+exe "highlight Ignore " .MyGreen
 exe "highlight Type " .MyGreen
 
-source ~/.vim/colors/blueblack_general.vim
+" Rest of custom colour schemes
+
+let MyBlueHighlighting="ctermfg=7 ctermbg=" .Blue
+
+" Change the colour of active and non-active status lines
+highlight StatusLineNC cterm=none ctermfg=7 ctermbg=0
+exe "highlight StatusLine cterm=none ctermfg=7 ctermbg=" .Blue
+
+" Tabline
+highlight! link TabLine StatusLineNC
+highlight TabNum cterm=bold ctermfg=7 ctermbg=0
+highlight! link TabLineSel StatusLine
+exe "highlight TabNumSel cterm=bold ctermfg=7 ctermbg=" .Blue
+highlight! link TabLineFill StatusLineNC
+
+" Visual selections
+highlight! link Visual StatusLine
+
+" Colours of Pop up menu
+highlight! link Pmenu StatusLineNC
+highlight! link PmenuSel StatusLine
+
+" Other random stuff
+highlight VertSplit cterm=none ctermfg=0 ctermbg=none
+highlight NonText cterm=none ctermfg=0
+highlight SpecialKey ctermfg=0
+
+highlight LineNr ctermfg=8
+highlight! link CursorLineNr LineNr
+
+" Eye-catching yellow background highlighting
+highlight Search ctermfg=16 ctermbg=3
+highlight WildMenu ctermfg=16 ctermbg=3
+
+" Dangerous red for errors
+highlight ErrorMsg ctermfg=15 ctermbg=9
+
+" Unobtrusive gray-scale highlighting
+highlight Todo cterm=none ctermfg=15 ctermbg=8
+highlight MatchParen cterm=reverse ctermbg=15 ctermfg=8
+
+" Highlighting for vimdiff
+highlight DiffText term=none ctermbg=0
+highlight DiffDelete term=none ctermfg=0 ctermbg=none
+highlight DiffChange term=none ctermbg=0
+highlight DiffAdd term=none ctermbg=0
+
+highlight SpellBad ctermfg=15 ctermbg=9
+highlight! link SpellCap SpellBad
+highlight! link SpellLocal SpellBad
+highlight! link SpellRare SpellBad
+
+highlight Folded term=none ctermbg=8 ctermfg=15
+highlight! link FoldColumn Folded

@@ -1,1 +1,0 @@
-" colorscheme tex_scheme
