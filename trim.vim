@@ -22,16 +22,12 @@ function! TrimWhiteSpace()
 	endif
 	let save_cursor = getpos('.')
 	" Remove trailing space at end of lines
-	%s/\s\+$//e
+	" Remove empty lines at end of file
+	%s/\s\+$\|\(\n\s*\)\+\%$//e
 	if g:trim_double == 1
 		" Reduce double blanks to single blank lines
-		$put _
-		$put _
-		%s/\(\n\n\)\n\+/\1/
+		%s/\n\{3,}/\r\r/e
 	endif
-	" Remove empty lines at end of file
-	$put _
-	%s#\($\n\s*\)\+\%$##
 	call setpos('.', save_cursor)
 endfunction
 

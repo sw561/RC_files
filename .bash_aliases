@@ -19,7 +19,7 @@ alias open="gnome-open"
 alias vim="vim -p"
 alias view="view -p"
 alias unittest='python -m unittest discover -p "*_test.py" -v'
-alias gs='git status -sb'
+alias gs='git status'
 alias gl='git log -n 10 --pretty=oneline --abbrev-commit'
 alias gb='git branch -avv'
 alias gco='git checkout'

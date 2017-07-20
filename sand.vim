@@ -31,10 +31,6 @@ exe "highlight Identifier " .MyGreen
 exe "highlight Ignore " .MyGreen
 exe "highlight Type " .MyGreen
 
-" Rest of custom colour schemes
-
-let MyBlueHighlighting="ctermfg=7 ctermbg=" .Blue
-
 " Change the colour of active and non-active status lines
 highlight StatusLineNC cterm=none ctermfg=7 ctermbg=0
 exe "highlight StatusLine cterm=none ctermfg=7 ctermbg=" .Blue
