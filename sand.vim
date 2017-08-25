@@ -37,9 +37,7 @@ exe "highlight StatusLine cterm=none ctermfg=7 ctermbg=" .Blue
 
 " Tabline
 highlight! link TabLine StatusLineNC
-highlight TabNum cterm=bold ctermfg=7 ctermbg=0
 highlight! link TabLineSel StatusLine
-exe "highlight TabNumSel cterm=bold ctermfg=7 ctermbg=" .Blue
 highlight! link TabLineFill StatusLineNC
 
 " Visual selections

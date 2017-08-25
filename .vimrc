@@ -32,6 +32,7 @@ set wildmenu
 set noerrorbells
 set vb t_vb=
 set exrc " Can put local .vimrc in project directory
+set secure
 set timeout timeoutlen=1000 ttimeoutlen=10
 set hlsearch
 nohl " Make sure that on reload of vimrc the last search is not highlighted
