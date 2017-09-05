@@ -12,6 +12,8 @@ let g:qs_first_occurrence_highlight_color = 9
 let g:qs_second_occurrence_highlight_color = 5
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
+" Change ends of visual selection using o
+
 " Settings
 set autoindent
 set copyindent
@@ -43,6 +45,7 @@ set formatoptions+=jroln
 set synmaxcol=300
 set path=**
 set linebreak
+set completeopt+=menuone
 
 " My custom color scheme - just some minor changes to the default settings
 colo sand
@@ -144,6 +147,7 @@ cmap <C-P> <C-F><C-P>
 " :help popupmenu-keys
 inoremap <expr> <BS> pumvisible() ? '<C-E>' : '<BS>'
 inoremap <expr> <CR> pumvisible() ? '<C-Y>' : '<CR>'
+inoremap <expr> <C-J> pumvisible() ? '<C-Y><C-X><C-F>' : '<Esc><C-W>j'
 
 " Use CTRL j to navigate down directories in wildmenu
 set wildcharm=<Tab>
@@ -203,7 +207,7 @@ noremap <C-J> <C-W>j
 noremap <C-K> <C-W>k
 noremap <C-L> <C-W>l
 noremap <C-H> <C-W>h
-inoremap <C-J> <Esc><C-W>j
+" inoremap <C-J> <Esc><C-W>j
 inoremap <C-K> <Esc><C-W>k
 inoremap <C-L> <Esc><C-W>l
 inoremap <C-H> <Esc><C-W>h
