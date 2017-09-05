@@ -77,7 +77,7 @@ function! MyTabLine()
 			let s .= '%#TabLine#'
 		endif
 		let s .= n
-		let s .= '%#TabLine#' . ' '
+		let s .= '%#TabLine# '
 	endfor
 	" after the last tab fill with TabLineFill and reset tab page nr
 	let s .= '%#TabLineFill#%T'

@@ -27,7 +27,7 @@ exe "highlight Comment " .MyBlue
 exe "highlight Special " .MyGreen
 exe "highlight PreProc " .MyGreen
 exe "highlight Constant " .MyYellow
-exe "highlight Identifier " .MyGreen
+exe "highlight Identifier cterm=none " .MyGreen
 exe "highlight Ignore " .MyGreen
 exe "highlight Type " .MyGreen
 
@@ -39,6 +39,8 @@ exe "highlight StatusLine cterm=none ctermfg=7 ctermbg=" .Blue
 highlight! link TabLine StatusLineNC
 highlight! link TabLineSel StatusLine
 highlight! link TabLineFill StatusLineNC
+
+highlight OverLength cterm=underline
 
 " Visual selections
 highlight! link Visual StatusLine
@@ -57,7 +59,8 @@ highlight! link CursorLineNr LineNr
 
 " Eye-catching yellow background highlighting
 highlight Search ctermfg=16 ctermbg=3
-highlight WildMenu ctermfg=16 ctermbg=3
+highlight! link WildMenu Search
+highlight! link IncSearch Search
 
 " Dangerous red for errors
 highlight ErrorMsg ctermfg=15 ctermbg=9

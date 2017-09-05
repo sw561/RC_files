@@ -110,7 +110,7 @@ autocmd CmdwinEnter * setlocal nonumber relativenumber
 autocmd CmdwinEnter * set scrolloff=0
 autocmd CmdwinLeave * set scrolloff=2
 
-" Tab shortcut for cross line searching in prose
+" Space shortcut for cross line searching in prose
 cnoremap <expr> ,<space> getcmdtype()=='/' ? '\_W\+' : ',<space>'
 
 function! RepeatSearch()
@@ -120,7 +120,6 @@ function! RepeatSearch()
 	call search(@/)
 endfunction
 
-command! S call RepeatSearch()
 nnoremap ,,/ :call RepeatSearch()<CR>
 
 " Settings for netrw
@@ -129,8 +128,8 @@ let g:netrw_browse_split=3
 
 " Autocomplete works in normal mode too
 " See :help ins-completion
-nnoremap <C-N> viw<Esc>`>a<C-N>
-nnoremap <C-P> viw<Esc>`>a<C-P>
+nnoremap <C-N> viw<Esc>a<C-N>
+nnoremap <C-P> viw<Esc>a<C-P>
 inoremap <C-F> <C-X><C-F>
 inoremap <C-]> <C-X><C-]>
 
@@ -147,7 +146,14 @@ cmap <C-P> <C-F><C-P>
 " :help popupmenu-keys
 inoremap <expr> <BS> pumvisible() ? '<C-E>' : '<BS>'
 inoremap <expr> <CR> pumvisible() ? '<C-Y>' : '<CR>'
-inoremap <expr> <C-J> pumvisible() ? '<C-Y><C-X><C-F>' : '<Esc><C-W>j'
+" If pop-up menu is visible, use C-J to go to search subdirectory, else add a
+" line below the cursor.
+inoremap <expr> <C-J> pumvisible() ? "<C-Y><C-X><C-F>" : "<Esc>m'o<Esc><C-O>a"
+
+" Add a new line below the cursor
+" inoremap <C-J> <Esc>m'o<Esc><C-O>a
+" Remove line below cursor, opposite of <C-J>
+inoremap <C-K> <Esc>m'jdd<Esc><C-O>a
 
 " Use CTRL j to navigate down directories in wildmenu
 set wildcharm=<Tab>
@@ -207,8 +213,6 @@ noremap <C-J> <C-W>j
 noremap <C-K> <C-W>k
 noremap <C-L> <C-W>l
 noremap <C-H> <C-W>h
-" inoremap <C-J> <Esc><C-W>j
-inoremap <C-K> <Esc><C-W>k
 inoremap <C-L> <Esc><C-W>l
 inoremap <C-H> <Esc><C-W>h
 
