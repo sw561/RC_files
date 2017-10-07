@@ -46,6 +46,7 @@ set synmaxcol=300
 set path=**
 set linebreak
 set completeopt+=menuone
+set commentstring=//\ %s
 
 " My custom color scheme - just some minor changes to the default settings
 colo sand
@@ -266,6 +267,7 @@ call Mycabbrev("tm","TM")
 nnoremap gr gT
 nnoremap H gT
 nnoremap L gt
+nnoremap K <nop>
 
 " Split windows without scrolling, assumes splitbelow is set
 " Inspired by stackoverflow.com/questions/12897276/
@@ -299,6 +301,12 @@ nmap <Down> <C-E>
 nmap <Up> <C-Y>
 imap <Down> <Esc><C-E>
 imap <Up> <Esc><C-Y>
+nnoremap <C-Up> <C-W>+
+nnoremap <C-Down> <C-W>-
+nnoremap <C-Right> <C-W>>
+nnoremap <C-Left> <C-W><
+" if &term=="screen-256color"
+" Insert these special characters using i_CTRL-V
 nnoremap [A <C-W>+
 nnoremap [B <C-W>-
 nnoremap [C <C-W>>
