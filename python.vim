@@ -5,3 +5,12 @@ setlocal commentstring=#%s
 
 " Mapping to quickly print variables for debugging
 nnoremap <buffer> ,p ^y$Iprint("<Esc>A:", <Esc>pA)<Esc>j
+
+" Mapping to update import paths for python formatting
+" replace / with . and
+function! PythonifyPath()
+	" Remove trailing .py
+	.s/\.py\>//ge
+	.s/\//\./ge
+endfunction
+nnoremap <buffer> ,im :call PythonifyPath()<CR>
