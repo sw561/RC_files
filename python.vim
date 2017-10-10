@@ -10,7 +10,7 @@ nnoremap <buffer> ,p ^y$Iprint("<Esc>A:", <Esc>pA)<Esc>j
 " replace / with . and
 function! PythonifyPath()
 	" Remove trailing .py
-	.s/\.py\>//ge
-	.s/\//\./ge
+	keeppatterns .s/\.py\>//ge
+	keeppatterns .s/\//\./ge
 endfunction
 nnoremap <buffer> ,im :call PythonifyPath()<CR>
