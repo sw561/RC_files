@@ -7,6 +7,8 @@ set runtimepath+=~/.vim/bundle/vim-searchindex
 set runtimepath+=~/.vim/bundle/quick-scope
 " https://github.com/tpope/vim-commentary.git
 set runtimepath+=~/.vim/bundle/vim-commentary
+" https://github.com/tpope/vim-repeat.git
+set runtimepath+=~/.vim/bundle/vim-repeat
 
 let g:qs_first_occurrence_highlight_color = 9
 let g:qs_second_occurrence_highlight_color = 5

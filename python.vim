@@ -4,7 +4,17 @@ let b:did_ftplugin = 1
 setlocal commentstring=#%s
 
 " Mapping to quickly print variables for debugging
-nnoremap <buffer> ,p ^y$Iprint("<Esc>A:", <Esc>pA)<Esc>j
+function! MyPythonPrint()
+	exec 'normal! ^y$Iprint("A:", pA)j'
+	try
+		call repeat#set("\<Plug>MyPythonPrint", v:count)
+	" catch unknown function error, in case vim-repeat plugin is not installed
+	catch /^Vim\%((\a\+)\)\=:E117/
+	endtry
+endfunction
+
+nnoremap <buffer> <Plug>MyPythonPrint :call MyPythonPrint()<CR>
+nmap ,p <Plug>MyPythonPrint
 
 " Mapping to update import paths for python formatting
 " replace / with . and

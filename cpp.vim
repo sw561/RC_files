@@ -1,2 +1,12 @@
 " Mapping to quickly print variables for debugging
-nnoremap <buffer> ,p ^y$Istd::cout << "<Esc>A: " << <Esc>pA << std::endl;<Esc>j
+function! MyCppPrint()
+	exec 'normal! ^y$Istd::cout << "A: " << pA << std::endl;j'
+	try
+		call repeat#set("\<Plug>MyCppPrint", v:count)
+	" catch unknown function error, in case vim-repeat plugin is not installed
+	catch /^Vim\%((\a\+)\)\=:E117/
+	endtry
+endfunction
+
+nnoremap <buffer> <Plug>MyCppPrint :call MyCppPrint()<CR>
+nmap <buffer> ,p <Plug>MyCppPrint
