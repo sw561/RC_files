@@ -105,6 +105,7 @@ def clean_up():
 def main():
     urls = []
     plugins = []
+    paths = []
 
     print("Checking for plugins to be installed...")
     for name, url, path in get_plugins():
@@ -113,6 +114,7 @@ def main():
         else:
             urls.append(url)
             plugins.append(name)
+            paths.append(path)
     print(DIVIDER)
 
     if not plugins:
@@ -133,6 +135,10 @@ def main():
     f.write("cd {}/{}\n".format(home(), BUNDLE_PATH))
     for url in urls:
         f.write("git clone {} {}\n".format(GIT_OPTIONS, url))
+
+    # Helptags command
+    for path in paths:
+        f.write('vim -u NONE -c "helptags {}/doc" -c q\n'.format(path))
     f.close()
 
     print("Commands to be run have been written in {}".format(COMMAND_FILE))

@@ -9,6 +9,8 @@ set runtimepath+=~/.vim/bundle/quick-scope
 set runtimepath+=~/.vim/bundle/vim-commentary
 " https://github.com/tpope/vim-repeat.git
 set runtimepath+=~/.vim/bundle/vim-repeat
+" https://github.com/tpope/vim-fugitive.git
+set runtimepath+=~/.vim/bundle/vim-fugitive
 
 let g:qs_first_occurrence_highlight_color = 9
 let g:qs_second_occurrence_highlight_color = 5
@@ -86,8 +88,10 @@ vnoremap $ g_
 vnoremap g_ $
 
 " In visual mode, search for the selected string with //
-vnoremap // y/<C-R>0<CR>
-nmap * viw//
+function! SearchSelection()
+	let @/ = substitute(@0, '/', '\\/', 'g')
+endfunction
+vnoremap // y:call SearchSelection()<CR>/\V<C-R>/<CR>
 
 " Don't lose the visual selection when adjusting indentation
 vnoremap < <gv
@@ -319,7 +323,8 @@ set spelllang=en_gb
 autocmd FileType cpp setlocal commentstring=\/\/\ %s
 autocmd FileType tex,rst,markdown
 	\ setlocal textwidth=79
-	\ spell spellfile=./en.utf-8.add
+	\ spell spellfile=./en.utf-8.add |
+	\ let g:searchindex_star_case=0
 autocmd FileType haskell setlocal expandtab
 autocmd BufRead,BufNewFile *.i setlocal filetype=swig
 autocmd FileType gp setlocal commentstring=#%s comments+=",#"
