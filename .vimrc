@@ -11,10 +11,17 @@ set runtimepath+=~/.vim/bundle/vim-commentary
 set runtimepath+=~/.vim/bundle/vim-repeat
 " https://github.com/tpope/vim-fugitive.git
 set runtimepath+=~/.vim/bundle/vim-fugitive
+" https://github.com/nacitar/a.vim.git
+set runtimepath+=~/.vim/bundle/a.vim
 
 let g:qs_first_occurrence_highlight_color = 9
 let g:qs_second_occurrence_highlight_color = 5
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
+nnoremap gs :Gstatus<CR>
+
+" For using a.vim in LSC_AMR
+let g:alternateExtensions_cpp_C = "H"
 
 " Change ends of visual selection using o
 

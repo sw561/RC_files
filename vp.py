@@ -65,13 +65,16 @@ def get_plugins():
             continue
 
         url = comment[1:].lstrip()
-        name_from_url = "/".join(url.split('/')[3:]).split('.')[0]
+        name_from_url = "/".join(url.split()[0].split('/')[3:])
         name_from_path = rtpath[len(expected_prefix):]
-        if not name_from_url.endswith(name_from_path):
+        if not name_from_url.endswith(name_from_path+'.git'):
             print("Failed to understand the lines:\n{}\n{}".format(comment, rtpath))
             print("name_from_url:", name_from_url)
             print("name_from_path:", name_from_path)
             continue
+
+        # Remove the trailing .git
+        name_from_url = name_from_url[:-4]
 
         path = "/".join([home(), BUNDLE_PATH, name_from_path])
 
