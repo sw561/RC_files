@@ -13,7 +13,7 @@ set runtimepath+=~/.vim/bundle/vim-repeat
 set runtimepath+=~/.vim/bundle/vim-fugitive
 " https://github.com/nacitar/a.vim.git
 set runtimepath+=~/.vim/bundle/a.vim
-" https://github.com/sw561/vim-resizewindow.git -b idiomatic_mapping
+" https://github.com/sw561/vim-resizewindow.git
 set runtimepath+=~/.vim/bundle/vim-resizewindow
 
 let g:qs_first_occurrence_highlight_color = 9
@@ -26,15 +26,15 @@ nnoremap gs :Gstatus<CR>
 let g:alternateExtensions_cpp_C = "H"
 
 " Using vim-resizewindow for comfort
-map <C-Up>    <Plug>ResizeWindowUp
-map <C-Down>  <Plug>ResizeWindowDown
-map <C-Left>  <Plug>ResizeWindowLeft
-map <C-Right> <Plug>ResizeWindowRight
+nmap <C-Up>    <Plug>ResizeWindowUp
+nmap <C-Down>  <Plug>ResizeWindowDown
+nmap <C-Left>  <Plug>ResizeWindowLeft
+nmap <C-Right> <Plug>ResizeWindowRight
 " For when term is screen-256color
-map [A <Plug>ResizeWindowUp
-map [B <Plug>ResizeWindowDown
-map [C <Plug>ResizeWindowRight
-map [D <Plug>ResizeWindowLeft
+nmap [A <Plug>ResizeWindowUp
+nmap [B <Plug>ResizeWindowDown
+nmap [C <Plug>ResizeWindowRight
+nmap [D <Plug>ResizeWindowLeft
 
 " Change ends of visual selection using o
 
@@ -84,8 +84,8 @@ noremap <ScrollWheelUp> 3<C-Y>
 noremap <ScrollWheelDown> 3<C-E>
 noremap <C-E> 3<C-E>
 noremap <C-Y> 3<C-Y>
-imap <C-E> <Esc><C-E>
-imap <C-Y> <Esc><C-Y>
+imap <C-E> <C-O><C-E>
+imap <C-Y> <C-O><C-Y>
 
 " Inspired by http://vi.stackexchange.com/questions/6800/
 function! Mycabbrev(lhs,rhs)
