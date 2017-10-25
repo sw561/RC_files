@@ -13,6 +13,8 @@ set runtimepath+=~/.vim/bundle/vim-repeat
 set runtimepath+=~/.vim/bundle/vim-fugitive
 " https://github.com/nacitar/a.vim.git
 set runtimepath+=~/.vim/bundle/a.vim
+" https://github.com/sw561/vim-resizewindow.git -b idiomatic_mapping
+set runtimepath+=~/.vim/bundle/vim-resizewindow
 
 let g:qs_first_occurrence_highlight_color = 9
 let g:qs_second_occurrence_highlight_color = 5
@@ -22,6 +24,17 @@ nnoremap gs :Gstatus<CR>
 
 " For using a.vim in LSC_AMR
 let g:alternateExtensions_cpp_C = "H"
+
+" Using vim-resizewindow for comfort
+map <C-Up>    <Plug>ResizeWindowUp
+map <C-Down>  <Plug>ResizeWindowDown
+map <C-Left>  <Plug>ResizeWindowLeft
+map <C-Right> <Plug>ResizeWindowRight
+" For when term is screen-256color
+map [A <Plug>ResizeWindowUp
+map [B <Plug>ResizeWindowDown
+map [C <Plug>ResizeWindowRight
+map [D <Plug>ResizeWindowLeft
 
 " Change ends of visual selection using o
 
@@ -314,16 +327,6 @@ nmap <Down> <C-E>
 nmap <Up> <C-Y>
 imap <Down> <Esc><C-E>
 imap <Up> <Esc><C-Y>
-nnoremap <C-Up> <C-W>+
-nnoremap <C-Down> <C-W>-
-nnoremap <C-Right> <C-W>>
-nnoremap <C-Left> <C-W><
-" if &term=="screen-256color"
-" Insert these special characters using i_CTRL-V
-nnoremap [A <C-W>+
-nnoremap [B <C-W>-
-nnoremap [C <C-W>>
-nnoremap [D <C-W><
 
 " Commands for specific filetypes
 set spelllang=en_gb
