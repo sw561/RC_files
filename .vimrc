@@ -345,17 +345,17 @@ augroup END
 " vim -b : edit binary using xxd-format!
 augroup Binary
   au!
-  au BufReadPre  *.bin,*.bmp let &bin=1
-  au BufReadPost *.bin,*.bmp if &bin | %!xxd
-  au BufReadPost *.bin,*.bmp set ft=xxd | endif
-  au BufWritePre *.bin,*.bmp if &bin | %!xxd -r
-  au BufWritePre *.bin,*.bmp endif
-  au BufWritePost *.bin,*.bmp if &bin | %!xxd
-  au BufWritePost *.bin,*.bmp set nomod | endif
+  au BufReadPre  *.bin,*.bmp,*.gif let &bin=1
+  au BufReadPost *.bin,*.bmp,*.gif if &bin | %!xxd
+  au BufReadPost *.bin,*.bmp,*.gif set ft=xxd | endif
+  au BufWritePre *.bin,*.bmp,*.gif if &bin | %!xxd -r
+  au BufWritePre *.bin,*.bmp,*.gif endif
+  au BufWritePost *.bin,*.bmp,*.gif if &bin | %!xxd
+  au BufWritePost *.bin,*.bmp,*.gif set nomod | endif
 augroup END
 
 function! Skeleton_Candidates(ArgLead, CmdLine, CursorPos)
-	return "python\npython3\ncpp\nMakefile\ngnuplot\nbash\ntex"
+	return "python\npython3\ncpp\nMakefile\ngnuplot\nbash\ntex\ngo"
 endfunction
 
 " Skeleton files
@@ -384,6 +384,9 @@ function! Skeleton(name)
 		silent !chmod u+x %
 	elseif a:name == "tex"
 		0read ~/RC_files/tex_skeleton.tex
+		write
+	elseif a:name == "go"
+		0read ~/RC_files/go_skeleton.go
 		write
 	else
 		echohl WarningMsg | echo "Argument not understood" | echohl None
