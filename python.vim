@@ -23,4 +23,4 @@ function! PythonifyPath()
 	keeppatterns .s/\.py\>//ge
 	keeppatterns .s/\//\./ge
 endfunction
-nnoremap <buffer> ,im :call PythonifyPath()<CR>
+nnoremap <buffer> ,im :call PythonifyPath()<CR>$

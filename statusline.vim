@@ -19,7 +19,7 @@ if !exists("g:status_fileformat")
 endif
 
 set laststatus=2                "statusline displayed always
-set statusline=\ %t             "tail of the filename
+set statusline=\ %f             "tail of the filename
 set statusline+=%m              "modified flag
 set statusline+=%r              "read only flag
 set statusline+=%{MyFileType()} "filetype

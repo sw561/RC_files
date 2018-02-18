@@ -15,6 +15,7 @@ else
 fi
 alias ll='ls -ltr'
 alias ls='ls -h --color=auto'
+alias lsd='ls -ltrd */'
 alias open="gnome-open"
 alias vim="vim -p"
 alias view="view -p"

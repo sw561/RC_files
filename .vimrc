@@ -65,7 +65,7 @@ nohl " Make sure that on reload of vimrc the last search is not highlighted
 nnoremap <silent> ,/ :nohl<CR>
 set listchars=tab:>-,eol:$
 nnoremap ,t :set list!<CR>
-set formatoptions+=jroln
+set formatoptions=tcqjroln
 set synmaxcol=300
 set path=**
 set linebreak
@@ -330,14 +330,17 @@ imap <Up> <Esc><C-Y>
 
 " Commands for specific filetypes
 set spelllang=en_gb
-autocmd FileType cpp setlocal commentstring=\/\/\ %s
-autocmd FileType tex,rst,markdown
-	\ setlocal textwidth=79
-	\ spell spellfile=./en.utf-8.add |
-	\ let g:searchindex_star_case=0
-autocmd FileType haskell setlocal expandtab
-autocmd BufRead,BufNewFile *.i setlocal filetype=swig
-autocmd FileType gp setlocal commentstring=#%s comments+=",#"
+augroup FileTypeAuCmds
+	au!
+	autocmd FileType cpp setlocal commentstring=\/\/\ %s
+	autocmd FileType tex,rst,markdown
+		\ setlocal textwidth=79
+		\ spell spellfile=./en.utf-8.add |
+		\ let g:searchindex_star_case=0
+	autocmd FileType haskell setlocal expandtab
+	autocmd BufRead,BufNewFile *.i setlocal filetype=swig
+	autocmd FileType gp setlocal commentstring=#%s comments+=",#"
+augroup END
 
 " vim -b : edit binary using xxd-format!
 augroup Binary
@@ -352,7 +355,7 @@ augroup Binary
 augroup END
 
 function! Skeleton_Candidates(ArgLead, CmdLine, CursorPos)
-	return "python\npython3\ncpp\nMakefile\ngnuplot\nbash"
+	return "python\npython3\ncpp\nMakefile\ngnuplot\nbash\ntex"
 endfunction
 
 " Skeleton files
@@ -379,6 +382,9 @@ function! Skeleton(name)
 		0read ~/RC_files/bash_skeleton.sh
 		write
 		silent !chmod u+x %
+	elseif a:name == "tex"
+		0read ~/RC_files/tex_skeleton.tex
+		write
 	else
 		echohl WarningMsg | echo "Argument not understood" | echohl None
 	endif
@@ -442,8 +448,11 @@ function! CheckReadOnly()
 		set relativenumber
 	endif
 endfunction
-autocmd BufEnter,WinEnter,VimEnter * call CheckReadOnly()
-autocmd InsertEnter * call Edit()
+augroup ReadOnlyChecks
+	au!
+	autocmd BufEnter,WinEnter,VimEnter * call CheckReadOnly()
+	autocmd InsertEnter * call Edit()
+augroup END
 
 " Prefer not to see filetype in statusbar
 let g:status_filetype = 0
