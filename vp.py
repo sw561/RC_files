@@ -13,9 +13,10 @@ are satisfied that nothing unexpected is about to happen.
 import argparse
 from subprocess import check_output
 import os
+# To ensure python2 compatibility
+from six.moves import input
 
 COMMAND_FILE = "AUTOvp.sh"
-CLEAN_FILE = "AUTOrmvp.sh"
 BUNDLE_PATH = ".vim/bundle"
 GIT_OPTIONS = "--depth 1"
 DIVIDER = "-"*40
@@ -39,10 +40,10 @@ def myopen(filename, method):
     return open(filename, method)
 
 def split_pairs(text, expected_prefix):
-    # Yield lines with the expected_predix and their preceding comments
+    # Yield lines with the expected_prefix and their preceding comments
     u = text.split('\n')
     for i in range(1, len(u)):
-        if expected_prefix in u[i]:
+        if u[i].startswith(expected_prefix) and u[i-1] and u[i-1][0]=='"':
             yield u[i-1], u[i]
 
 def get_plugins():
@@ -51,18 +52,11 @@ def get_plugins():
     """
 
     expected_prefix = "set runtimepath+=~/{}/".format(BUNDLE_PATH)
-    command = "grep -B1 '{}' {}/.vimrc".format(expected_prefix, home())
+    command = "grep -B1 '^{}' {}/.vimrc".format(expected_prefix, home())
     # print("command:", command)
     grep_output = check_output(command, shell=True).decode('utf8').strip()
 
     for comment, rtpath in split_pairs(grep_output, expected_prefix):
-
-        # Skip if the first line is not a comment
-        if len(comment)==0 or comment[0]!='"':
-            continue
-        # Skip if second line isn't of the form "set runtimepath+=..."
-        if not rtpath.startswith(expected_prefix):
-            continue
 
         url = comment[1:].lstrip()
         name_from_url = "/".join(url.split()[0].split('/')[3:])
@@ -80,6 +74,10 @@ def get_plugins():
 
         yield (name_from_url, url, path)
 
+def finish():
+    print("Commands to be run have been written in {}".format(COMMAND_FILE))
+    print("To run, type $ bash {}".format(COMMAND_FILE))
+
 def clean_up():
     unneeded_plugins = []
 
@@ -96,14 +94,11 @@ def clean_up():
         return
 
     print(DIVIDER)
-    f = myopen(CLEAN_FILE, 'w')
+    f = myopen(COMMAND_FILE, 'w')
     f.write("set -e\n")
     for path in unneeded_plugins:
         f.write("rm -rf {}/{}/{}\n".format(home(), BUNDLE_PATH, path))
     f.close()
-
-    print("Commands to be run have been written in {}".format(CLEAN_FILE))
-    print("To run, type $ bash {}".format(CLEAN_FILE))
 
 def main():
     urls = []
@@ -121,7 +116,7 @@ def main():
     print(DIVIDER)
 
     if not plugins:
-        print("All plugins successfully installed.")
+        print("No new plugins to be installed.")
         return
 
     for name in plugins:
@@ -144,8 +139,29 @@ def main():
         f.write('vim -u NONE -c "helptags {}/doc" -c q\n'.format(path))
     f.close()
 
-    print("Commands to be run have been written in {}".format(COMMAND_FILE))
-    print("To run, type $ bash {}".format(COMMAND_FILE))
+    finish()
+
+def update():
+    urls = []
+    plugins = []
+    paths = []
+
+    print("Checking for installed and wanted plugins...")
+    for name, url, path in get_plugins():
+        if os.path.exists(path):
+            urls.append(url)
+            plugins.append(name)
+            paths.append(path)
+
+    f = myopen(COMMAND_FILE, 'w')
+    f.write("set -e\n")
+    for p in paths:
+        f.write("cd {}\n".format(p))
+        f.write("git pull\n")
+
+    f.close()
+
+    finish()
 
 if __name__=="__main__":
     parser = argparse.ArgumentParser(
@@ -154,10 +170,15 @@ if __name__=="__main__":
     parser.add_argument("-c", "--clean", action="store_true",
                         help="Clean up unused plugins"
                         )
+    parser.add_argument("-u", "--update", action="store_true",
+                        help="Update installed plugins"
+                        )
     args = parser.parse_args()
 
     if args.clean:
         clean_up()
+    elif args.update:
+        update()
     else:
         # Script is by default verbose
         main()
