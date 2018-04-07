@@ -78,6 +78,15 @@ highlight DiffDelete term=none ctermfg=0 ctermbg=none
 highlight DiffChange term=none ctermbg=0
 highlight DiffAdd term=none ctermbg=0
 
+highlight diffRemoved term=none ctermfg=1
+highlight diffAdded term=none ctermfg=2
+
+highlight diffFile term=none ctermfg=16 ctermbg=7
+highlight diffOldFile term=none ctermfg=3
+highlight! link diffNewFile diffOldFile
+highlight! link diffLine Comment
+highlight! link diffSubname diffLine
+
 highlight SpellBad ctermfg=15 ctermbg=9
 highlight! link SpellCap SpellBad
 highlight! link SpellLocal SpellBad

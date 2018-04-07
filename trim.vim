@@ -17,7 +17,7 @@ endif
 " Removes trailing spaces including empty lines at end of file
 " Also removes double blank lines
 function! TrimWhiteSpace()
-	if g:trim == 0
+	if g:trim == 0 || &filetype==""
 		return
 	endif
 	let save_cursor = getpos('.')

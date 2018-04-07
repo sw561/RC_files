@@ -18,6 +18,10 @@ mkdir -p .vim/ftplugin
 ln -s ~/RC_files/python.vim .vim/ftplugin
 ln -s ~/RC_files/go.vim .vim/ftplugin
 ln -s ~/RC_files/cpp.vim .vim/ftplugin
+ln -s ~/RC_files/git.vim .vim/ftplugin
+mkdir -p .vim/after
+mkdir -p .vim/after/syntax
+ln -s ~/RC_files/diff.vim .vim/after/syntax
 ln -s ~/RC_files/tmux_move.py bin
 ln -s ~/RC_files/move_left bin
 ln -s ~/RC_files/move_right bin

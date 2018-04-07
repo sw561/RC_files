@@ -15,12 +15,18 @@ set runtimepath+=~/.vim/bundle/vim-fugitive
 set runtimepath+=~/.vim/bundle/a.vim
 " https://github.com/sw561/vim-resizewindow.git
 set runtimepath+=~/.vim/bundle/vim-resizewindow
+" https://github.com/junegunn/gv.vim.git
+set runtimepath+=~/.vim/bundle/gv.vim
 
 let g:qs_first_occurrence_highlight_color = 9
 let g:qs_second_occurrence_highlight_color = 5
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 nnoremap gs :Gstatus<CR>
+command! Gdall tabnew % | tabmove -1 | Git! diff
+command! Gcached tabnew % | tabmove -1 | Git! diff --cached
+
+nnoremap gv :GV<CR>
 
 " For using a.vim in LSC_AMR
 let g:alternateExtensions_cpp_C = "H"
@@ -119,8 +125,6 @@ vnoremap > >gv
 
 " Don't need exec mode
 noremap Q <nop>
-" Don't open command line when trying to quit
-noremap q: <nop>
 
 " From defaults.vim - Use CTRL-G u to break undo
 inoremap <C-U> <C-G>u<C-U>
@@ -254,6 +258,7 @@ nnoremap ,fv :vert sfind *
 
 " Shortcuts for using tabs
 call Mycabbrev("tn","tabnew")
+call Mycabbrev("tc","tabclose")
 " Custom function to replace tabmove with 1-based indexed version
 function! TabMove(index)
 	let val = a:index-1
@@ -325,6 +330,8 @@ nnoremap ,l :ls<CR>:b<Space>
 " Use arrow keys to resize split windows or to scroll
 nmap <Down> <C-E>
 nmap <Up> <C-Y>
+vmap <Down> <C-E>
+vmap <Up> <C-Y>
 imap <Down> <Esc><C-E>
 imap <Up> <Esc><C-Y>
 
@@ -340,6 +347,7 @@ augroup FileTypeAuCmds
 	autocmd FileType haskell setlocal expandtab
 	autocmd BufRead,BufNewFile *.i setlocal filetype=swig
 	autocmd FileType gp setlocal commentstring=#%s comments+=",#"
+	autocmd FileType git setlocal foldlevel=1
 augroup END
 
 " vim -b : edit binary using xxd-format!
