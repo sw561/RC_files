@@ -370,31 +370,31 @@ endfunction
 function! Skeleton(name)
 	setlocal autoread
 	if a:name == "python"
-		0read ~/RC_files/python_skeleton.py
+		0read ~/RC_files/skeleton/python.py
 		write
 		silent !chmod u+x %
 	elseif a:name == "python3"
-		0read ~/RC_files/python3_skeleton.py
+		0read ~/RC_files/skeleton/python3.py
 		write
 		!chmod u+x %
 	elseif a:name == "cpp"
-		0read ~/RC_files/cpp_skeleton.cpp
+		0read ~/RC_files/skeleton/cpp.cpp
 		write
 	elseif a:name == "Makefile"
-		0read ~/RC_files/Makefile_skeleton
+		0read ~/RC_files/skeleton/Makefile
 		write
 	elseif a:name == "gnuplot"
-		0read ~/RC_files/gp_skeleton.gp
+		0read ~/RC_files/skeleton/gp.gp
 		write
 	elseif a:name == "bash"
-		0read ~/RC_files/bash_skeleton.sh
+		0read ~/RC_files/skeleton/bash.sh
 		write
 		silent !chmod u+x %
 	elseif a:name == "tex"
-		0read ~/RC_files/tex_skeleton.tex
+		0read ~/RC_files/skeleton/tex.tex
 		write
 	elseif a:name == "go"
-		0read ~/RC_files/go_skeleton.go
+		0read ~/RC_files/skeleton/go.go
 		write
 	else
 		echohl WarningMsg | echo "Argument not understood" | echohl None
