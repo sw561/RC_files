@@ -26,7 +26,7 @@ nnoremap gs :Gstatus<CR>
 command! Gdall tabnew % | tabmove -1 | Git! diff
 command! Gcached tabnew % | tabmove -1 | Git! diff --cached
 
-nnoremap gv :GV<CR>
+nnoremap gv :GV --all<CR>
 
 " For using a.vim in LSC_AMR
 let g:alternateExtensions_cpp_C = "H"
