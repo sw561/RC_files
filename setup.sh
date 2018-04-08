@@ -10,7 +10,6 @@ ln -s ~/RC_files/vim/plugin/ .vim
 ln -s ~/RC_files/vim/colors/ .vim
 ln -s ~/RC_files/vim/ftplugin/ .vim
 ln -s ~/RC_files/vim/after/ .vim
+mkdir -p bin
 ln -s ~/RC_files/tmux_move.py bin
-ln -s ~/RC_files/move_left bin
-ln -s ~/RC_files/move_right bin
 cd -

@@ -1,3 +1,0 @@
-#!/usr/bin/env python3
-from tmux_move import move_right
-move_right()

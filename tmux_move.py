@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from subprocess import check_output, check_call
 
 def get_window():
@@ -26,3 +28,12 @@ def move_left():
 	if win==1:
 		return
 	move_window(win, win-1)
+
+if __name__=="__main__":
+	import sys
+	if 1 < len(sys.argv):
+		arg = sys.argv[1]
+		if arg == 'l':
+			move_left()
+		elif arg == 'r':
+			move_right()
