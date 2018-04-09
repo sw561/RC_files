@@ -25,6 +25,8 @@ let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 nnoremap gs :Gstatus<CR>
 command! Gdall tabnew % | tabmove -1 | Git! diff
 command! Gcached tabnew % | tabmove -1 | Git! diff --cached
+nnoremap gda :Gdall<CR>
+nnoremap gca :Gcached<CR>
 
 nnoremap gv :GV --all<CR>
 
@@ -201,9 +203,6 @@ nnoremap g<C-]> g]
 " Make a split for the tag - and go back in old window
 nnoremap <C-W><C-T> :vsplit<CR><C-W>h<C-T>
 
-autocmd VimEnter,WinEnter,BufEnter * setlocal cursorline
-autocmd WinLeave * setlocal nocursorline
-
 " Exclamation mark avoids having to press <CR> twice after the make
 nnoremap ,m :!make<CR>
 
@@ -348,6 +347,7 @@ augroup FileTypeAuCmds
 	autocmd BufRead,BufNewFile *.i setlocal filetype=swig
 	autocmd FileType gp setlocal commentstring=#%s comments+=",#"
 	autocmd FileType git setlocal foldlevel=1
+	autocmd BufRead,BufNewFile *.tex setlocal filetype=tex
 augroup END
 
 " vim -b : edit binary using xxd-format!

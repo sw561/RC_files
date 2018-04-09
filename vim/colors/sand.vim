@@ -82,7 +82,7 @@ highlight diffRemoved term=none ctermfg=1
 highlight diffAdded term=none ctermfg=2
 
 highlight diffFile term=none ctermfg=16 ctermbg=7
-highlight diffOldFile term=none ctermfg=3
+highlight! link diffOldFile Constant
 highlight! link diffNewFile diffOldFile
 highlight! link diffLine Comment
 highlight! link diffSubname diffLine

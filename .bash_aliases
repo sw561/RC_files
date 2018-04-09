@@ -25,9 +25,11 @@ alias gl='git log -n 10 --pretty=oneline --abbrev-commit'
 alias gb='git branch -avv'
 alias gco='git checkout'
 alias gd='git diff'
+alias gca='git diff --cached'
 alias gitk='gitk --all'
 alias rm='rm -I'
 alias less='less -x4'
+alias remake='make remake'
 
 tabs -4
 clear
