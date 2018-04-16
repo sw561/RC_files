@@ -18,9 +18,13 @@ set runtimepath+=~/.vim/bundle/vim-resizewindow
 " https://github.com/junegunn/gv.vim.git
 set runtimepath+=~/.vim/bundle/gv.vim
 
-let g:qs_first_occurrence_highlight_color = 9
-let g:qs_second_occurrence_highlight_color = 5
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
+augroup gs_colors
+	autocmd!
+	autocmd ColorScheme * highlight QuickScopePrimary ctermfg=9
+	autocmd ColorScheme * highlight QuickScopeSecondary ctermfg=5
+augroup END
 
 nnoremap gs :Gstatus<CR>
 command! Gdall tabnew % | tabmove -1 | Git! diff
