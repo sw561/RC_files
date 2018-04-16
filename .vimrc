@@ -3,7 +3,7 @@ filetype plugin on
 " For plugins
 " https://github.com/google/vim-searchindex.git
 set runtimepath+=~/.vim/bundle/vim-searchindex
-" https://github.com/moorereason/quick-scope.git -b protect-higroup
+" https://github.com/unblevable/quick-scope.git
 set runtimepath+=~/.vim/bundle/quick-scope
 " https://github.com/tpope/vim-commentary.git
 set runtimepath+=~/.vim/bundle/vim-commentary
@@ -257,6 +257,7 @@ nnoremap ,fv :vert sfind *
 
 " Shortcuts for using tabs
 call Mycabbrev("tn","tabnew")
+call Mycabbrev("to","tabonly")
 call Mycabbrev("tc","tabclose")
 " Custom function to replace tabmove with 1-based indexed version
 function! TabMove(index)

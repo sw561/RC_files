@@ -100,6 +100,8 @@ def clean_up():
         f.write("rm -rf {}/{}/{}\n".format(home(), BUNDLE_PATH, path))
     f.close()
 
+    finish()
+
 def main():
     urls = []
     plugins = []
