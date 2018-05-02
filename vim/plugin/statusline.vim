@@ -44,7 +44,7 @@ function! MyFileType()
 endfunction
 
 function! TabWarning()
-	if g:tab_warning==0 || !&modifiable || &readonly
+	if g:tab_warning==0 || !&modifiable || &readonly || &diff
 		return ''
 	endif
 	let b:statusline_tab_warning = ''

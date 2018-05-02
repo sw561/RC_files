@@ -98,6 +98,12 @@ noremap <C-E> 3<C-E>
 noremap <C-Y> 3<C-Y>
 imap <C-E> <C-O><C-E>
 imap <C-Y> <C-O><C-Y>
+nmap <Down> <C-E>
+nmap <Up>   <C-Y>
+vmap <Down> <C-E>
+vmap <Up>   <C-Y>
+imap <Down> <C-O><C-E>
+imap <Up>   <C-O><C-Y>
 
 " Inspired by http://vi.stackexchange.com/questions/6800/
 function! Mycabbrev(lhs,rhs)
@@ -114,6 +120,8 @@ nnoremap <CR> o
 " Swap 0 and ^, ^ is more useful, but 0 is easier to press
 nnoremap 0 ^
 nnoremap ^ 0
+vnoremap 0 ^
+vnoremap ^ 0
 
 " In visual mode, don't include end of line blank characters
 vnoremap $ g_
@@ -331,14 +339,6 @@ command! MyBufferDelete bp|bd# " :bd will delete buffer without deleting window
 call Mycabbrev("bd","MyBufferDelete")
 nnoremap ,l :ls<CR>:b<Space>
 
-" Use arrow keys to resize split windows or to scroll
-nmap <Down> <C-E>
-nmap <Up> <C-Y>
-vmap <Down> <C-E>
-vmap <Up> <C-Y>
-imap <Down> <Esc><C-E>
-imap <Up> <Esc><C-Y>
-
 " Commands for specific filetypes
 set spelllang=en_gb
 augroup FileTypeAuCmds
@@ -430,7 +430,6 @@ function! ReadOnly()
 		set number
 	endif
 endfunction
-call Mycabbrev("read","call ReadOnly()")
 
 function! Edit()
 	if !&readonly
@@ -440,7 +439,6 @@ function! Edit()
 	call LongLineHighlightOn()
 	set relativenumber
 endfunction
-call Mycabbrev("edit","call Edit()")
 
 function! ToggleRead()
 	if &readonly
