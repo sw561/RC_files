@@ -23,7 +23,7 @@ function! LongLineHighlightOff()
 endfunction
 
 function! LongLineHighlightOn()
-	if g:long_line_match && !&readonly && &modifiable && &filetype!="" && !&diff
+	if g:long_line_match && !&readonly && &modifiable && &filetype!="" && !&diff && &filetype!="tags"
 		match OverLength '\%>79v.\+'
 	endif
 endfunction

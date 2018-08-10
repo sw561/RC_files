@@ -17,6 +17,14 @@ set runtimepath+=~/.vim/bundle/a.vim
 set runtimepath+=~/.vim/bundle/vim-resizewindow
 " https://github.com/junegunn/gv.vim.git
 set runtimepath+=~/.vim/bundle/gv.vim
+" https://github.com/tpope/vim-eunuch.git
+set runtimepath+=~/.vim/bundle/vim-eunuch
+"
+" Inspired by http://vi.stackexchange.com/questions/6800/
+function! Mycabbrev(lhs,rhs)
+	execute printf("cnoreabbrev <expr> %s getcmdtype() ==# ':' ? '%s' : '%s'",
+		\ a:lhs, a:rhs, a:lhs)
+endfunction
 
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
@@ -32,7 +40,7 @@ command! Gcached tabnew % | tabmove -1 | Git! diff --cached
 nnoremap gda :Gdall<CR>
 nnoremap gca :Gcached<CR>
 
-nnoremap gv :GV --all<CR>
+call Mycabbrev("GV", "GV --all")
 
 " For using a.vim in LSC_AMR
 let g:alternateExtensions_cpp_C = "H"
@@ -65,7 +73,7 @@ set scrolloff=2
 set clipboard=unnamedplus
 set confirm
 set nojoinspaces
-set wildignore=*.swp,*.png,*.pyc,*.o,*.so,*~,*.pdf,*.db,*.eps
+set wildignore=*.swp,*.png,*.pyc,*.o,*.so,*~,*.pdf,*.db,*.eps,*.gz,*.tar
 set wildmenu
 set noerrorbells
 set vb t_vb=
@@ -83,6 +91,7 @@ set path=**
 set linebreak
 set completeopt+=menuone
 set commentstring=//\ %s
+set diffopt+=iwhite
 
 " My custom color scheme - just some minor changes to the default settings
 colo sand
@@ -104,12 +113,6 @@ vmap <Down> <C-E>
 vmap <Up>   <C-Y>
 imap <Down> <C-O><C-E>
 imap <Up>   <C-O><C-Y>
-
-" Inspired by http://vi.stackexchange.com/questions/6800/
-function! Mycabbrev(lhs,rhs)
-	execute printf("cnoreabbrev <expr> %s getcmdtype() ==# ':' ? '%s' : '%s'",
-		\ a:lhs, a:rhs, a:lhs)
-endfunction
 
 " Make Y behave analogously to D and C
 noremap Y y$
@@ -339,11 +342,19 @@ command! MyBufferDelete bp|bd# " :bd will delete buffer without deleting window
 call Mycabbrev("bd","MyBufferDelete")
 nnoremap ,l :ls<CR>:b<Space>
 
+function! GetModTime()
+	echo strftime('%c',getftime(expand('%')))
+endfunction
+
+command! GM call GetModTime()
+
 " Commands for specific filetypes
 set spelllang=en_gb
 augroup FileTypeAuCmds
 	au!
-	autocmd FileType cpp setlocal commentstring=\/\/\ %s
+	autocmd FileType cpp
+		\ setlocal commentstring=\/\/\ %s |
+		\ setlocal matchpairs+=<:>
 	autocmd FileType tex,rst,markdown
 		\ setlocal textwidth=79
 		\ spell spellfile=./en.utf-8.add |
@@ -353,6 +364,7 @@ augroup FileTypeAuCmds
 	autocmd FileType gp setlocal commentstring=#%s comments+=",#"
 	autocmd FileType git setlocal foldlevel=1
 	autocmd BufRead,BufNewFile *.tex setlocal filetype=tex
+	autocmd FileType tex set wildignore-=*.pdf,*.eps
 augroup END
 
 " vim -b : edit binary using xxd-format!
@@ -424,8 +436,10 @@ nnoremap ,init 0f(lyi(o<Esc>p0df V:s/, /\r/ge<CR>:nohl<CR>V'<:call PutSelf()<CR>
 
 function! ReadOnly()
 	set readonly
+	set nomodifiable
 	call LongLineHighlightOff()
 	set norelativenumber
+	setlocal nospell
 	if (v:version < 704)
 		set number
 	endif
@@ -435,6 +449,7 @@ function! Edit()
 	if !&readonly
 		return
 	endif
+	set modifiable
 	set noreadonly
 	call LongLineHighlightOn()
 	set relativenumber
