@@ -40,7 +40,7 @@ command! Gcached tabnew % | tabmove -1 | Git! diff --cached
 nnoremap gda :Gdall<CR>
 nnoremap gca :Gcached<CR>
 
-call Mycabbrev("GV", "GV --all")
+call Mycabbrev("gv", "GV --all")
 
 " For using a.vim in LSC_AMR
 let g:alternateExtensions_cpp_C = "H"
@@ -364,7 +364,6 @@ augroup FileTypeAuCmds
 	autocmd FileType gp setlocal commentstring=#%s comments+=",#"
 	autocmd FileType git setlocal foldlevel=1
 	autocmd BufRead,BufNewFile *.tex setlocal filetype=tex
-	autocmd FileType tex set wildignore-=*.pdf,*.eps
 augroup END
 
 " vim -b : edit binary using xxd-format!

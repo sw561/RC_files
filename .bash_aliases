@@ -4,15 +4,7 @@ function grepcode() { find . -name "*.[C,H,c,h]" -o -name "*.cpp" -o -name "*.hp
 alias grepf='grepfiles'
 alias grepc="grepcode"
 
-version=`lsb_release -rs | cut -d. -f1`
-if [ $version -ge 14 ]
-then
-	# Don't use grep alias on ubuntu trust because of bug reported at:
-	# http://stackoverflow.com/questions/26932672/broken-tab-completion-on-make-under-linux
-	alias grepn='grep -n --color=auto'
-else
-	alias grep='grep -n --color=auto'
-fi
+alias grepn='grep -r -n --color=auto --exclude-dir=.git'
 alias ll='ls -ltr'
 alias ls='ls -h --color=auto'
 alias lsd='ls -ltrd */'

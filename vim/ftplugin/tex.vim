@@ -16,3 +16,7 @@ nnoremap ,env :call Environment()<CR>
 nnoremap ,fig :call FigSkeleton()<CR>
 inoremap ,env <Esc>:call Environment()<CR>
 inoremap ,fig <Esc>:call FigSkeleton()<CR>
+
+set wildignore-=*.pdf
+set wildignore-=*.eps
+set wildignore-=*.png
