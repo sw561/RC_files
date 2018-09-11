@@ -92,5 +92,5 @@ highlight! link SpellCap SpellBad
 highlight! link SpellLocal SpellBad
 highlight! link SpellRare SpellBad
 
-highlight Folded term=none ctermbg=8 ctermfg=15
+highlight Folded term=none ctermbg=234 ctermfg=15
 highlight! link FoldColumn Folded
