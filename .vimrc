@@ -62,6 +62,8 @@ nmap [D <Plug>ResizeWindowLeft
 set autoindent
 set copyindent
 set noexpandtab
+set tabstop=4
+set shiftwidth=0 " use tabstop value for autoindenting
 set number
 set relativenumber
 set tabpagemax=20
@@ -227,14 +229,6 @@ let g:tex_comment_nospell=1
 " Use :x instead of :wq only write if changes have been made
 call Mycabbrev("wq","x")
 call Mycabbrev("w","update")
-
-" Set all three of shiftwidth, softtabstop and tabstop
-function! SetTab(value)
-	let &shiftwidth  = a:value
-	let &softtabstop = a:value
-	let &tabstop     = a:value
-endfunction
-call SetTab(4)
 
 " Function for making backspace behave as expected in normal mode
 function! MyBackspace()

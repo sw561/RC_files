@@ -24,3 +24,9 @@ function! PythonifyPath()
 	keeppatterns .s/\//\./ge
 endfunction
 nnoremap <buffer> ,im :call PythonifyPath()<CR>$
+
+function! Pep8()
+	set expandtab
+	set softtabstop=4
+	set shiftwidth=4
+endfunction
