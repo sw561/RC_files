@@ -32,7 +32,7 @@ if [ `whoami` = "simon" ]
 then
 export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\W\[\033[38;5;12m\]$(__git_ps1 " (%s)")\[\033[00m\]\$ '
 else
-export PS1='\[\033[01;33m\]\u@\h\[\033[00m\]:\W\[\033[38;5;12m\]$(__git_ps1 " (%s)")\[\033[00m\]\$ '
+export PS1='\[\033[1;35m\]\u@\h\[\033[00m\]:\W\[\033[1;34m\]$(__git_ps1 " (%s)")\[\033[00m\]\$ '
 fi
 
 # http://unix.stackexchange.com/questions/72086/

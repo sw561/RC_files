@@ -31,7 +31,7 @@ let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 augroup gs_colors
 	autocmd!
 	autocmd ColorScheme * highlight QuickScopePrimary ctermfg=9
-	autocmd ColorScheme * highlight QuickScopeSecondary ctermfg=5
+	autocmd ColorScheme * highlight QuickScopeSecondary ctermfg=57
 augroup END
 
 nnoremap gs :Gstatus<CR>
@@ -97,9 +97,9 @@ set diffopt+=iwhite
 set lazyredraw
 
 " My custom color scheme - just some minor changes to the default settings
-colo sand
+colo sand_light
 
-nnoremap <F12> :up<CR>:colo sand<CR>
+nnoremap <F12> :up<CR>:colo sand_light<CR>
 imap <F12> <Esc><F12>
 
 " Turn on the mouse, for scrolling too
