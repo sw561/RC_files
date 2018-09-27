@@ -20,3 +20,5 @@ inoremap ,fig <Esc>:call FigSkeleton()<CR>
 set wildignore-=*.pdf
 set wildignore-=*.eps
 set wildignore-=*.png
+
+syn region texRefZone	matchgroup=texStatement start="\\cref{"	end="}\|%stopzone\>"	contains=@texRefGroup
