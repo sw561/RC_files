@@ -94,6 +94,7 @@ set linebreak
 set completeopt+=menuone
 set commentstring=//\ %s
 set diffopt+=iwhite
+set lazyredraw
 
 " My custom color scheme - just some minor changes to the default settings
 colo sand
@@ -174,7 +175,6 @@ nnoremap ,,/ :call RepeatSearch()<CR>
 
 " Settings for netrw
 let g:netrw_liststyle=3
-let g:netrw_browse_split=3
 
 " Autocomplete works in normal mode too
 " See :help ins-completion
@@ -304,7 +304,6 @@ else
 endif
 call Mycabbrev("tm","TM")
 
-nnoremap gr gT
 nnoremap H gT
 nnoremap L gt
 nnoremap K <nop>
