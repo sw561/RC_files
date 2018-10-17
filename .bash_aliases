@@ -22,6 +22,7 @@ alias gitk='gitk --all'
 alias rm='rm -I'
 alias less='less -x4'
 alias remake='make remake'
+alias du='du -h'
 
 tabs -4
 clear
