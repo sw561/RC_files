@@ -1,5 +1,4 @@
 " Some shortcuts for constructing latex environments
-"
 
 function! Environment()
 	exec 'normal! yyI\begin{A}pI\end{A}'
@@ -20,6 +19,7 @@ inoremap ,fig <Esc>:call FigSkeleton()<CR>
 set wildignore-=*.pdf
 set wildignore-=*.eps
 set wildignore-=*.png
+set wildignore+=*blx.bib,*.xml,*.aux,*.bbl,*.blg,*.log,*.out,*.toc
 
 syn region texRefZone	matchgroup=texStatement start="\\cref{"	end="}\|%stopzone\>"	contains=@texRefGroup
 syn region texRefZone	matchgroup=texStatement start="\\fullcite{"	end="}\|%stopzone\>"	contains=@texRefGroup

@@ -1,7 +1,5 @@
 # Find all files in subtree matching 1st arg and grep for 2nd arg
-function grepfiles() { find . -name "$1" | xargs grep -n --color=auto -i "$2"; }
 function grepcode() { find . -name "*.[C,H,c,h]" -o -name "*.cpp" -o -name "*.hpp" -o -name "*.py" | xargs grep -n --color=auto -i "$1"; }
-alias grepf='grepfiles'
 alias grepc="grepcode"
 
 alias grepn='grep -r -n --color=auto --exclude-dir=.git'
@@ -23,6 +21,7 @@ alias rm='rm -I'
 alias less='less -x4'
 alias remake='make remake'
 alias du='du -h'
+alias diff='diff -s'
 
 tabs -4
 clear
