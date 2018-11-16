@@ -83,3 +83,24 @@ function! MyTabLine()
 	let s .= '%#TabLineFill#%T'
 	return s
 endfunction
+
+" Credit to https://stackoverflow.com/questions/14079149/vim-automatically-show-left-tab-after-closing-tab
+
+let s:prevtabnum=tabpagenr('$')
+let s:at_last_tab=1
+function! MoveLeftMaybe()
+	if tabpagenr('$') < s:prevtabnum && tabpagenr() > 1 && s:at_last_tab == 0
+		tabprevious
+	endif
+	let s:prevtabnum = tabpagenr('$')
+	if tabpagenr() == tabpagenr('$')
+		let s:at_last_tab = 1
+	else
+		let s:at_last_tab = 0
+	endif
+endfunction
+
+augroup TabClosed
+	au!
+	autocmd TabEnter * call MoveLeftMaybe()
+augroup END

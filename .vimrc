@@ -35,8 +35,8 @@ augroup gs_colors
 augroup END
 
 nnoremap gs :Gstatus<CR>
-command! Gdall tabnew % | tabmove -1 | Git! diff
-command! Gcached tabnew % | tabmove -1 | Git! diff --cached
+command! Gdall tabnew % | Git! diff
+command! Gcached tabnew % | Git! diff --cached
 nnoremap gda :Gdall<CR>
 nnoremap gca :Gcached<CR>
 
