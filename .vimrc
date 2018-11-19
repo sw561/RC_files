@@ -268,44 +268,10 @@ nnoremap ,fv :vert sfind *
 call Mycabbrev("tn","tabnew")
 call Mycabbrev("to","tabonly")
 call Mycabbrev("tc","tabclose")
-" Custom function to replace tabmove with 1-based indexed version
-function! TabMove(index)
-	let val = a:index-1
-	if val < 0
-		let val = 0
-	endif
-	execute "tabmove ".val
-endfunction
-function! TabMoveNew(index)
-	" New implementation of custom tabmove function to account for the change
-	" in behaviour which starts in vim patch 7.4.709
-	"
-	" This change means that :tabmove N moves tab to after the Nth tab (zero
-	" indexed) as opposed to moving the tab to the Nth position. The
-	" difference is that if the current tab is the 2nd, then :tabmove 1 and
-	" :tabmove 2 will both leave the tab unmoved.
-	"
-	" I prefer to specify the desired destination index when moving my tabs.
-	if a:index == '$'
-		execute "tabmove $"
-		return
-	endif
-	if a:index >= tabpagenr() || a:index == 0
-		let val = a:index
-	else
-		let val = a:index-1
-	endif
-	execute "tabmove ".val
-endfunction
-if has('patch709')
-	command! -nargs=1 TM call TabMoveNew(<f-args>)
-else
-	command! -nargs=1 TM call TabMove(<f-args>)
-endif
 call Mycabbrev("tm","TM")
 
-nnoremap H gT
-nnoremap L gt
+nmap H gT
+nmap L gt
 nnoremap K <nop>
 
 " Split windows without scrolling, assumes splitbelow is set
