@@ -105,6 +105,12 @@ augroup TabClosed
 	autocmd TabEnter * call MoveLeftMaybe()
 augroup END
 
+function! TabOnly()
+	tabonly
+	let s:prevtabtotal = tabpagenr('$')
+	let s:prevtabnum = tabpagenr()
+endfunction
+
 function! TabMove(index)
 	" Only works after vim patch 7.4.709, which modified the behaviour of
 	" tabmove
@@ -135,3 +141,4 @@ function! TabMove(index)
 endfunction
 
 command! -nargs=1 TM call TabMove(<f-args>)
+command! TO call TabOnly()

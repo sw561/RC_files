@@ -266,7 +266,7 @@ nnoremap ,fv :vert sfind *
 
 " Shortcuts for using tabs
 call Mycabbrev("tn","tabnew")
-call Mycabbrev("to","tabonly")
+call Mycabbrev("to","TO")
 call Mycabbrev("tc","tabclose")
 call Mycabbrev("tm","TM")
 
