@@ -322,7 +322,7 @@ augroup FileTypeAuCmds
 	autocmd BufRead,BufNewFile *.i setlocal filetype=swig
 	autocmd FileType gp setlocal commentstring=#%s comments+=",#"
 	autocmd FileType git setlocal foldlevel=1
-	autocmd BufRead,BufNewFile *.tex setlocal filetype=tex
+	autocmd BufRead,BufNewFile *.tex,*.pdf_tex setlocal filetype=tex
 augroup END
 
 " vim -b : edit binary using xxd-format!
