@@ -143,6 +143,9 @@ vnoremap // y:call SearchSelection()<CR>/\V<C-R>/<CR>
 vnoremap < <gv
 vnoremap > >gv
 
+" Don't copy the contents of an overwritten selection.
+vnoremap p "_dP
+
 " Don't need exec mode
 noremap Q <nop>
 
