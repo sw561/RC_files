@@ -24,6 +24,7 @@ function! PythonifyPath()
 	keeppatterns .s/\//\./ge
 endfunction
 nnoremap <buffer> ,im :call PythonifyPath()<CR>$
+inoremap <expr> ,im pumvisible() ? '<Esc>:call PythonifyPath()<CR>A' : ',im'
 
 function! Pep8()
 	set expandtab
