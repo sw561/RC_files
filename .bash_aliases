@@ -11,7 +11,7 @@ alias vim="vim -p"
 alias view="view -p"
 alias unittest='python -m unittest discover -p "*_test.py" -v'
 alias gs='git status'
-alias gl='git log -n 10 --pretty=oneline --abbrev-commit'
+alias gl='git log -n 10 --pretty=oneline --abbrev-commit --decorate'
 alias gb='git branch -avv'
 alias gco='git checkout'
 alias gd='git diff'
