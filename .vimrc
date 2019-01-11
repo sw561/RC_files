@@ -63,6 +63,7 @@ set autoindent
 set copyindent
 set noexpandtab
 set tabstop=4
+set softtabstop=4 " Useful in case where I use expandtab
 set shiftwidth=0 " use tabstop value for autoindenting
 set number
 set relativenumber
@@ -129,10 +130,6 @@ nnoremap ^ 0
 vnoremap 0 ^
 vnoremap ^ 0
 
-" In visual mode, don't include end of line blank characters
-vnoremap $ g_
-vnoremap g_ $
-
 " In visual mode, search for the selected string with //
 function! SearchSelection()
 	let @/ = substitute(@0, '/', '\\/', 'g')
@@ -179,11 +176,14 @@ nnoremap ,,/ :call RepeatSearch()<CR>
 " Settings for netrw
 let g:netrw_liststyle=3
 
-" Autocomplete works in normal mode too
-" See :help ins-completion
-nnoremap <C-N> viw<Esc>a<C-N>
-nnoremap <C-P> viw<Esc>a<C-P>
+" Jump through the quickfix list
+nnoremap <C-N> :cnext<CR>
+nnoremap <C-P> :cprev<CR>
+nnoremap <silent> ,c :copen<CR>:set nocursorline<CR>
+
+" Autocomplete filenames
 inoremap <C-F> <C-X><C-F>
+" Autocomplete using tag file
 inoremap <C-]> <C-X><C-]>
 
 " Quit command window by pressing CTRL-C once only
@@ -198,7 +198,6 @@ cmap <C-P> <C-F><C-P>
 " This means if pumvisible() returns true do CTRL-E instead
 " :help popupmenu-keys
 inoremap <expr> <BS> pumvisible() ? '<C-E>' : '<BS>'
-inoremap <expr> <CR> pumvisible() ? '<C-Y>' : '<CR>'
 " If pop-up menu is visible, use C-J to go to search subdirectory, else add a
 " line below the cursor.
 inoremap <expr> <C-J> pumvisible() ? "<C-Y><C-X><C-F>" : "<Esc>m'o<Esc><C-O>a"
@@ -276,28 +275,6 @@ call Mycabbrev("tm","TM")
 nmap H gT
 nmap L gt
 nnoremap K <nop>
-
-" Split windows without scrolling, assumes splitbelow is set
-" Inspired by stackoverflow.com/questions/12897276/
-function! MySplit(...)
-	normal! Hmx``
-	if a:0 > 0
-		exec "split " . a:1
-		normal! k`xzt``j
-	else
-		split
-		normal! k`xzt``j`xzt``
-	endif
-endfunction
-
-nnoremap <C-W>s :call MySplit()<CR>
-nnoremap <C-W><C-S> :call MySplit()<CR>
-command! -nargs=? -complete=file_in_path Split call MySplit(<f-args>)
-call Mycabbrev("s", "Split")
-call Mycabbrev("sp", "Split")
-call Mycabbrev("spl", "Split")
-call Mycabbrev("spli", "Split")
-call Mycabbrev("split", "Split")
 
 " Shortcuts for using buffers
 command! MyBufferDelete bp|bd# " :bd will delete buffer without deleting window

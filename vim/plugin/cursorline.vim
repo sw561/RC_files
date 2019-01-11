@@ -15,7 +15,7 @@ autocmd VimEnter,WinEnter,BufEnter * call CursorLineOn()
 autocmd WinLeave * setlocal nocursorline
 
 function! CursorLineOn()
-	if g:cursorline
+	if g:cursorline && &filetype!="qf"
 		setlocal cursorline
 	endif
 endfunction

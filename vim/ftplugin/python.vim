@@ -3,6 +3,8 @@
 let b:did_ftplugin = 1
 setlocal commentstring=#%s
 
+setlocal suffixesadd=.py
+
 " Mapping to quickly print variables for debugging
 function! MyPythonPrint()
 	exec 'normal! ^y$Iprint("A:", pA)j'
