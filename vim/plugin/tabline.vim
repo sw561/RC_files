@@ -126,18 +126,18 @@ function! TabMove(index)
 
 	if a:index == '$'
 		execute "tabmove 0"
-		return
+	else
+		" Current tab nr displayed on screen
+		let display = tabpagenr('$') - tabpagenr() + 1
+		if a:index < display
+			let val = tabpagenr('$') - a:index + 1
+			execute "tabmove ".val
+		elseif a:index > display
+			let val = tabpagenr('$') - a:index
+			execute "tabmove ".val
+		endif
 	endif
-
-	" Current tab nr displayed on screen
-	let display = tabpagenr('$') - tabpagenr() + 1
-	if a:index < display
-		let val = tabpagenr('$') - a:index + 1
-		execute "tabmove ".val
-	elseif a:index > display
-		let val = tabpagenr('$') - a:index
-		execute "tabmove ".val
-	endif
+	let s:prevtabnum = tabpagenr()
 endfunction
 
 command! -nargs=1 TM call TabMove(<f-args>)
