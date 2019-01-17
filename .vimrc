@@ -34,7 +34,7 @@ augroup gs_colors
 	autocmd ColorScheme * highlight QuickScopeSecondary ctermfg=57
 augroup END
 
-nnoremap gs :Gstatus<CR>
+nnoremap gs :Gstatus<CR><C-W>J
 command! Gdall tabnew % | Git! diff
 command! Gcached tabnew % | Git! diff --cached
 nnoremap gda :Gdall<CR>
@@ -94,7 +94,7 @@ set path=**
 set linebreak
 set completeopt+=menuone
 set commentstring=//\ %s
-set diffopt+=iwhite
+set diffopt+=iwhite,vertical
 set lazyredraw
 
 " My custom color scheme - just some minor changes to the default settings
