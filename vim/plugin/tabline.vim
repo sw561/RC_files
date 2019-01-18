@@ -111,7 +111,15 @@ function! TabOnly()
 	let s:prevtabnum = tabpagenr()
 endfunction
 
+" Custom function to replace tabmove with 1-based indexed version
+" Only works before vim patch 7.4.709
 function! TabMove(index)
+	let val = tabpagenr('$') - a:index
+	execute "tabmove ".val
+	let s:prevtabnum = tabpagenr()
+endfunction
+
+function! TabMoveNew(index)
 	" Only works after vim patch 7.4.709, which modified the behaviour of
 	" tabmove
 	"
@@ -140,5 +148,9 @@ function! TabMove(index)
 	let s:prevtabnum = tabpagenr()
 endfunction
 
-command! -nargs=1 TM call TabMove(<f-args>)
+if has('patch709')
+	command! -nargs=1 TM call TabMoveNew(<f-args>)
+else
+	command! -nargs=1 TM call TabMove(<f-args>)
+endif
 command! TO call TabOnly()
