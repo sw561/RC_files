@@ -28,11 +28,9 @@ endfunction
 nnoremap <buffer> ,im :call PythonifyPath()<CR>$
 inoremap <buffer> <expr> ,im pumvisible() ? '<Esc>:call PythonifyPath()<CR>A' : ',im'
 
-function! Pep8()
-	set expandtab
-	set softtabstop=4
-	set shiftwidth=4
-endfunction
+setlocal expandtab
+setlocal softtabstop=4
+setlocal shiftwidth=4
 
 function! AddPdb()
 	exec 'normal! Oimport pdb; pdb.set_trace()'

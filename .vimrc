@@ -311,6 +311,10 @@ nmap H gT
 nmap L gt
 nnoremap K <nop>
 
+" Shift enter should just do the same thing as enter
+nmap OM <CR>
+imap OM <CR>
+
 " Shortcuts for using buffers
 command! MyBufferDelete bp|bd# " :bd will delete buffer without deleting window
 call Mycabbrev("bd","MyBufferDelete")
