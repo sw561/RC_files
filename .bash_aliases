@@ -6,7 +6,7 @@ alias grepn='grep -I -r -n --color=auto --exclude-dir=.git'
 alias ll='ls -ltr'
 alias ls='ls -h --color=auto'
 alias lsd='ls -ltrd */'
-alias open="gnome-open"
+alias open="xdg-open"
 alias vim="vimx -p"
 alias view="view -p"
 alias gv="vimx +GV"
