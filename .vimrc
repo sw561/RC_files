@@ -137,8 +137,9 @@ vnoremap g_ $
 " In visual mode, search for the selected string with //
 function! SearchSelection()
 	let @/ = substitute(@0, '/', '\\/', 'g')
+	call search(@/)
 endfunction
-vnoremap // y:call SearchSelection()<CR>/\V<C-R>/<CR>
+vnoremap <silent> // y:call SearchSelection()<CR>
 
 " Don't lose the visual selection when adjusting indentation
 vnoremap < <gv
