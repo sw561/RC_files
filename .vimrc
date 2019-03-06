@@ -305,7 +305,7 @@ augroup FileTypeAuCmds
 		\ let g:searchindex_star_case=0
 	autocmd FileType haskell setlocal expandtab
 	autocmd BufRead,BufNewFile *.i setlocal filetype=swig
-	autocmd FileType gp setlocal commentstring=#%s comments+=",#"
+	autocmd BufRead,BufNewFile *.gp setlocal filetype=gnuplot
 	autocmd FileType git setlocal foldlevel=1
 	autocmd BufRead,BufNewFile *.tex,*.pdf_tex setlocal filetype=tex
 augroup END
