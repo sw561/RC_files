@@ -42,7 +42,7 @@ command! Gcached tabnew % | Git! diff --cached
 nnoremap gda :Gdall<CR>
 nnoremap gca :Gcached<CR>
 
-call Mycabbrev("gv", "GV --all")
+call Mycabbrev("gv", "GV")
 
 " For using a.vim in LSC_AMR
 let g:alternateExtensions_cpp_C = "H"
