@@ -263,7 +263,7 @@ inoremap <C-L> <Esc><C-W>l
 inoremap <C-H> <Esc><C-W>h
 
 " The above mappings overwrite CTRL-L for redrawing the screen
-noremap ,d <C-L>
+nnoremap <expr> ,d &diff ? '<C-L>:diffupdate<CR>' : '<C-L>'
 
 " Shortcuts for using fuzzy find to open files
 nnoremap ,fe :find *
@@ -275,6 +275,7 @@ nnoremap ,fv :vert sfind *
 call Mycabbrev("tn","tabnew")
 call Mycabbrev("to","TO")
 call Mycabbrev("tc","tabclose")
+call Mycabbrev("c", "tabclose")
 call Mycabbrev("tm","TM")
 
 nmap H gT
