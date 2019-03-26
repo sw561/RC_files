@@ -63,9 +63,9 @@ nmap [D <Plug>ResizeWindowLeft
 " Settings
 set autoindent
 set copyindent
-set noexpandtab
-set tabstop=4
-set softtabstop=4 " Useful in case where I use expandtab
+set expandtab
+set tabstop=2
+set softtabstop=2 " Useful in case where I use expandtab
 set shiftwidth=0 " use tabstop value for autoindenting
 set number
 set relativenumber
@@ -73,7 +73,8 @@ set tabpagemax=20
 set splitright
 set splitbelow
 set ignorecase
-set smartcase
+" No smartcase - even when using *
+let g:searchindex_star_case=0
 set scrolloff=2
 set clipboard=unnamedplus
 set confirm
@@ -411,7 +412,6 @@ nnoremap ,init 0f(lyi(o<Esc>p0df V:s/, /\r/ge<CR>:nohl<CR>V'<:call PutSelf()<CR>
 function! ReadOnly()
 	set readonly
 	set nomodifiable
-	call LongLineHighlightOff()
 	set norelativenumber
 	setlocal nospell
 	if (v:version < 704)
@@ -425,7 +425,6 @@ function! Edit()
 	endif
 	set modifiable
 	set noreadonly
-	call LongLineHighlightOn()
 	set relativenumber
 endfunction
 

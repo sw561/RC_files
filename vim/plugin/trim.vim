@@ -8,10 +8,10 @@ endif
 
 " Set to zero if you want it off by default
 if !exists("g:trim")
-	let g:trim = 1
+	let g:trim = 0
 endif
 if !exists("g:trim_double")
-	let g:trim_double = 1
+	let g:trim_double = 0
 endif
 
 " Removes trailing spaces including empty lines at end of file

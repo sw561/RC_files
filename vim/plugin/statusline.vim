@@ -9,7 +9,7 @@ endif
 " Show a warning if tabs and spaces have been mixed
 " This will also inform you if the expandtab setting doesn't match the file
 if !exists("g:tab_warning")
-	let g:tab_warning = 1
+	let g:tab_warning = 0
 endif
 if !exists("g:status_filetype")
 	let g:status_filetype = 1

@@ -8,7 +8,7 @@ endif
 
 " Set to zero if you want it off by default
 if !exists("g:long_line_match")
-	let g:long_line_match = 1
+	let g:long_line_match = 0
 endif
 
 " Highlighting can be overridden in color scheme
