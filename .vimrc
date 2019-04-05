@@ -219,8 +219,8 @@ nnoremap <silent> <C-C> <C-C><C-C>
 inoremap <silent> <C-C> <C-C><C-C>
 
 " Use autocomplete in command mode by opening command window
-cmap <C-N> <C-F><C-N>
-cmap <C-P> <C-F><C-P>
+cnoremap <C-N> <C-F>A<C-N>
+cnoremap <C-P> <C-F>A<C-P>
 
 " Undo autocomplete using <BS>
 " This means if pumvisible() returns true do CTRL-E instead
@@ -259,6 +259,8 @@ let g:tex_comment_nospell=1
 " Use :x instead of :wq only write if changes have been made
 call Mycabbrev("wq","x")
 call Mycabbrev("w","update")
+
+cnoremap w!! w !sudo tee > /dev/null %
 
 " Function for making backspace behave as expected in normal mode
 function! MyBackspace()

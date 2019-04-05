@@ -26,10 +26,16 @@ function! PythonifyPath()
 	keeppatterns .s/\//\./ge
 endfunction
 nnoremap <buffer> ,im :call PythonifyPath()<CR>$
-inoremap <expr> ,im pumvisible() ? '<Esc>:call PythonifyPath()<CR>A' : ',im'
+inoremap <buffer> <expr> ,im pumvisible() ? '<Esc>:call PythonifyPath()<CR>A' : ',im'
 
 function! Pep8()
 	set expandtab
 	set softtabstop=4
 	set shiftwidth=4
 endfunction
+
+function! AddPdb()
+	exec 'normal! Oimport pdb; pdb.set_trace()'
+endfunction
+
+nnoremap <buffer> ,pdb :call AddPdb()<CR>
