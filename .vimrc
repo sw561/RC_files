@@ -182,9 +182,32 @@ nnoremap ,,/ :call RepeatSearch()<CR>
 let g:netrw_liststyle=3
 
 " Jump through the quickfix list
-nnoremap <C-N> :cnext<CR>
-nnoremap <C-P> :cprev<CR>
-nnoremap <silent> ,c :copen<CR>:set nocursorline<CR>
+function! Cnext()
+  try
+    cnext
+  catch /^Vim\%((\a\+)\)\=:E553/
+    cfirst
+  catch /^Vim\%((\a\+)\)\=:E\%(325\|776\|42\):/
+  endtry
+endfunction
+
+function! Cprev()
+  try
+    cprev
+  catch /^Vim\%((\a\+)\)\=:E553/
+    clast
+  catch /^Vim\%((\a\+)\)\=:E\%(325\|776\|42\):/
+  endtry
+endfunction
+
+nnoremap <silent> <C-N> :call Cnext()<CR>
+nnoremap <silent> <C-P> :call Cprev()<CR>
+
+function! OpenQFlist()
+  let height = max([2, min([10, len(getqflist())])])
+  execute "copen " . height
+endfunction
+nnoremap <silent> ,c :call OpenQFlist()<CR>
 
 " Autocomplete filenames
 inoremap <C-F> <C-X><C-F>
