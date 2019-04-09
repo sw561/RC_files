@@ -1,3 +1,5 @@
+set nocompatible
+
 filetype plugin on
 
 " For plugins
@@ -81,6 +83,7 @@ set wildmenu
 set noerrorbells
 set vb t_vb=
 set exrc " Can put local .vimrc in project directory
+set nomodeline
 set secure
 set timeout timeoutlen=1000 ttimeoutlen=10
 set hlsearch
@@ -317,6 +320,8 @@ function! GetModTime()
 endfunction
 
 command! GM call GetModTime()
+
+command! CD cd %:h
 
 " Commands for specific filetypes
 set spelllang=en_gb
