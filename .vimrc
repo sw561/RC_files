@@ -22,6 +22,9 @@ set runtimepath+=~/.vim/bundle/gv.vim
 " https://github.com/tpope/vim-eunuch.git
 set runtimepath+=~/.vim/bundle/vim-eunuch
 
+" Manually disable cursorline for now
+let g:loaded_cursorline = 1
+
 " Inspired by http://vi.stackexchange.com/questions/6800/
 function! Mycabbrev(lhs,rhs)
 	execute printf("cnoreabbrev <expr> %s getcmdtype() ==# ':' ? '%s' : '%s'",
