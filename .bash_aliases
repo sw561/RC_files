@@ -2,7 +2,7 @@
 function grepcode() { find . -name "*.[C,H,c,h]" -o -name "*.cpp" -o -name "*.hpp" -o -name "*.py" | xargs grep -n --color=auto -i "$1"; }
 alias grepc="grepcode"
 
-alias grepn='grep -r -n --color=auto --exclude-dir=.git'
+alias grepn='grep -I -r -n --color=auto --exclude-dir=.git'
 alias ll='ls -ltr'
 alias ls='ls -h --color=auto'
 alias lsd='ls -ltrd */'
