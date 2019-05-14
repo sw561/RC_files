@@ -186,29 +186,29 @@ let g:netrw_liststyle=3
 
 " Jump through the quickfix list
 function! Cnext()
-  try
-    cnext
-  catch /^Vim\%((\a\+)\)\=:E553/
-    cfirst
-  catch /^Vim\%((\a\+)\)\=:E\%(325\|776\|42\):/
-  endtry
+	try
+		cnext
+	catch /^Vim\%((\a\+)\)\=:E553/
+		cfirst
+	catch /^Vim\%((\a\+)\)\=:E\%(325\|776\|42\):/
+	endtry
 endfunction
 
 function! Cprev()
-  try
-    cprev
-  catch /^Vim\%((\a\+)\)\=:E553/
-    clast
-  catch /^Vim\%((\a\+)\)\=:E\%(325\|776\|42\):/
-  endtry
+	try
+		cprev
+	catch /^Vim\%((\a\+)\)\=:E553/
+		clast
+	catch /^Vim\%((\a\+)\)\=:E\%(325\|776\|42\):/
+	endtry
 endfunction
 
 nnoremap <silent> <C-N> :call Cnext()<CR>
 nnoremap <silent> <C-P> :call Cprev()<CR>
 
 function! OpenQFlist()
-  let height = max([2, min([10, len(getqflist())])])
-  execute "copen " . height
+	let height = max([2, min([10, len(getqflist())])])
+	execute "copen " . height
 endfunction
 nnoremap <silent> ,c :call OpenQFlist()<CR>
 
@@ -343,14 +343,14 @@ augroup END
 
 " vim -b : edit binary using xxd-format!
 augroup Binary
-  au!
-  au BufReadPre  *.bin,*.bmp,*.gif let &bin=1
-  au BufReadPost *.bin,*.bmp,*.gif if &bin | %!xxd
-  au BufReadPost *.bin,*.bmp,*.gif set ft=xxd | endif
-  au BufWritePre *.bin,*.bmp,*.gif if &bin | %!xxd -r
-  au BufWritePre *.bin,*.bmp,*.gif endif
-  au BufWritePost *.bin,*.bmp,*.gif if &bin | %!xxd
-  au BufWritePost *.bin,*.bmp,*.gif set nomod | endif
+	au!
+	au BufReadPre  *.bin,*.bmp,*.gif let &bin=1
+	au BufReadPost *.bin,*.bmp,*.gif if &bin | %!xxd
+	au BufReadPost *.bin,*.bmp,*.gif set ft=xxd | endif
+	au BufWritePre *.bin,*.bmp,*.gif if &bin | %!xxd -r
+	au BufWritePre *.bin,*.bmp,*.gif endif
+	au BufWritePost *.bin,*.bmp,*.gif if &bin | %!xxd
+	au BufWritePost *.bin,*.bmp,*.gif set nomod | endif
 augroup END
 
 function! Skeleton_Candidates(ArgLead, CmdLine, CursorPos)
