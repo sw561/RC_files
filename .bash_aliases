@@ -10,6 +10,7 @@ alias open="xdg-open"
 alias vim="vimx -p"
 alias view="view -p"
 alias gv="vimx +GV"
+alias gva="vimx +'GV --all'"
 alias unittest='python -m unittest discover -p "*_test.py" -v'
 alias gs='git status'
 alias gl='git log -n 10 --pretty=oneline --abbrev-commit --decorate'

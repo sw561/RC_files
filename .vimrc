@@ -46,6 +46,7 @@ nnoremap gda :Gdall<CR>
 nnoremap gca :Gcached<CR>
 
 call Mycabbrev("gv", "GV")
+call Mycabbrev("gva", "GV --all")
 
 " For using a.vim in LSC_AMR
 let g:alternateExtensions_cpp_C = "H"
