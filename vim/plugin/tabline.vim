@@ -85,8 +85,17 @@ function! MyTabLine()
 	return s
 endfunction
 
-nnoremap gt gT
+nnoremap gt :<C-U>execute ":call GoToTab(".v:count.")"<CR>
 nnoremap gT gt
+
+function GoToTab(index)
+	if a:index == "0"
+		tabprevious
+	else
+		let x = tabpagenr('$') - a:index + 1
+		execute "tabnext".x
+	endif
+endfunction
 
 " Credit to https://stackoverflow.com/questions/14079149/vim-automatically-show-left-tab-after-closing-tab
 
