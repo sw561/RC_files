@@ -102,7 +102,7 @@ set path=**
 set linebreak
 set completeopt+=menuone
 set commentstring=//\ %s
-set diffopt+=iwhite,vertical
+set diffopt+=vertical
 set lazyredraw
 
 " My custom color scheme - just some minor changes to the default settings
