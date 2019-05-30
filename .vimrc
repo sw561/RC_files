@@ -248,7 +248,7 @@ set wildcharm=<Tab>
 cnoremap <C-J> <Down>
 
 " Make tags file for jumping around using <C-]> and back with <C-T>
-command! MakeTags !ctags -R .
+command! MakeTags !ctags --python-kinds=-i -R .
 " Open tags in vertical split rather than horizontal
 nnoremap <C-W><C-]> <C-W><C-]><C-W>t<C-W>H<C-W>l
 " Open tag in new tab
