@@ -157,9 +157,9 @@ function! TabMoveNew(index)
 	let s:prevtabnum = tabpagenr()
 endfunction
 
-if has('patch709')
-	command! -nargs=1 TM call TabMoveNew(<f-args>)
+if v:version > 704 || (v:version==704 && has('patch709'))
+	command! -nargs=1 TabMove call TabMoveNew(<f-args>)
 else
-	command! -nargs=1 TM call TabMove(<f-args>)
+	command! -nargs=1 TabMove call TabMove(<f-args>)
 endif
-command! TO call TabOnly()
+command! TabOnly call TabOnly()

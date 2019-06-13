@@ -4,6 +4,7 @@ ln -s RC_files/.bash_aliases .
 ln -s RC_files/.tmux.conf .
 ln -s RC_files/.git-prompt.sh .
 ln -s RC_files/.Xmodmap .
+ln -s RC_files/.gitconfig .
 mkdir -p .vim
 ln -s ~/RC_files/vim/syntax/ .vim
 ln -s ~/RC_files/vim/plugin/ .vim
