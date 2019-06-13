@@ -21,6 +21,8 @@ set runtimepath+=~/.vim/bundle/vim-resizewindow
 set runtimepath+=~/.vim/bundle/gv.vim
 " https://github.com/tpope/vim-eunuch.git
 set runtimepath+=~/.vim/bundle/vim-eunuch
+" https://github.com/tpope/vim-rhubarb.git
+set runtimepath+=~/.vim/bundle/vim-rhubarb
 
 " Manually disable cursorline for now
 let g:loaded_cursorline = 1
@@ -159,6 +161,10 @@ vnoremap p "_dP
 " Don't need exec mode
 noremap Q <nop>
 
+" Prefer to use CTRL-F to access history
+nnoremap q: <nop>
+nnoremap q/ <nop>
+
 " From defaults.vim - Use CTRL-G u to break undo
 inoremap <C-U> <C-G>u<C-U>
 
@@ -250,7 +256,7 @@ cnoremap <C-J> <Down>
 " Make tags file for jumping around using <C-]> and back with <C-T>
 command! MakeTags !ctags --python-kinds=-i -R .
 " Open tags in vertical split rather than horizontal
-nnoremap <C-W><C-]> <C-W><C-]><C-W>t<C-W>H<C-W>l
+nnoremap <C-W><C-]> <C-W><C-]><C-W>t<C-W>H<C-W>p
 " Open tag in new tab
 nnoremap <C-T><C-]> <C-W><C-]><C-W>T
 " If preceding with g, use :tselect not :tjump
@@ -267,6 +273,7 @@ let g:tex_comment_nospell=1
 " Use :x instead of :wq only write if changes have been made
 call Mycabbrev("wq","x")
 call Mycabbrev("w","update")
+call Mycabbrev("Q","q")
 
 cnoremap w!! w !sudo tee > /dev/null %
 
@@ -306,10 +313,10 @@ nnoremap ,fv :vert sfind *
 
 " Shortcuts for using tabs
 call Mycabbrev("tn","tab split")
-call Mycabbrev("to","TO")
+call Mycabbrev("to","TabOnly")
 call Mycabbrev("tc","tabclose")
 call Mycabbrev("c", "tabclose")
-call Mycabbrev("tm","TM")
+call Mycabbrev("tm","TabMove")
 
 nmap H gT
 nmap L gt

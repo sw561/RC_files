@@ -1,0 +1,22 @@
+[alias]
+	co = checkout
+	dt = difftool
+[core]
+	editor = vim
+[color]
+	ui = true
+[user]
+	email = sw561@cam.ac.uk
+	name = Simon Wilkinson
+[diff]
+	tool = vimdiff
+[difftool]
+  prompt = false
+[merge]
+  tool = vimdiff
+[credential]
+	helper = store
+[push]
+	default = simple
+[pager]
+	show = vim -R -
