@@ -2,7 +2,7 @@
 	co = checkout
 	dt = difftool
 [core]
-	editor = vim
+	editor = vimx
 [color]
 	ui = true
 [user]
@@ -19,4 +19,4 @@
 [push]
 	default = simple
 [pager]
-	show = vim -R -
+	show = vimx -R -
