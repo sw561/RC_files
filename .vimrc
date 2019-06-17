@@ -79,8 +79,7 @@ set tabpagemax=20
 set splitright
 set splitbelow
 set ignorecase
-" No smartcase - even when using *
-let g:searchindex_star_case=0
+set smartcase
 set scrolloff=2
 set clipboard=unnamedplus
 set confirm
