@@ -15,7 +15,7 @@
 [merge]
   tool = vimdiff
 [credential]
-	helper = store
+	helper = cache
 [push]
 	default = simple
 [pager]
