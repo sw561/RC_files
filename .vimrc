@@ -61,8 +61,6 @@ nmap [B <Plug>ResizeWindowDown
 nmap [C <Plug>ResizeWindowRight
 nmap [D <Plug>ResizeWindowLeft
 
-" Change ends of visual selection using o
-
 " Settings
 set autoindent
 set copyindent
