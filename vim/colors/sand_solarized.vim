@@ -13,13 +13,13 @@ if exists("syntax_on")
 	syntax reset
 endif
 
-let colors_name = "sand_light"
+let colors_name = "sand_solarized"
 
-let Blue="240"
+let Blue="4"
 
-let MyOrange="ctermfg=124"
-let MyYellow="ctermfg=166"
-let MyGreen="ctermfg=22"
+let MyOrange="ctermfg=130"
+let MyYellow="ctermfg=178"
+let MyGreen="ctermfg=72"
 let MyBlue="ctermfg=" .Blue
 
 exe "highlight Statement " .MyOrange
@@ -33,7 +33,7 @@ exe "highlight Type " .MyGreen
 
 " Change the colour of active and non-active status lines
 highlight StatusLineNC cterm=none ctermfg=7 ctermbg=0
-exe "highlight StatusLine cterm=none ctermfg=15 ctermbg=4"
+exe "highlight StatusLine cterm=none ctermfg=7 ctermbg=" .Blue
 
 " Tabline
 highlight! link TabLine StatusLineNC
@@ -57,11 +57,11 @@ highlight Question ctermfg=2
 highlight! link MoreMsg Question
 highlight! link Directory Comment
 
-highlight LineNr ctermfg=240
+highlight LineNr ctermfg=0
 highlight! link CursorLineNr LineNr
 
 " Eye-catching yellow background highlighting
-highlight Search ctermfg=16 ctermbg=11
+highlight Search ctermfg=16 ctermbg=3
 highlight! link WildMenu Search
 highlight! link IncSearch Search
 
@@ -70,16 +70,16 @@ highlight ErrorMsg ctermfg=15 ctermbg=9
 
 " Unobtrusive gray-scale highlighting
 highlight Todo cterm=none ctermfg=15 ctermbg=8
-highlight MatchParen cterm=none ctermbg=249 ctermfg=0
+highlight MatchParen cterm=reverse ctermbg=249 ctermfg=0
 
 " Highlighting for vimdiff
-highlight DiffText term=none ctermfg=0 ctermbg=11
-highlight DiffDelete term=none ctermfg=9 ctermbg=none
-highlight DiffChange term=none ctermfg=0 ctermbg=228
-highlight DiffAdd term=none ctermbg=10
+highlight DiffText term=none ctermfg=178 ctermbg=234
+highlight DiffDelete term=none ctermfg=88 ctermbg=none
+highlight DiffChange term=none ctermfg=none ctermbg=234
+highlight DiffAdd term=none ctermfg=34 ctermbg=none
 
-highlight diffRemoved term=none ctermfg=124
-highlight! link diffAdded Identifier
+highlight diffRemoved term=none ctermfg=1
+highlight diffAdded term=none ctermfg=2
 
 highlight diffFile term=none ctermfg=16 ctermbg=7
 highlight! link diffOldFile Constant
@@ -87,12 +87,10 @@ highlight! link diffNewFile diffOldFile
 highlight! link diffLine Comment
 highlight! link diffSubname diffLine
 
-highlight Error cterm=none ctermfg=15 ctermbg=1
-
-highlight! link SpellBad Error
+highlight SpellBad ctermfg=15 ctermbg=9
 highlight! link SpellCap SpellBad
 highlight! link SpellLocal SpellBad
 highlight! link SpellRare SpellBad
 
-highlight Folded term=none ctermbg=247 ctermfg=16
-highlight! link FoldColumn Folded
+highlight Folded term=none ctermbg=248 ctermfg=16
+highlight FoldColumn term=none ctermbg=0 ctermfg=7
