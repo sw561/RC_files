@@ -2,14 +2,15 @@
 function grepcode() { find . -name "*.[C,H,c,h]" -o -name "*.cpp" -o -name "*.hpp" -o -name "*.py" | xargs grep -n --color=auto -i "$1"; }
 alias grepc="grepcode"
 
-alias grepn='grep -I -r -n --color=auto --exclude-dir=.git'
+alias grepn='grep -I -r -n --color=auto --exclude-dir=.git --exclude=tags'
 alias ll='ls -ltr'
 alias ls='ls -h --color=auto'
 alias lsd='ls -ltrd */'
 alias open="gnome-open"
 alias vim="vim -p"
-alias view="view -p"
+alias view="view -p +'call ReadOnly()'"
 alias gv="vim +GV"
+alias gva="vim +'GV --all'"
 alias unittest='python -m unittest discover -p "*_test.py" -v'
 alias gs='git status'
 alias gl='git log -n 10 --pretty=oneline --abbrev-commit --decorate'
@@ -23,6 +24,7 @@ alias less='less -x4'
 alias remake='make remake'
 alias du='du -h'
 alias diff='diff -s'
+alias gdbh='vim ~/.gdb_history'
 
 tabs -4
 clear

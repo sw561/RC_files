@@ -41,10 +41,11 @@ augroup END
 nnoremap gs :Gstatus<CR><C-W>J
 command! Gdall tabnew % | Git! diff
 command! Gcached tabnew % | Git! diff --cached
-nnoremap gda :Gdall<CR>
-nnoremap gca :Gcached<CR>
+call Mycabbrev("gda", "Gdall")
+call Mycabbrev("gca", "Gcached")
 
-call Mycabbrev("gv", "GV --all")
+call Mycabbrev("gv", "GV")
+call Mycabbrev("gva", "GV --all")
 
 " For using a.vim in LSC_AMR
 let g:alternateExtensions_cpp_C = "H"
@@ -299,6 +300,12 @@ inoremap <C-H> <Esc><C-W>h
 
 " The above mappings overwrite CTRL-L for redrawing the screen
 nnoremap <expr> ,d &diff ? '<C-L>:diffupdate<CR>' : '<C-L>'
+
+" For whatever reason, I can never remember :diffthis and :diffoff
+call Mycabbrev("diffstart", "diffthis")
+call Mycabbrev("diffon", "diffthis")
+call Mycabbrev("diffend", "diffoff")
+call Mycabbrev("diffstop", "diffoff")
 
 " Shortcuts for using fuzzy find to open files
 nnoremap ,fe :find *
