@@ -344,16 +344,25 @@ augroup FileTypeAuCmds
 	autocmd FileType cpp
 		\ setlocal commentstring=\/\/\ %s |
 		\ setlocal matchpairs+=<:>
-	autocmd FileType tex,rst,markdown
-		\ setlocal textwidth=79
-		\ spell spellfile=./en.utf-8.add |
-		\ let g:searchindex_star_case=0
+	autocmd FileType tex,rst,markdown call Prose()
+
 	autocmd FileType haskell setlocal expandtab
 	autocmd BufRead,BufNewFile *.i setlocal filetype=swig
 	autocmd BufRead,BufNewFile *.gp setlocal filetype=gnuplot
 	autocmd FileType git setlocal foldlevel=1
 	autocmd BufRead,BufNewFile *.tex,*.pdf_tex setlocal filetype=tex
+	autocmd BufRead,BufNewFile *.out setlocal nowrap
+	autocmd FileType cmake setlocal commentstring=#%s
 augroup END
+
+function! Prose()
+	setlocal textwidth=79
+	let g:searchindex_star_case=0
+	if !&readonly
+		set spell
+	endif
+	set spellfile=./en.utf-8.add |
+endfunction
 
 " vim -b : edit binary using xxd-format!
 augroup Binary
@@ -423,10 +432,9 @@ nnoremap ,init 0f(lyi(o<Esc>p0df V:s/, /\r/ge<CR>:nohl<CR>V'<:call PutSelf()<CR>
 " relativenumber, number also has to be set.
 
 function! ReadOnly()
-	set readonly
-	set nomodifiable
-	call LongLineHighlightOff()
-	set norelativenumber
+	setlocal readonly
+	setlocal nomodifiable
+	setlocal norelativenumber
 	setlocal nospell
 	if (v:version < 704)
 		set number
@@ -434,42 +442,16 @@ function! ReadOnly()
 endfunction
 
 function! Edit()
-	if !&readonly
-		return
+	setlocal modifiable
+	setlocal noreadonly
+	setlocal relativenumber
+	if &filetype == "tex" || &filetype == "rst" || &filetype == "markdown"
+	  setlocal spell
 	endif
-	set modifiable
-	set noreadonly
-	call LongLineHighlightOn()
-	set relativenumber
 endfunction
 
-function! ToggleRead()
-	if &readonly
-		call Edit()
-	else
-		call ReadOnly()
-	endif
-endfunction
-nnoremap ,r :call ToggleRead()<CR>
-
-function! CheckReadOnly()
-	if !&modifiable
-		return
-	endif
-	if &readonly || &diff
-		set norelativenumber
-		if (v:version < 704)
-			set number
-		endif
-	else
-		set relativenumber
-	endif
-endfunction
-augroup ReadOnlyChecks
-	au!
-	autocmd BufEnter,WinEnter,VimEnter * call CheckReadOnly()
-	autocmd InsertEnter * call Edit()
-augroup END
+nnoremap ,r :call ReadOnly()<CR>
+nnoremap ,e :call Edit()<CR>
 
 " Prefer not to see filetype in statusbar
 let g:status_filetype = 0
