@@ -2,7 +2,7 @@
 function grepcode() { find . -name "*.[C,H,c,h]" -o -name "*.cpp" -o -name "*.hpp" -o -name "*.py" | xargs grep -n --color=auto -i "$1"; }
 alias grepc="grepcode"
 
-alias grepn='grep -I -r -n --color=auto --exclude-dir=.git --exclude=tags'
+alias grepn='grep -I -r -n --color=auto --exclude-dir=.git --exclude=tags --exclude-dir=.svn'
 alias ll='ls -ltr'
 alias ls='ls -h --color=auto'
 alias lsd='ls -ltrd */'
@@ -25,6 +25,9 @@ alias remake='make remake'
 alias du='du -h'
 alias diff='diff -s'
 alias gdbh='vim ~/.gdb_history'
+alias hg='history | grep -v "^ \+[0-9]\+ \+vim" | grep'
+
+export HISTCONTROL=ignoreboth:erasedups
 
 tabs -4
 clear

@@ -357,7 +357,7 @@ function! Prose()
 	setlocal textwidth=79
 	let g:searchindex_star_case=0
 	if !&readonly
-		set spell
+		setlocal spell
 	endif
 	set spellfile=./en.utf-8.add |
 endfunction
