@@ -156,8 +156,8 @@ vnoremap p "_dP
 noremap Q <nop>
 
 " Prefer to use CTRL-F to access history
-nnoremap q: <nop>
-nnoremap q/ <nop>
+" nnoremap q: <nop>
+" nnoremap q/ <nop>
 
 " From defaults.vim - Use CTRL-G u to break undo
 inoremap <C-U> <C-G>u<C-U>
