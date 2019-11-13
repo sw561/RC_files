@@ -15,7 +15,7 @@ endif
 
 let colors_name = "sand"
 
-let Blue="4"
+let Blue="20"
 
 let MyOrange="ctermfg=130"
 let MyYellow="ctermfg=178"
@@ -32,7 +32,7 @@ exe "highlight Ignore " .MyGreen
 exe "highlight Type " .MyGreen
 
 " Change the colour of active and non-active status lines
-highlight StatusLineNC cterm=none ctermfg=7 ctermbg=0
+highlight StatusLineNC cterm=none ctermfg=7 ctermbg=240
 exe "highlight StatusLine cterm=none ctermfg=7 ctermbg=" .Blue
 
 " Tabline
@@ -57,7 +57,7 @@ highlight Question ctermfg=2
 highlight! link MoreMsg Question
 highlight! link Directory Comment
 
-highlight LineNr ctermfg=8
+highlight LineNr ctermfg=240
 highlight! link CursorLineNr LineNr
 
 " Eye-catching yellow background highlighting

@@ -15,7 +15,7 @@ endif
 
 let colors_name = "sand_solarized"
 
-let Blue="4"
+let Blue="20"
 
 let MyOrange="ctermfg=130"
 let MyYellow="ctermfg=178"
@@ -23,7 +23,7 @@ let MyGreen="ctermfg=72"
 let MyBlue="ctermfg=" .Blue
 
 exe "highlight Statement " .MyOrange
-exe "highlight Comment " .MyBlue
+highlight Comment ctermfg=32
 exe "highlight Special " .MyGreen
 exe "highlight PreProc " .MyGreen
 exe "highlight Constant " .MyYellow
@@ -33,7 +33,7 @@ exe "highlight Type " .MyGreen
 
 " Change the colour of active and non-active status lines
 highlight StatusLineNC cterm=none ctermfg=7 ctermbg=0
-exe "highlight StatusLine cterm=none ctermfg=7 ctermbg=" .Blue
+exe "highlight StatusLine cterm=none ctermfg=15 ctermbg=4"
 
 " Tabline
 highlight! link TabLine StatusLineNC

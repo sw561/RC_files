@@ -32,7 +32,7 @@ exe "highlight Ignore " .MyGreen
 exe "highlight Type " .MyGreen
 
 " Change the colour of active and non-active status lines
-highlight StatusLineNC cterm=none ctermfg=7 ctermbg=0
+highlight StatusLineNC cterm=none ctermfg=7 ctermbg=240
 exe "highlight StatusLine cterm=none ctermfg=15 ctermbg=4"
 
 " Tabline
