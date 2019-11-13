@@ -17,9 +17,6 @@ endif
 " Removes trailing spaces including empty lines at end of file
 " Also removes double blank lines
 function! TrimWhiteSpace()
-	if g:trim == 0 || &filetype==""
-		return
-	endif
 	let save_cursor = getpos('.')
 	" Remove trailing space at end of lines
 	" Remove empty lines at end of file
@@ -31,4 +28,11 @@ function! TrimWhiteSpace()
 	call setpos('.', save_cursor)
 endfunction
 
-autocmd BufWritePre,FileWritePre * call TrimWhiteSpace()
+function! AutoTrimWhiteSpace()
+	if g:trim == 0 || &filetype==""
+		return
+	endif
+	call TrimWhiteSpace()
+endfunction
+
+autocmd BufWritePre,FileWritePre * call AutoTrimWhiteSpace()
