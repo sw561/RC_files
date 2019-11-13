@@ -22,6 +22,7 @@ set laststatus=2                "statusline displayed always
 set statusline=\ %f             "tail of the filename
 set statusline+=%m              "modified flag
 set statusline+=%r              "read only flag
+set statusline+=%{MyBufferNumber()}
 set statusline+=%{MyFileType()} "filetype
 set statusline+=%{DosWarning()}
 
@@ -34,6 +35,13 @@ set statusline+=%=          "left/right separator
 set statusline+=%l          "cursor line
 set statusline+=/%L,        "total number of lines
 set statusline+=%-10.10c    "cursor column
+
+function! MyBufferNumber()
+  if &diff
+    return ' [ ' . bufnr("") . ' ] '
+  endif
+  return ''
+endfunction
 
 function! MyFileType()
 	if g:status_filetype
