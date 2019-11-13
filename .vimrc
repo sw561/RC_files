@@ -23,6 +23,10 @@ set runtimepath+=~/.vim/bundle/gv.vim
 set runtimepath+=~/.vim/bundle/vim-eunuch
 " https://github.com/tpope/vim-rhubarb.git
 set runtimepath+=~/.vim/bundle/vim-rhubarb
+" https://github.com/kana/vim-textobj-user.git
+set runtimepath+=~/.vim/bundle/vim-textobj-user
+" https://github.com/rbonvall/vim-textobj-latex.git
+set runtimepath+=~/.vim/bundle/vim-textobj-latex
 
 " Manually disable cursorline for now
 let g:loaded_cursorline = 1
@@ -303,10 +307,12 @@ inoremap <C-H> <Esc><C-W>h
 nnoremap <expr> ,d &diff ? '<C-L>:diffupdate<CR>' : '<C-L>'
 
 " For whatever reason, I can never remember :diffthis and :diffoff
-call Mycabbrev("diffstart", "diffthis")
-call Mycabbrev("diffon", "diffthis")
-call Mycabbrev("diffend", "diffoff")
-call Mycabbrev("diffstop", "diffoff")
+call Mycabbrev("diffstart", "windo diffthis")
+call Mycabbrev("diffon"   , "windo diffthis")
+call Mycabbrev("diffthis" , "windo diffthis")
+call Mycabbrev("diffend"  , "windo diffoff")
+call Mycabbrev("diffstop" , "windo diffoff")
+call Mycabbrev("diffoff"  , "windo diffoff")
 
 " Shortcuts for using fuzzy find to open files
 nnoremap ,fe :find *
@@ -364,7 +370,7 @@ function! Prose()
 	setlocal textwidth=79
 	let g:searchindex_star_case=0
 	if !&readonly
-		set spell
+		setlocal spell
 	endif
 	set spellfile=./en.utf-8.add |
 endfunction
