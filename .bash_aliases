@@ -2,13 +2,17 @@
 function grepcode() { find . -name "*.[C,H,c,h,F]" -o -name "*.cpp" -o -name "*.hpp" -o -name "*.py" | xargs grep -n --color=auto -i "$1"; }
 alias grepc="grepcode"
 
+function open_quietly() {
+  xdg-open "$1" 2>/dev/null
+}
+
 alias grepn='grep -I -r -n --color=auto --exclude-dir=.git --exclude=tags'
 alias ll='ls -ltr'
 alias ls='ls -h --color=auto'
 alias lsd='ls -ltrd */'
-alias open="xdg-open"
+alias open="open_quietly"
 alias vim="vimx -p"
-alias view="view -p +'call ReadOnly()'"
+alias view="vimx -R -p +'call ReadOnly()'"
 alias gv="vimx +GV"
 alias gva="vimx +'GV --all'"
 alias unittest='python -m unittest discover -p "*_test.py" -v'
@@ -27,11 +31,12 @@ alias diff='diff -s'
 alias gdbh='vim ~/.gdb_history'
 
 tabs -4
-clear
 
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWUPSTREAM=1
-export PS1='\[\033[1;35m\]\u@\h\[\033[00m\]:\W\[\033[1;34m\]$(__git_ps1 " (%s)")\[\033[00m\]\$ '
+export PS1='\[\033[1;35m\]\u@\h\[\033[00m\]:\[[38;5;248m\]\A\[\033[00m\]: \W\[[1m\]\[[94m\]$(__git_ps1 " (%s)")\[\033[00m\]\$ '
 
 # http://unix.stackexchange.com/questions/72086/
 stty -ixon
+
+export REVIEW_BASE=master

@@ -1,8 +1,29 @@
 [alias]
 	co = checkout
 	dt = difftool
+
+  #  Aliases taken from
+  # https://blog.jez.io/cli-code-review/
+  #
+  # list files which have changed since REVIEW_BASE
+  # (REVIEW_BASE defaults to 'master' in my bash_aliases)
+  files = !git diff --name-only $(git merge-base HEAD \"$REVIEW_BASE\")
+
+  # Same as above, but with a diff stat instead of just names
+  # (better for interactive use)
+  stat = !git diff --stat $(git merge-base HEAD \"$REVIEW_BASE\")
+
+  # Open all files changed since REVIEW_BASE in Vim tabs
+  # Then, run fugitive's :Gdiff in each tab, and finally
+  # tell vim-gitgutter to show +/- for changes since REVIEW_BASE
+  review = !$EDITOR -p $(git files) +\"tabdo Gdiff $REVIEW_BASE\"
+
+  # Same as the above, except specify names of files as arguments,
+  # instead of opening all files:
+  # git reviewone foo.js bar.js
+  reviewone = !$EDITOR -p +\"tabdo Gdiff $REVIEW_BASE\"
 [core]
-	editor = vimx
+	editor = $EDITOR
 [color]
 	ui = true
 [user]
@@ -19,4 +40,4 @@
 [push]
 	default = simple
 [pager]
-	show = vimx -R -
+	show = $EDITOR -R -
