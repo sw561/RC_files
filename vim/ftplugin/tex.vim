@@ -19,7 +19,7 @@ inoremap ,fig <Esc>:call FigSkeleton()<CR>
 set wildignore-=*.pdf
 set wildignore-=*.eps
 set wildignore-=*.png
-set wildignore+=*blx.bib,*.xml,*.aux,*.bbl,*.blg,*.log,*.out,*.toc
+set wildignore+=*blx.bib,*.xml,*.aux,*.bbl,*.blg,*.log,*.out,*.toc,*.spl
 
 syn region texRefZone	matchgroup=texStatement start="\\cref{"	end="}\|%stopzone\>"	contains=@texRefGroup
 syn region texRefZone	matchgroup=texStatement start="\\fullcite{"	end="}\|%stopzone\>"	contains=@texRefGroup

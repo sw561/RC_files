@@ -29,6 +29,7 @@ nnoremap <buffer> ,im :call PythonifyPath()<CR>$
 inoremap <buffer> <expr> ,im pumvisible() ? '<Esc>:call PythonifyPath()<CR>A' : ',im'
 
 setlocal expandtab
+setlocal tabstop=4
 setlocal softtabstop=4
 setlocal shiftwidth=4
 
