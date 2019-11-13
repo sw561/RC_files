@@ -360,6 +360,7 @@ augroup FileTypeAuCmds
 	autocmd FileType haskell setlocal expandtab
 	autocmd BufRead,BufNewFile *.i setlocal filetype=swig
 	autocmd BufRead,BufNewFile *.gp setlocal filetype=gnuplot
+	autocmd BufRead,BufNewFile *.go setlocal filetype=go
 	autocmd FileType git setlocal foldlevel=1
 	autocmd BufRead,BufNewFile *.tex,*.pdf_tex setlocal filetype=tex
 	autocmd BufRead,BufNewFile *.out setlocal nowrap
