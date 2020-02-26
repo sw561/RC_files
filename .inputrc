@@ -1,19 +1,4 @@
 $include /etc/inputrc
-set editing-mode vi
 set show-all-if-unmodified On
 set show-all-if-ambiguous On
 set colored-stats On
-
-$if mode=vi
-
-set show-mode-in-prompt on
-
-set keymap vi-command
-# these are for vi-command mode
-Control-l: clear-screen
-
-set keymap vi-insert
-# these are for vi-insert mode
-Control-l: clear-screen
-
-$endif
