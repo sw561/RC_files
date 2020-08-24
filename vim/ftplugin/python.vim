@@ -16,7 +16,7 @@ function! MyPythonPrint()
 endfunction
 
 nnoremap <buffer> <Plug>MyPythonPrint :call MyPythonPrint()<CR>
-nmap ,p <Plug>MyPythonPrint
+nmap <buffer> ,p <Plug>MyPythonPrint
 
 " Mapping to update import paths for python formatting
 " replace / with . and

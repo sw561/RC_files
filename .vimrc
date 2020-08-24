@@ -366,6 +366,7 @@ augroup FileTypeAuCmds
 	autocmd BufRead,BufNewFile *.tex,*.pdf_tex setlocal filetype=tex
 	autocmd BufRead,BufNewFile *.out setlocal nowrap
 	autocmd FileType cmake setlocal commentstring=#%s
+	autocmd BufRead,BufNewFile *.inc setlocal filetype=fortran
 augroup END
 
 function! Prose()
