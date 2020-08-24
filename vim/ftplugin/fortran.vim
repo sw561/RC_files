@@ -13,4 +13,4 @@ function! MyFortranPrint()
 endfunction
 
 nnoremap <buffer> <Plug>MyFortranPrint :call MyFortranPrint()<CR>
-nmap ,p <Plug>MyFortranPrint
+nmap <buffer> ,p <Plug>MyFortranPrint
