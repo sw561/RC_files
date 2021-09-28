@@ -11,9 +11,6 @@ endif
 if !exists("g:tab_warning")
 	let g:tab_warning = 0
 endif
-if !exists("g:status_filetype")
-	let g:status_filetype = 1
-endif
 if !exists("g:status_fileformat")
 	let g:status_fileformat = 1
 endif
@@ -23,7 +20,6 @@ set statusline=\ %f             "tail of the filename
 set statusline+=%m              "modified flag
 set statusline+=%r              "read only flag
 set statusline+=%{MyBufferNumber()}
-set statusline+=%{MyFileType()} "filetype
 set statusline+=%{DosWarning()}
 
 "display a warning if &et is wrong, or we have mixed-indenting
@@ -41,14 +37,6 @@ function! MyBufferNumber()
     return ' [ ' . bufnr("") . ' ] '
   endif
   return ''
-endfunction
-
-function! MyFileType()
-	if g:status_filetype
-		return '[' . &filetype . ']'
-	else
-		return ''
-	endif
 endfunction
 
 function! TabWarning()

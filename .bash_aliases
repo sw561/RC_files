@@ -11,10 +11,9 @@ alias ll='ls -ltr'
 alias ls='ls -h --color=auto'
 alias lsd='ls -ltrd */'
 alias open="open_quietly"
-alias vim="vimx -p"
-alias view="vimx -R -p +'call ReadOnly()'"
-alias gv="vimx +GV"
-alias gva="vimx +'GV --all'"
+alias vim="vim -p"
+alias gv="vim +GV"
+alias gva="vim +'GV --all'"
 alias unittest='python -m unittest discover -p "*_test.py" -v'
 alias gs='git status'
 alias gl='git log -n 10 --pretty=oneline --abbrev-commit --decorate'
