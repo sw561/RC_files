@@ -1,4 +1,0 @@
-$include /etc/inputrc
-set show-all-if-unmodified On
-set show-all-if-ambiguous On
-set colored-stats On

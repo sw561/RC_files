@@ -28,9 +28,6 @@ set runtimepath+=~/.vim/bundle/vim-textobj-user
 " https://github.com/rbonvall/vim-textobj-latex.git
 set runtimepath+=~/.vim/bundle/vim-textobj-latex
 
-" Manually disable cursorline for now
-let g:loaded_cursorline = 1
-
 " Inspired by http://vi.stackexchange.com/questions/6800/
 function! Mycabbrev(lhs,rhs)
 	execute printf("cnoreabbrev <expr> %s getcmdtype() ==# ':' ? '%s' : '%s'",
@@ -45,7 +42,7 @@ augroup gs_colors
 	autocmd ColorScheme * highlight QuickScopeSecondary ctermfg=57
 augroup END
 
-nnoremap gs :Gstatus<CR><C-W>J
+nnoremap gs :Git<CR><C-W>J
 command! Gdall tabnew % | Git! diff
 command! Gcached tabnew % | Git! diff --cached
 call Mycabbrev("gda", "Gdall")
@@ -109,7 +106,7 @@ set diffopt+=vertical
 set lazyredraw
 
 " My custom color scheme - just some minor changes to the default settings
-colo sand_light
+colo sand_solarized
 
 nnoremap <F12> :up<CR>:colo sand_light<CR>
 imap <F12> <Esc><F12>

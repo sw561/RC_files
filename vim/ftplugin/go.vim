@@ -1,1 +1,0 @@
-hi goSpaceError ctermbg=none

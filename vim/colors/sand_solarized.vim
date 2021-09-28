@@ -32,7 +32,7 @@ exe "highlight Ignore " .MyGreen
 exe "highlight Type " .MyGreen
 
 " Change the colour of active and non-active status lines
-highlight StatusLineNC cterm=none ctermfg=7 ctermbg=0
+highlight StatusLineNC cterm=none ctermfg=7 ctermbg=242
 exe "highlight StatusLine cterm=none ctermfg=15 ctermbg=4"
 
 " Tabline
@@ -51,13 +51,13 @@ highlight! link PmenuSel StatusLine
 
 " Other random stuff
 highlight VertSplit cterm=none ctermfg=0 ctermbg=none
-highlight NonText cterm=none ctermfg=0
-highlight SpecialKey ctermfg=0
+highlight! link NonText LineNr
+highlight! link SpecialKey LineNr
 highlight Question ctermfg=2
 highlight! link MoreMsg Question
 highlight! link Directory Comment
 
-highlight LineNr ctermfg=0
+highlight LineNr ctermfg=242
 highlight! link CursorLineNr LineNr
 
 " Eye-catching yellow background highlighting

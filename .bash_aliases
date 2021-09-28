@@ -23,26 +23,8 @@ alias gco='git checkout'
 alias gd='git diff'
 alias gca='git diff --cached'
 alias gitk='gitk --all'
-alias rm='mv -t /tmp '
-alias less='less -x4'
-alias remake='make remake'
-alias du='du -h'
-alias diff='diff -s'
-alias gdbh='vim ~/.gdb_history'
 alias top='htop'
 
-cd () { builtin cd "$@" && chpwd; }
-chpwd () {
-  tmux rename-window $(basename $(pwd))
-}
-
 tabs -4
-
-export GIT_PS1_SHOWDIRTYSTATE=1
-export GIT_PS1_SHOWUPSTREAM=1
-export PS1='\[\033[1;35m\]\u@\h\[\033[00m\]:\[[38;5;248m\]\A\[\033[00m\]: \W\[[1m\]\[[94m\]$(__git_ps1 " (%s)")\[\033[00m\]\$ '
-
-# http://unix.stackexchange.com/questions/72086/
-stty -ixon
 
 export REVIEW_BASE=master
