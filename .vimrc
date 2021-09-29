@@ -321,6 +321,25 @@ augroup FileTypeAuCmds
 		\ setlocal matchpairs+=<:>
 	autocmd FileType tex,rst,markdown call Prose()
 
+	autocmd FileType haskell setlocal expandtab
+	autocmd BufRead,BufNewFile *.i setlocal filetype=swig
+	autocmd BufRead,BufNewFile *.gp setlocal filetype=gnuplot
+	autocmd BufRead,BufNewFile *.go setlocal filetype=go
+	autocmd FileType git setlocal foldlevel=1
+	autocmd BufRead,BufNewFile *.tex,*.pdf_tex setlocal filetype=tex
+	autocmd BufRead,BufNewFile *.out setlocal nowrap
+	autocmd FileType cmake setlocal commentstring=#%s
+augroup END
+
+function! Prose()
+	setlocal textwidth=79
+	let g:searchindex_star_case=0
+	if !&readonly
+		setlocal spell
+	endif
+	set spellfile=./en.utf-8.add |
+endfunction
+
 " Use ,q to show the highlight group under the cursor, allows colourscheme to
 " be changed
 " http://vim.wikia.com/wiki/Identify_the_syntax_highlighting_group_used_at_the_cursor
