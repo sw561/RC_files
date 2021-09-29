@@ -2,32 +2,6 @@ set nocompatible
 
 filetype plugin on
 
-" For plugins
-" https://github.com/google/vim-searchindex.git
-set runtimepath+=~/.vim/bundle/vim-searchindex
-" https://github.com/unblevable/quick-scope.git
-set runtimepath+=~/.vim/bundle/quick-scope
-" https://github.com/tpope/vim-commentary.git
-set runtimepath+=~/.vim/bundle/vim-commentary
-" https://github.com/tpope/vim-repeat.git
-set runtimepath+=~/.vim/bundle/vim-repeat
-" https://github.com/tpope/vim-fugitive.git
-set runtimepath+=~/.vim/bundle/vim-fugitive
-" https://github.com/nacitar/a.vim.git
-set runtimepath+=~/.vim/bundle/a.vim
-" https://github.com/sw561/vim-resizewindow.git
-set runtimepath+=~/.vim/bundle/vim-resizewindow
-" https://github.com/junegunn/gv.vim.git
-set runtimepath+=~/.vim/bundle/gv.vim
-" https://github.com/tpope/vim-eunuch.git
-set runtimepath+=~/.vim/bundle/vim-eunuch
-" https://github.com/tpope/vim-rhubarb.git
-set runtimepath+=~/.vim/bundle/vim-rhubarb
-" https://github.com/kana/vim-textobj-user.git
-set runtimepath+=~/.vim/bundle/vim-textobj-user
-" https://github.com/rbonvall/vim-textobj-latex.git
-set runtimepath+=~/.vim/bundle/vim-textobj-latex
-
 " Inspired by http://vi.stackexchange.com/questions/6800/
 function! Mycabbrev(lhs,rhs)
 	execute printf("cnoreabbrev <expr> %s getcmdtype() ==# ':' ? '%s' : '%s'",
@@ -338,14 +312,6 @@ command! MyBufferDelete bp|bd# " :bd will delete buffer without deleting window
 call Mycabbrev("bd","MyBufferDelete")
 nnoremap ,l :ls<CR>:b<Space>
 
-function! GetModTime()
-	echo strftime('%c',getftime(expand('%')))
-endfunction
-
-command! GM call GetModTime()
-
-command! CD cd %:h
-
 " Commands for specific filetypes
 set spelllang=en_gb
 augroup FileTypeAuCmds
@@ -354,37 +320,6 @@ augroup FileTypeAuCmds
 		\ setlocal commentstring=\/\/\ %s |
 		\ setlocal matchpairs+=<:>
 	autocmd FileType tex,rst,markdown call Prose()
-
-	autocmd FileType haskell setlocal expandtab
-	autocmd BufRead,BufNewFile *.i setlocal filetype=swig
-	autocmd BufRead,BufNewFile *.gp setlocal filetype=gnuplot
-	autocmd BufRead,BufNewFile *.go setlocal filetype=go
-	autocmd FileType git setlocal foldlevel=1
-	autocmd BufRead,BufNewFile *.tex,*.pdf_tex setlocal filetype=tex
-	autocmd BufRead,BufNewFile *.out setlocal nowrap
-	autocmd FileType cmake setlocal commentstring=#%s
-augroup END
-
-function! Prose()
-	setlocal textwidth=79
-	let g:searchindex_star_case=0
-	if !&readonly
-		setlocal spell
-	endif
-	set spellfile=./en.utf-8.add |
-endfunction
-
-" vim -b : edit binary using xxd-format!
-augroup Binary
-	au!
-	au BufReadPre  *.bin,*.bmp,*.gif let &bin=1
-	au BufReadPost *.bin,*.bmp,*.gif if &bin | %!xxd
-	au BufReadPost *.bin,*.bmp,*.gif set ft=xxd | endif
-	au BufWritePre *.bin,*.bmp,*.gif if &bin | %!xxd -r
-	au BufWritePre *.bin,*.bmp,*.gif endif
-	au BufWritePost *.bin,*.bmp,*.gif if &bin | %!xxd
-	au BufWritePost *.bin,*.bmp,*.gif set nomod | endif
-augroup END
 
 " Use ,q to show the highlight group under the cursor, allows colourscheme to
 " be changed
