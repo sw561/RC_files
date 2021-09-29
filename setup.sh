@@ -1,7 +1,6 @@
 cd ~
 ln -s /OTHELLO/home/sdwilki/RC_files/.vimrc .
 ln -s /OTHELLO/home/sdwilki/RC_files/.bash_aliases .
-ln -s /OTHELLO/home/sdwilki/RC_files/.git-prompt.sh .
 ln -s /OTHELLO/home/sdwilki/RC_files/.gdbinit .
 ln -s /OTHELLO/home/sdwilki/RC_files/.inputrc .
 mkdir -p .vim
