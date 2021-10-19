@@ -329,6 +329,7 @@ augroup FileTypeAuCmds
 	autocmd BufRead,BufNewFile *.tex,*.pdf_tex setlocal filetype=tex
 	autocmd BufRead,BufNewFile *.out setlocal nowrap
 	autocmd FileType cmake setlocal commentstring=#%s
+	autocmd FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4
 augroup END
 
 function! Prose()
