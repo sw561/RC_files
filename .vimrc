@@ -362,6 +362,7 @@ augroup FileTypeAuCmds
 	autocmd FileType git setlocal foldlevel=1
 	autocmd BufRead,BufNewFile *.tex,*.pdf_tex setlocal filetype=tex
 	autocmd BufRead,BufNewFile *.out setlocal nowrap
+	autocmd FileType rst set wildignore-=*.png
 	autocmd FileType cmake setlocal commentstring=#%s
 augroup END
 
