@@ -7,6 +7,7 @@ function open_quietly() {
 }
 
 alias grepn='grep -I -r -n --color=auto --exclude-dir=.git --exclude=tags'
+alias l='ls -ltr'
 alias ll='ls -ltr'
 alias ls='ls -h --color=auto'
 alias lsd='ls -ltrd */'
