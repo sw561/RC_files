@@ -17,8 +17,6 @@ set runtimepath+=~/.vim/bundle/vim-fugitive
 set runtimepath+=~/.vim/bundle/a.vim
 " https://github.com/sw561/vim-resizewindow.git
 set runtimepath+=~/.vim/bundle/vim-resizewindow
-" https://github.com/junegunn/gv.vim.git
-set runtimepath+=~/.vim/bundle/gv.vim
 " https://github.com/tpope/vim-eunuch.git
 set runtimepath+=~/.vim/bundle/vim-eunuch
 " https://github.com/tpope/vim-rhubarb.git
@@ -47,9 +45,6 @@ command! Gdall tabnew % | Git! diff
 command! Gcached tabnew % | Git! diff --cached
 call Mycabbrev("gda", "Gdall")
 call Mycabbrev("gca", "Gcached")
-
-call Mycabbrev("gv", "GV")
-call Mycabbrev("gva", "GV --all")
 
 " For using a.vim in LSC_AMR
 let g:alternateExtensions_cpp_C = "H"
