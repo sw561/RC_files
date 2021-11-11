@@ -43,6 +43,7 @@ augroup END
 nnoremap gs :Git<CR><C-W>J
 command! Gdall tabnew % | Git! diff
 command! Gcached tabnew % | Git! diff --cached
+command! Gblame Git blame
 call Mycabbrev("gda", "Gdall")
 call Mycabbrev("gca", "Gcached")
 
