@@ -21,6 +21,7 @@ alias gco='git checkout'
 alias gd='git diff'
 alias gca='git diff --cached'
 alias gitk='gitk --all'
+alias du='du -h'
 alias top='htop'
 
 tabs -4
