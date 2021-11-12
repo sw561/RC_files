@@ -25,15 +25,17 @@ alias gca='git diff --cached'
 alias gitk='gitk --all'
 alias rm='mv -t /tmp '
 alias less='less -x4'
+alias log='less -x4 +F'
 alias remake='make remake'
 alias du='du -h'
 alias diff='diff -s'
 alias gdbh='vim ~/.gdb_history'
 alias top='htop'
+alias inkscape='flatpak run org.inkscape.Inkscape'
 
 cd () { builtin cd "$@" && chpwd; }
 chpwd () {
-  tmux rename-window $(basename $(pwd))
+  tmux rename-window $(basename $(pwd)) 2> /dev/null
 }
 
 tabs -4

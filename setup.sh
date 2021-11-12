@@ -7,6 +7,7 @@ ln -s RC_files/.Xmodmap .
 ln -s RC_files/.gitconfig .
 ln -s RC_files/.gdbinit .
 ln -s RC_files/.inputrc .
+ln -s RC_files/.ctags .
 mkdir -p .vim
 ln -s ~/RC_files/vim/syntax/ .vim
 ln -s ~/RC_files/vim/plugin/ .vim

@@ -109,7 +109,7 @@ set diffopt+=vertical
 set lazyredraw
 
 " My custom color scheme - just some minor changes to the default settings
-colo sand_light
+colo sand_solarized
 
 nnoremap <F12> :up<CR>:colo sand_light<CR>
 imap <F12> <Esc><F12>
@@ -147,10 +147,11 @@ vnoremap g_ $
 
 " In visual mode, search for the selected string with //
 function! SearchSelection()
-	let @/ = substitute(@0, '/', '\\/', 'g')
+	" let @/ = substitute(@0, '/', '\\/', 'g')
+	let @/ = escape(@0, '\\/.*$^~[]')
 	call search(@/)
 endfunction
-vnoremap <silent> // y:call SearchSelection()<CR>
+vnoremap <silent> // y:call SearchSelection()<CR>:set hlsearch<CR>
 
 " Don't lose the visual selection when adjusting indentation
 vnoremap < <gv
