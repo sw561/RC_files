@@ -22,6 +22,7 @@ alias gd='git diff'
 alias gca='git diff --cached'
 alias gsi='git status --untracked-files=no'
 alias gitk='gitk --all'
+alias du='du -h'
 alias top='htop'
 
 tabs -4
