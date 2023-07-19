@@ -15,14 +15,14 @@ alias open="open_quietly"
 alias vim="vim -p"
 alias unittest='python -m unittest discover -p "*_test.py" -v'
 alias gs='git status'
-alias gl='git log -n 10 --pretty=oneline --abbrev-commit --decorate'
+alias gl='git log -n 10 --pretty=oneline --abbrev-commit --decorate --graph'
 alias gb='git branch -avv'
 alias gco='git checkout'
 alias gd='git diff'
 alias gca='git diff --cached'
 alias gsi='git status --untracked-files=no'
 alias gitk='gitk --all'
-alias du='du -h'
+alias du='du -hsc'
 alias top='htop'
 
 tabs -4
