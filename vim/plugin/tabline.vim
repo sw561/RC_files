@@ -150,7 +150,7 @@ function! TabMoveNew(index)
 			let val = tabpagenr('$') - a:index + 1
 			execute "tabmove ".val
 		elseif a:index > display
-			let val = tabpagenr('$') - a:index
+			let val = max([0, tabpagenr('$') - a:index])
 			execute "tabmove ".val
 		endif
 	endif
