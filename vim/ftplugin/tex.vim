@@ -24,9 +24,9 @@ set wildignore+=*blx.bib,*.xml,*.aux,*.bbl,*.blg,*.log,*.out,*.toc,*.spl
 syn region texRefZone	matchgroup=texStatement start="\\cref{"	end="}\|%stopzone\>"	contains=@texRefGroup
 syn region texRefZone	matchgroup=texStatement start="\\fullcite{"	end="}\|%stopzone\>"	contains=@texRefGroup
 
-" Clear these slow syntax highlighting groups
-syn clear texString
-syn clear texSubSectionZone
-syn clear texSectionZone
-syn clear texOption
-syn clear texLength
+" " Clear these slow syntax highlighting groups
+" syn clear texString
+" syn clear texSubSectionZone
+" syn clear texSectionZone
+" syn clear texOption
+" syn clear texLength

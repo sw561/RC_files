@@ -1,5 +1,6 @@
 set nocompatible
 
+syntax on
 filetype plugin on
 
 " For plugins
@@ -63,6 +64,7 @@ nmap [D <Plug>ResizeWindowLeft
 
 " Settings
 set autoindent
+set backspace=indent,eol,start
 set copyindent
 set expandtab
 set tabstop=2
@@ -87,6 +89,7 @@ set exrc " Can put local .vimrc in project directory
 set nomodeline
 set secure
 set timeout timeoutlen=1000 ttimeoutlen=10
+set noincsearch
 set hlsearch
 nohl " Make sure that on reload of vimrc the last search is not highlighted
 nnoremap <silent> ,/ :nohl<CR>
@@ -100,9 +103,11 @@ set completeopt+=menuone
 set commentstring=//\ %s
 set diffopt+=vertical
 set lazyredraw
+set nowrap
 
 " My custom color scheme - just some minor changes to the default settings
 colo sand_solarized
+" colo sand_light
 
 nnoremap <F12> :up<CR>:colo sand_light<CR>
 imap <F12> <Esc><F12>

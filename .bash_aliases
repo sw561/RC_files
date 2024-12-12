@@ -15,7 +15,7 @@ alias open="open_quietly"
 alias vim="vim -p"
 alias unittest='python -m unittest discover -p "*_test.py" -v'
 alias gs='git status'
-alias gl='git log -n 10 --pretty=oneline --abbrev-commit --decorate --graph'
+alias gl='git log -n 20 --pretty=oneline --abbrev-commit --decorate --graph'
 alias gb='git branch -avv'
 alias gco='git checkout'
 alias gd='git diff'
