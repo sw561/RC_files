@@ -1,5 +1,5 @@
 $include /etc/inputrc
-set editing-mode vi
+# set editing-mode vi
 set show-all-if-unmodified On
 set show-all-if-ambiguous On
 set colored-stats On

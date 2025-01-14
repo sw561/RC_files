@@ -6,7 +6,7 @@
 [color]
 	ui = true
 [user]
-	email = sw561@cam.ac.uk
+	email = simon_wilkinson92@hotmail.com
 	name = Simon Wilkinson
 [diff]
 	tool = vimdiff
@@ -15,8 +15,8 @@
 [merge]
   tool = vimdiff
 [credential]
-	helper = cache
+	helper = store
 [push]
 	default = simple
-[pager]
-	show = vim -R -
+[init]
+	defaultBranch = main

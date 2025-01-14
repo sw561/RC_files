@@ -85,7 +85,7 @@ function! MyTabLine()
 	return s
 endfunction
 
-nnoremap gt :<C-U>execute ":call GoToTab(".v:count.")"<CR>
+nnoremap <silent> gt :<C-U>execute ":call GoToTab(".v:count.")"<CR>
 nnoremap gT gt
 
 function GoToTab(index)
@@ -148,9 +148,19 @@ function! TabMoveNew(index)
 		let display = tabpagenr('$') - tabpagenr() + 1
 		if a:index < display
 			let val = tabpagenr('$') - a:index + 1
+			if val < 0
+				let val = 0
+			elseif val > tabpagenr('$')
+				let val = tabpagenr('$')
+			endif
 			execute "tabmove ".val
 		elseif a:index > display
 			let val = tabpagenr('$') - a:index
+			if val < 0
+				let val = 0
+			elseif val > tabpagenr('$')
+				let val = tabpagenr('$')
+			endif
 			execute "tabmove ".val
 		endif
 	endif

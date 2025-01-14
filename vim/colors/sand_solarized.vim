@@ -52,12 +52,12 @@ highlight! link PmenuSel StatusLine
 " Other random stuff
 highlight VertSplit cterm=none ctermfg=0 ctermbg=none
 highlight NonText cterm=none ctermfg=0
-highlight SpecialKey ctermfg=0
+highlight link SpecialKey Constant
 highlight Question ctermfg=2
 highlight! link MoreMsg Question
 highlight! link Directory Comment
 
-highlight LineNr ctermfg=0
+highlight LineNr ctermfg=240
 highlight! link CursorLineNr LineNr
 
 " Eye-catching yellow background highlighting

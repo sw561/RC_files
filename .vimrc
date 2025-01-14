@@ -1,10 +1,12 @@
 set nocompatible
 
+syntax enable
+
 filetype plugin on
 
 " For plugins
-" https://github.com/google/vim-searchindex.git
-set runtimepath+=~/.vim/bundle/vim-searchindex
+" " https://github.com/google/vim-searchindex.git
+" set runtimepath+=~/.vim/bundle/vim-searchindex
 " https://github.com/unblevable/quick-scope.git
 set runtimepath+=~/.vim/bundle/quick-scope
 " https://github.com/tpope/vim-commentary.git
@@ -24,6 +26,10 @@ set runtimepath+=~/.vim/bundle/vim-eunuch
 " https://github.com/tpope/vim-rhubarb.git
 set runtimepath+=~/.vim/bundle/vim-rhubarb
 
+" Alternative to my own trim plugin
+" https://github.com/axelf4/vim-strip-trailing-whitespace.git
+set runtimepath+=~/.vim/bundle/vim-strip-trailing-whitespace
+
 " Inspired by http://vi.stackexchange.com/questions/6800/
 function! Mycabbrev(lhs,rhs)
 	execute printf("cnoreabbrev <expr> %s getcmdtype() ==# ':' ? '%s' : '%s'",
@@ -38,7 +44,7 @@ augroup gs_colors
 	autocmd ColorScheme * highlight QuickScopeSecondary ctermfg=57
 augroup END
 
-nnoremap gs :Gstatus<CR><C-W>J
+nnoremap gs :Git<CR><C-W>J
 command! Gdall tabnew % | Git! diff
 command! Gcached tabnew % | Git! diff --cached
 call Mycabbrev("gda", "Gdall")
@@ -56,10 +62,10 @@ nmap <C-Down>  <Plug>ResizeWindowDown
 nmap <C-Left>  <Plug>ResizeWindowLeft
 nmap <C-Right> <Plug>ResizeWindowRight
 " For when term is screen-256color
-nmap [A <Plug>ResizeWindowUp
-nmap [B <Plug>ResizeWindowDown
-nmap [C <Plug>ResizeWindowRight
-nmap [D <Plug>ResizeWindowLeft
+nmap [1;5A <Plug>ResizeWindowUp
+nmap [1;5B <Plug>ResizeWindowDown
+nmap [1;5C <Plug>ResizeWindowRight
+nmap [1;5D <Plug>ResizeWindowLeft
 
 " Settings
 set autoindent
@@ -98,11 +104,13 @@ set path=**
 set linebreak
 set completeopt+=menuone
 set commentstring=//\ %s
-set diffopt+=iwhite,vertical
+set diffopt+=vertical
 set lazyredraw
+set shortmess-=S " Give count of matches when searching
+set virtualedit=block
 
 " My custom color scheme - just some minor changes to the default settings
-colo sand_light
+colo sand_solarized
 
 nnoremap <F12> :up<CR>:colo sand_light<CR>
 imap <F12> <Esc><F12>
@@ -121,12 +129,18 @@ vmap <Down> <C-E>
 vmap <Up>   <C-Y>
 imap <Down> <C-O><C-E>
 imap <Up>   <C-O><C-Y>
+noremap <PageUp> 15<C-Y>
+noremap <PageDown> 15<C-E>
+imap <PageUp> <C-O><PageUp>
+imap <PageDown> <C-O><PageDown>
 
 " Make Y behave analogously to D and C
 noremap Y y$
 
 " New line with enter - start new paragraph by hitting enter twice
 nnoremap <CR> o
+nmap OM <CR>
+inoremap OM <CR>
 
 " Swap 0 and ^, ^ is more useful, but 0 is easier to press
 nnoremap 0 ^
@@ -140,10 +154,11 @@ vnoremap g_ $
 
 " In visual mode, search for the selected string with //
 function! SearchSelection()
-	let @/ = substitute(@0, '/', '\\/', 'g')
+	let @/ = escape(@0, '/[]')
 	call search(@/)
+	call getreg('/')->histadd("search")
 endfunction
-vnoremap <silent> // y:call SearchSelection()<CR>
+vnoremap <silent> // y:call SearchSelection()<CR>:set hls<CR>
 
 " Don't lose the visual selection when adjusting indentation
 vnoremap < <gv
@@ -241,7 +256,10 @@ inoremap <expr> <C-J> pumvisible() ? "<C-Y><C-X><C-F>" : "<Esc>m'o<Esc><C-O>a"
 " Add a new line below the cursor
 " inoremap <C-J> <Esc>m'o<Esc><C-O>a
 " Remove line below cursor, opposite of <C-J>
-inoremap <C-K> <Esc>m'jdd<Esc><C-O>a
+inoremap <C-K> <C-G>u<Esc>m'jdd<Esc><C-O>a
+
+" For digraphs
+" inoremap <C-I> <C-K>
 
 " Use CTRL j to navigate down directories in wildmenu
 set wildcharm=<Tab>
@@ -296,14 +314,27 @@ noremap <C-H> <C-W>h
 inoremap <C-L> <Esc><C-W>l
 inoremap <C-H> <Esc><C-W>h
 
+tmap <C-H> <C-W>N<C-H>a
+tmap <C-J> <C-W>N<C-J>a
+tmap <C-K> <C-W>N<C-K>a
+tmap <C-L> <C-W>N<C-L>a
+
+tmap <Esc> <C-W>N
+" function! TerminalOptions()
+" 	silent! au BufEnter <buffer> startinsert!
+" 	silent! au BufLeave <buffer> stopinsert!
+" endfunction
+" au TerminalOpen * call TerminalOptions()
+call Mycabbrev("vterm", "vert terminal")
+
 " The above mappings overwrite CTRL-L for redrawing the screen
 nnoremap <expr> ,d &diff ? '<C-L>:diffupdate<CR>' : '<C-L>'
 
 " For whatever reason, I can never remember :diffthis and :diffoff
-call Mycabbrev("diffstart", "diffthis")
-call Mycabbrev("diffon", "diffthis")
-call Mycabbrev("diffend", "diffoff")
-call Mycabbrev("diffstop", "diffoff")
+call Mycabbrev("diffstart", "windo diffthis")
+call Mycabbrev("diffon", "windo diffthis")
+call Mycabbrev("diffend", "windo diffoff")
+call Mycabbrev("diffstop", "windo diffoff")
 
 " Shortcuts for using fuzzy find to open files
 nnoremap ,fe :find *
@@ -351,13 +382,14 @@ augroup FileTypeAuCmds
 	autocmd BufRead,BufNewFile *.tex,*.pdf_tex setlocal filetype=tex
 	autocmd BufRead,BufNewFile *.out setlocal nowrap
 	autocmd FileType cmake setlocal commentstring=#%s
+	autocmd FileType vim setlocal noet
 augroup END
 
 function! Prose()
 	setlocal textwidth=79
 	let g:searchindex_star_case=0
 	if !&readonly
-		set spell
+		setlocal spell
 	endif
 	set spellfile=./en.utf-8.add |
 endfunction
@@ -365,17 +397,17 @@ endfunction
 " vim -b : edit binary using xxd-format!
 augroup Binary
 	au!
-	au BufReadPre  *.bin,*.bmp,*.gif let &bin=1
-	au BufReadPost *.bin,*.bmp,*.gif if &bin | %!xxd
-	au BufReadPost *.bin,*.bmp,*.gif set ft=xxd | endif
-	au BufWritePre *.bin,*.bmp,*.gif if &bin | %!xxd -r
-	au BufWritePre *.bin,*.bmp,*.gif endif
-	au BufWritePost *.bin,*.bmp,*.gif if &bin | %!xxd
-	au BufWritePost *.bin,*.bmp,*.gif set nomod | endif
+	au BufReadPre   *.bin,*.bmp,*.gif,*.crypt let &bin=1
+	au BufReadPost  *.bin,*.bmp,*.gif,*.crypt if &bin | %!xxd
+	au BufReadPost  *.bin,*.bmp,*.gif,*.crypt set ft=xxd | endif
+	au BufWritePre  *.bin,*.bmp,*.gif,*.crypt if &bin | %!xxd -r
+	au BufWritePre  *.bin,*.bmp,*.gif,*.crypt endif
+	au BufWritePost *.bin,*.bmp,*.gif,*.crypt if &bin | %!xxd
+	au BufWritePost *.bin,*.bmp,*.gif,*.crypt set nomod | endif
 augroup END
 
 function! Skeleton_Candidates(ArgLead, CmdLine, CursorPos)
-	return "python\npython3\ncpp\nMakefile\ngnuplot\nbash\ntex\ngo"
+	return "python\npython3\ncodejam\ncpp\nMakefile\ngnuplot\nbash\ntex\ngo"
 endfunction
 
 " Skeleton files
@@ -384,9 +416,13 @@ function! Skeleton(name)
 	if a:name == "python"
 		0read ~/RC_files/skeleton/python.py
 		write
-		silent !chmod u+x %
+		!chmod u+x %
 	elseif a:name == "python3"
 		0read ~/RC_files/skeleton/python3.py
+		write
+		!chmod u+x %
+	elseif a:name =="codejam"
+		0read ~/RC_files/skeleton/codejam.py
 		write
 		!chmod u+x %
 	elseif a:name == "cpp"

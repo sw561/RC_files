@@ -22,12 +22,16 @@ def move_right():
 		# If already the last window, do nothing
 		return
 	move_window(win, win+1)
+	command = "tmux select-window -n"
+	check_call(command, shell=True)
 
 def move_left():
 	win = get_window()
 	if win==1:
 		return
 	move_window(win, win-1)
+	command = "tmux select-window -p"
+	check_call(command, shell=True)
 
 if __name__=="__main__":
 	import sys
