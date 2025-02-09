@@ -11,7 +11,6 @@ are satisfied that nothing unexpected is about to happen.
 """
 
 from __future__ import print_function
-from six.moves import input
 from contextlib import contextmanager
 import os
 import re
