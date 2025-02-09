@@ -33,7 +33,7 @@ exe "highlight Type " .MyGreen
 
 " Change the colour of active and non-active status lines
 highlight StatusLineNC cterm=none ctermfg=7 ctermbg=242
-exe "highlight StatusLine cterm=none ctermfg=15 ctermbg=4"
+exe "highlight StatusLine cterm=none ctermfg=15 ctermbg=3"
 
 " Tabline
 highlight! link TabLine StatusLineNC
