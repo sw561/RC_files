@@ -112,7 +112,7 @@ colo sand_solarized
 nnoremap <F12> :up<CR>:colo sand_light<CR>
 imap <F12> <Esc><F12>
 
-set grepprg=grep\ -r\ -n\ -I\ --exclude-dir=.git\ --exclude=tags
+set grepprg=grep\ -r\ -n\ -I\ --exclude-dir=.git\ --exclude-dir=.venv\ --exclude=tags
 
 " Turn on the mouse, for scrolling too
 set mouse=n
