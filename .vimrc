@@ -104,6 +104,7 @@ set commentstring=//\ %s
 set diffopt+=vertical
 set lazyredraw
 set nowrap
+set shortmess-=S
 
 " My custom color scheme - just some minor changes to the default settings
 colo sand_solarized
