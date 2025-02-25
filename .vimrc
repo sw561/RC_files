@@ -112,6 +112,8 @@ colo sand_solarized
 nnoremap <F12> :up<CR>:colo sand_light<CR>
 imap <F12> <Esc><F12>
 
+set grepprg=grep\ -r\ -n\ -I\ --exclude-dir=.git\ --exclude=tags
+
 " Turn on the mouse, for scrolling too
 set mouse=n
 noremap <ScrollWheelUp> 3<C-Y>
@@ -221,6 +223,7 @@ nnoremap <silent> <C-P> :call Cprev()<CR>
 function! OpenQFlist()
 	let height = max([2, min([10, len(getqflist())])])
 	execute "copen " . height
+	execute "normal! \<c-w>J"
 endfunction
 nnoremap <silent> ,c :call OpenQFlist()<CR>
 
