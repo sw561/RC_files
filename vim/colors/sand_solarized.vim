@@ -66,7 +66,8 @@ highlight! link WildMenu Search
 highlight! link IncSearch Search
 
 " Dangerous red for errors
-highlight ErrorMsg ctermfg=15 ctermbg=9
+highlight ErrorMsg ctermfg=255 ctermbg=9
+highlight! link Error ErrorMsg
 
 " Unobtrusive gray-scale highlighting
 highlight Todo cterm=none ctermfg=15 ctermbg=8
