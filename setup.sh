@@ -8,3 +8,4 @@ ln -s /GINKGO/home/sdwilki/RC_files/vim/plugin/ .vim
 ln -s /GINKGO/home/sdwilki/RC_files/vim/colors/ .vim
 ln -s /GINKGO/home/sdwilki/RC_files/vim/ftplugin/ .vim
 ln -s /GINKGO/home/sdwilki/RC_files/vim/after/ .vim
+ln -s /GINKGO/home/sdwilki/RC_files/.local/share/konsole/Otto.colorscheme .local/share/konsole/
