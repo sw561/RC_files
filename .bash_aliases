@@ -6,7 +6,7 @@ function open_quietly() {
   xdg-open "$1" 2>/dev/null
 }
 
-alias grepn='grep -I -r -n --color=auto --exclude-dir=.git --exclude=tags'
+alias grepn='grep -I -r -n --color=auto --exclude-dir=.git --exclude-dir=.venv --exclude=tags'
 alias l='ls -ltr'
 alias ll='ls -ltr'
 alias ls='ls -h --color=auto'

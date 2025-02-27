@@ -4,28 +4,22 @@ syntax on
 filetype plugin on
 
 " For plugins
-" https://github.com/google/vim-searchindex.git
-set runtimepath+=~/.vim/bundle/vim-searchindex
-" https://github.com/unblevable/quick-scope.git
-set runtimepath+=~/.vim/bundle/quick-scope
 " https://github.com/tpope/vim-commentary.git
 set runtimepath+=~/.vim/bundle/vim-commentary
 " https://github.com/tpope/vim-repeat.git
 set runtimepath+=~/.vim/bundle/vim-repeat
 " https://github.com/tpope/vim-fugitive.git
 set runtimepath+=~/.vim/bundle/vim-fugitive
-" https://github.com/nacitar/a.vim.git
-set runtimepath+=~/.vim/bundle/a.vim
+" " https://github.com/nacitar/a.vim.git
+" set runtimepath+=~/.vim/bundle/a.vim
 " https://github.com/sw561/vim-resizewindow.git
 set runtimepath+=~/.vim/bundle/vim-resizewindow
 " https://github.com/tpope/vim-eunuch.git
 set runtimepath+=~/.vim/bundle/vim-eunuch
-" https://github.com/tpope/vim-rhubarb.git
-set runtimepath+=~/.vim/bundle/vim-rhubarb
-" https://github.com/kana/vim-textobj-user.git
-set runtimepath+=~/.vim/bundle/vim-textobj-user
-" https://github.com/rbonvall/vim-textobj-latex.git
-set runtimepath+=~/.vim/bundle/vim-textobj-latex
+" " https://github.com/kana/vim-textobj-user.git
+" set runtimepath+=~/.vim/bundle/vim-textobj-user
+" " https://github.com/rbonvall/vim-textobj-latex.git
+" set runtimepath+=~/.vim/bundle/vim-textobj-latex
 
 " Inspired by http://vi.stackexchange.com/questions/6800/
 function! Mycabbrev(lhs,rhs)
@@ -113,7 +107,7 @@ colo sand_solarized
 nnoremap <F12> :up<CR>:colo sand_light<CR>
 imap <F12> <Esc><F12>
 
-set grepprg=grep\ -r\ -n\ -I\ --exclude-dir=.git\ --exclude=tags
+set grepprg=grep\ -r\ -n\ -I\ --exclude-dir=.git\ --exclude-dir=.venv\ --exclude=tags
 
 " Turn on the mouse, for scrolling too
 set mouse=n
