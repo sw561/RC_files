@@ -30,10 +30,11 @@ exe "highlight Constant " .MyYellow
 exe "highlight Identifier cterm=none " .MyGreen
 exe "highlight Ignore " .MyGreen
 exe "highlight Type " .MyGreen
+highlight Normal ctermfg=250
 
 " Change the colour of active and non-active status lines
-highlight StatusLineNC cterm=none ctermfg=7 ctermbg=242
-exe "highlight StatusLine cterm=none ctermfg=255 ctermbg=27"
+highlight StatusLineNC cterm=none ctermfg=252 ctermbg=240
+exe "highlight StatusLine cterm=none ctermfg=252 ctermbg=27"
 
 " Tabline
 highlight! link TabLine StatusLineNC
@@ -63,10 +64,11 @@ highlight! link CursorLineNr LineNr
 " Eye-catching yellow background highlighting
 highlight Search ctermfg=16 ctermbg=3
 highlight! link WildMenu Search
-highlight! link IncSearch Search
+highlight IncSearch ctermfg=196 ctermbg=15
 
 " Dangerous red for errors
-highlight ErrorMsg ctermfg=15 ctermbg=9
+highlight ErrorMsg ctermfg=255 ctermbg=160
+highlight! link Error ErrorMsg
 
 " Unobtrusive gray-scale highlighting
 highlight Todo cterm=none ctermfg=15 ctermbg=8
