@@ -15,7 +15,7 @@ endif
 
 let colors_name = "sand_light"
 
-let Blue="240"
+let Blue="63"
 
 let MyOrange="ctermfg=124"
 let MyYellow="ctermfg=166"
@@ -30,10 +30,11 @@ exe "highlight Constant " .MyYellow
 exe "highlight Identifier cterm=none " .MyGreen
 exe "highlight Ignore " .MyGreen
 exe "highlight Type " .MyGreen
+highlight Normal ctermfg=238
 
 " Change the colour of active and non-active status lines
-highlight StatusLineNC cterm=none ctermfg=7 ctermbg=240
-exe "highlight StatusLine cterm=none ctermfg=15 ctermbg=4"
+highlight StatusLineNC cterm=none ctermfg=252 ctermbg=240
+exe "highlight StatusLine cterm=none ctermfg=252 ctermbg=27"
 
 " Tabline
 highlight! link TabLine StatusLineNC
@@ -61,22 +62,22 @@ highlight LineNr ctermfg=240
 highlight! link CursorLineNr LineNr
 
 " Eye-catching yellow background highlighting
-highlight Search ctermfg=16 ctermbg=11
+highlight Search ctermfg=16 ctermbg=190
 highlight! link WildMenu Search
-highlight! link IncSearch Search
+highlight IncSearch ctermfg=196 ctermbg=15
 
 " Dangerous red for errors
-highlight ErrorMsg ctermfg=15 ctermbg=9
+highlight ErrorMsg ctermfg=252 ctermbg=160
 
 " Unobtrusive gray-scale highlighting
 highlight Todo cterm=none ctermfg=15 ctermbg=8
 highlight MatchParen cterm=none ctermbg=249 ctermfg=0
 
 " Highlighting for vimdiff
-highlight DiffText term=none ctermfg=0 ctermbg=11
+highlight DiffText term=none ctermfg=0 ctermbg=208
 highlight DiffDelete term=none ctermfg=9 ctermbg=none
 highlight DiffChange term=none ctermfg=0 ctermbg=228
-highlight DiffAdd term=none ctermbg=10
+highlight DiffAdd term=none ctermbg=40
 
 highlight diffRemoved term=none ctermfg=124
 highlight! link diffAdded Identifier
