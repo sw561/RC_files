@@ -64,14 +64,14 @@ highlight! link CursorLineNr LineNr
 " Eye-catching yellow background highlighting
 highlight Search ctermfg=16 ctermbg=3
 highlight! link WildMenu Search
-highlight IncSearch ctermfg=196 ctermbg=15
+highlight IncSearch ctermfg=88 ctermbg=255
 
 " Dangerous red for errors
 highlight ErrorMsg ctermfg=255 ctermbg=160
 highlight! link Error ErrorMsg
 
 " Unobtrusive gray-scale highlighting
-highlight Todo cterm=none ctermfg=15 ctermbg=8
+highlight Todo cterm=none ctermfg=251 ctermbg=8
 highlight MatchParen cterm=reverse ctermbg=249 ctermfg=0
 
 " Highlighting for vimdiff
@@ -89,7 +89,7 @@ highlight! link diffNewFile diffOldFile
 highlight! link diffLine Comment
 highlight! link diffSubname diffLine
 
-highlight SpellBad ctermfg=15 ctermbg=9
+highlight SpellBad ctermfg=1 ctermbg=none
 highlight! link SpellCap SpellBad
 highlight! link SpellLocal SpellBad
 highlight! link SpellRare SpellBad

@@ -80,7 +80,7 @@ Color=81,104,116
 Color=69,89,99
 
 [Foreground]
-Color=89,103,119
+Color=40,40,40
 
 [ForegroundFaint]
 Color=100,116,134
@@ -94,7 +94,7 @@ Blur=true
 ColorRandomization=false
 Description=Otto-Light
 FillStyle=Tile
-Opacity=0.8
+Opacity=1
 Wallpaper=
 WallpaperFlipType=NoFlip
 WallpaperOpacity=1
