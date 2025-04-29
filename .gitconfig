@@ -40,5 +40,3 @@
 	helper = store
 [push]
 	default = simple
-[pager]
-	show = $EDITOR -R -

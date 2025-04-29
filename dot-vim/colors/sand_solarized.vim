@@ -30,7 +30,7 @@ exe "highlight Constant " .MyYellow
 exe "highlight Identifier cterm=none " .MyGreen
 exe "highlight Ignore " .MyGreen
 exe "highlight Type " .MyGreen
-highlight Normal ctermfg=250
+highlight Normal ctermfg=255
 
 " Change the colour of active and non-active status lines
 highlight StatusLineNC cterm=none ctermfg=252 ctermbg=240
