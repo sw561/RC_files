@@ -1,5 +1,6 @@
 [alias]
 	co = checkout
+  lg = log -n 20 --pretty=oneline --abbrev-commit --decorate --graph
 	dt = difftool
 
   #  Aliases taken from

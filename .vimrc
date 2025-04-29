@@ -99,6 +99,8 @@ set diffopt+=vertical
 set lazyredraw
 set nowrap
 set shortmess-=S
+set foldopen-=quickfix,search
+set showcmd
 
 " My custom color scheme - just some minor changes to the default settings
 colo sand_solarized
@@ -107,7 +109,7 @@ colo sand_solarized
 nnoremap <F12> :up<CR>:colo sand_light<CR>
 imap <F12> <Esc><F12>
 
-set grepprg=grep\ -r\ -n\ -I\ --exclude-dir=.git\ --exclude-dir=.venv\ --exclude=tags
+set grepprg=grep\ -H\ -r\ -n\ -I\ --exclude-dir=.git\ --exclude-dir=.venv\ --exclude=tags
 
 " Turn on the mouse, for scrolling too
 set mouse=n
@@ -253,7 +255,9 @@ set wildcharm=<Tab>
 cnoremap <C-J> <Down>
 
 " Make tags file for jumping around using <C-]> and back with <C-T>
+" command! MakeTags !ctags -R .
 command! MakeTags !ctags --python-kinds=-i -R .
+" command! MakeTags !ctags $(find . -name "*.cpp" -or -name "*.hpp")
 " Open tags in vertical split rather than horizontal
 nnoremap <C-W><C-]> <C-W><C-]><C-W>t<C-W>H<C-W>p
 " Open tag in new tab
@@ -345,6 +349,14 @@ endfunction
 command! GM call GetModTime()
 
 command! CD cd %:h
+
+function! GrepSearchString()
+  let s = substitute(@/, '\\<', '', 'g')
+  let s = substitute(s, '\\>', '', 'g')
+  execute "grep " . s
+endfunction
+
+command! Grep call GrepSearchString()
 
 " Commands for specific filetypes
 set spelllang=en_gb
