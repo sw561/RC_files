@@ -273,7 +273,7 @@ let g:tex_comment_nospell=1
 " Use :x instead of :wq only write if changes have been made
 call Mycabbrev("wq","x")
 call Mycabbrev("w","update")
-call Mycabbrev("Q","q")
+call Mycabbrev("Q","cquit") " Exit with error code
 
 cnoremap w!! w !sudo tee > /dev/null %
 
