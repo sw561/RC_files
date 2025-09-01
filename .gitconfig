@@ -1,6 +1,6 @@
 [alias]
 	co = checkout
-  lg = log -n 20 --pretty=oneline --abbrev-commit --decorate --graph
+  lg = log -n 20 --date=short --decorate --graph
 	dt = difftool
 
   #  Aliases taken from
@@ -23,6 +23,8 @@
   # instead of opening all files:
   # git reviewone foo.js bar.js
   reviewone = !$EDITOR -p +\"tabdo Gdiff $REVIEW_BASE\"
+[format]
+  pretty = format:%C(yellow)%h %C(Blue)%ad %Cgreen%aN%Cred%d%Creset %s
 [core]
 	editor = $EDITOR
 [color]
