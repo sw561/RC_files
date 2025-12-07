@@ -258,7 +258,7 @@ command! MakeTags !ctags $(find . -name "*.cpp" -or -name "*.hpp")
 " Open tags in vertical split rather than horizontal
 nnoremap <C-W><C-]> <C-W><C-]><C-W>t<C-W>H<C-W>p
 " Open tag in new tab
-nnoremap <C-T><C-]> <C-W><C-]><C-W>T
+nnoremap t<C-]> <C-W><C-]><C-W>T
 " If preceding with g, use :tselect not :tjump
 nnoremap g<C-]> g]
 " Make a split for the tag - and go back in old window
