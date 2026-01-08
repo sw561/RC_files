@@ -160,6 +160,8 @@ nnoremap q/ <nop>
 
 " Use line numbers where possible when navigating to file
 nnoremap gf WBgF
+nnoremap <C-W>f <C-W>F
+nnoremap <C-W>gf <C-W>gF
 
 " From defaults.vim - Use CTRL-G u to break undo
 inoremap <C-U> <C-G>u<C-U>
